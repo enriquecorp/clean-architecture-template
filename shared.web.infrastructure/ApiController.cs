@@ -1,0 +1,8 @@
+﻿
+namespace shared.web.infrastructure
+{
+    //public class ApiController : Controller
+    //{
+
+    //}
+}
