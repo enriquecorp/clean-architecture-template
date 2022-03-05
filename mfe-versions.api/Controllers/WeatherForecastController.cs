@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
+using shared.web.infrastructure;
 
 namespace mfe_versions.api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController : ApiBaseController
     {
         private static readonly string[] Summaries = new[]
         {
