@@ -15,7 +15,7 @@ namespace mfe_versions.api.Extensions.HealthCheck
             // .AddMongoDb(configuration["ConnectionStrings:versioningdb"], name: "MongoDB", tags: new[] { "Versioning", "Database" }, failureStatus: HealthStatus.Unhealthy)
             .AddCheck<RemoteHealthCheck>("Remote Endpoints Health Check", failureStatus: HealthStatus.Unhealthy) // when we call external APIs
             .AddCheck<MemoryHealthCheck>("Memory Health Check", failureStatus: HealthStatus.Unhealthy, tags: new[] { "Versioning Service" }) // check memory health based on allocation memory
-            .AddUrlGroup(new Uri($"https://localhost:19726/api/v1/heartbeat/ping"), name: "Base URL", failureStatus: HealthStatus.Unhealthy);// This could be implemented by group of APIs
+            .AddUrlGroup(new Uri($"https://localhost:7005/api/v1/heartbeat/ping"), name: "Base URL", failureStatus: HealthStatus.Unhealthy);// This could be implemented by group of APIs
 
             services.AddHealthChecksUI(opt =>
             {
