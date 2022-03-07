@@ -24,6 +24,22 @@ namespace mfe_versions.api.Extensions
             services.ConfigureHealthChecks(configuration);           
         }
 
+        public static void UseServices (this WebApplication app)
+        {
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+
+            app.UseHttpsRedirection();
+
+            app.UseAuthorization();
+
+            app.MapControllers();
+        }
+
         private static void ConfigureCors(this IServiceCollection services)
         {
             services.AddCors(options =>
@@ -45,5 +61,6 @@ namespace mfe_versions.api.Extensions
             //services.AddSwaggerGen();
             services.ConfigureSwaggerServices();
         }
+
     }
 }
