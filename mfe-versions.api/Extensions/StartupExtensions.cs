@@ -1,7 +1,12 @@
 ﻿using mfe_versions.api.Extensions.DependencyInjection;
 using mfe_versions.api.Extensions.HealthCheck;
 using mfe_versions.api.Extensions.Middlewares;
+using HealthChecks.UI.Configuration;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using HealthChecks.UI.Client;
+//using VersioningService.HealthChecks;
+//using VersioningService.Middlewares;
 
 namespace mfe_versions.api.Extensions
 {
@@ -45,10 +50,38 @@ namespace mfe_versions.api.Extensions
             }
 
             app.UseHttpsRedirection();
+            app.UseRouting(); // This is required by Health check UI configuration
 
             app.UseAuthorization();
 
-            app.MapControllers();
+            app.UseMapControllers();
+        }
+
+        private static void UseMapControllers(this IApplicationBuilder app)
+        {
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                // endpoints.MapHealthChecks("/health");
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions()
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
+                app.UseHealthChecksUI(delegate (Options options)
+                {
+                    options.UIPath = "/healthchek-ui";
+                    options.AddCustomStylesheet($"{AppContext.BaseDirectory}/extensions/HealthCheck/custom.css");
+                });
+                // Health Cheks recommended here: https://tlvconfluence01.nice.com/display/IN/GEN+ADR4:+Health+Check+Endpoints
+                // endpoints.MapHealthChecks("/health", new HealthCheckOptions() { Predicate = (_) => false });
+                endpoints.MapHealthChecks("/healthcheck", new HealthCheckOptions() { Predicate = (_) => false });
+                endpoints.MapHealthChecks("/probe/healthcheck", new HealthCheckOptions() { Predicate = (_) => false });
+                endpoints.MapHealthChecks("/probe/host", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("host"), ResponseWriter = ResponseWritters.HostProbeWriter });
+                endpoints.MapHealthChecks("/activecheck", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("host"), ResponseWriter = ResponseWritters.HostProbeWriter });
+                endpoints.MapHealthChecks("/probe/ready", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("ready") });
+                endpoints.MapHealthChecks("/probe/healthreport", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("ready"), ResponseWriter = ResponseWritters.HealthReportWriter });
+            });
         }
 
         private static void ConfigureCors(this IServiceCollection services)

@@ -1,0 +1,8 @@
+:root {
+    --primaryColor: #0e385e;
+    --secondaryColor: #f4f4f4;
+    --bgMenuActive: #0e385e;
+    --bgButton: #0e385e;
+    --logoImageUrl: url ('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/846a9086-8a40-43e0-aa10-2fc7d6d73730/dd4bz30-1d55fffc-6517-422f-9609-680cc512ef12.png');
+    --bgAside: var(--primaryColor);
+}
