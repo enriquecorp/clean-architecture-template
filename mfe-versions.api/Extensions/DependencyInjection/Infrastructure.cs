@@ -15,6 +15,20 @@ namespace mfe_versions.api.Extensions.DependencyInjection
                 throw new ArgumentNullException(nameof(configuration));
             }
 
+            //var appSettings = configuration.GetSection("AppSettings").Get<AppSettingsSection>();
+            //string connectionString = string.Empty;
+            //if ((bool)appSettings?.ByPassKeyVault)
+            //{
+            //    connectionString = configuration.GetConnectionString("versioningdb");
+            //}
+            //else
+            //{
+            //    connectionString = GetSecret.VersioningConnectionString();
+            //}
+            ////NOT for production
+            //services.AddDbContext<VersioningDbContext>(opts => opts.UseInMemoryDatabase("MemInDB")); // This is just a workaround for using in-memory storage temporaly
+            //// services.AddDbContext<VersioningDbContext>(optionsAction: opt => opt.UseSqlServer(connectionString), contextLifetime: ServiceLifetime.Transient, optionsLifetime: ServiceLifetime.Transient);
+
             return services;
         }
     }
