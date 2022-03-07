@@ -29,6 +29,8 @@ namespace mfe_versions.api.Extensions
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                // Enable dev html responses for errors.
+                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }

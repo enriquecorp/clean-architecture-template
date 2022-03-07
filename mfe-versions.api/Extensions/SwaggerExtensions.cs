@@ -43,8 +43,7 @@ public static class SwaggerExtensions
                 options.OperationFilter<SwaggerDefaultValues>();
 
                 // integrate xml comments
-                //TODO: This must be uncomment
-                //options.IncludeXmlComments(XmlCommentsFilePath);
+                options.IncludeXmlComments(XmlCommentsFilePath);
             });
 
         return services;
@@ -57,9 +56,8 @@ public static class SwaggerExtensions
     {
         get
         {
-            var basePath = AppContext.BaseDirectory;
-            var fileName = typeof(StartupExtensions).GetTypeInfo().Assembly.GetName().Name + ".xml";
-            return Path.Combine(basePath, fileName);
+            var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            return (Path.Combine(AppContext.BaseDirectory, xmlFilename));
         }
     }
 
