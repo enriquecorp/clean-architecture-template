@@ -10,23 +10,20 @@ namespace mfe_versions.api.Extensions
         {
             services.ConfigureCors();
 
-            //services.ConfigureDependencyInjection(Configuration);
+            services.ConfigureDependencyInjection(configuration);
 
-            ////services.ConfigureSwagger();
-            //services.ConfigureSwagger2();
+            services.AddControllers();
+
+            services.ConfigureSwagger();
 
             //services.AddAutoMapper(typeof(Startup));
 
-            //services.AddRouting(options => options.LowercaseUrls = true);
+            services.AddRouting(options => options.LowercaseUrls = true);
 
             //services.ConfigureHealthChecks(Configuration);
 
-            services.AddControllers();
-            services.AddApplicationDependencies();
-            services.AddInfrastructureDependencies(configuration);
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+
+           
         }
 
         private static void ConfigureCors(this IServiceCollection services)
@@ -35,6 +32,20 @@ namespace mfe_versions.api.Extensions
             {
                 options.AddPolicy(CorsPolicyName, builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
+        }
+
+        private static void ConfigureDependencyInjection(this IServiceCollection services,IConfiguration configuration)
+        {
+            services.AddApplicationDependencies();
+            services.AddInfrastructureDependencies(configuration);
+        }
+
+        private static void ConfigureSwagger(this IServiceCollection services)
+        {
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            //services.AddEndpointsApiExplorer();
+            //services.AddSwaggerGen();
+            services.ConfigureSwaggerServices();
         }
     }
 }
