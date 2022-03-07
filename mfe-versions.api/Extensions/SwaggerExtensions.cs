@@ -61,25 +61,25 @@ public static class SwaggerExtensions
         }
     }
 
-    public static IApplicationBuilder ConfigureSwagger2(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
-    {
-        if (app is null)
-        {
-            throw new ArgumentNullException(nameof(app));
-        }
-        // app.UseSwagger(options => options.RouteTemplate = "swagger/"+ApiConstants.ServiceName+"/{documentName}/swagger.json");
-        app.UseSwagger();
-        app.UseSwaggerUI(
-            options =>
-            {
-                // build a swagger endpoint for each discovered API version
-                foreach (var description in provider.ApiVersionDescriptions)
-                {
-                    options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
-                }
-            });
-        return app;
-    }
+    //public static IApplicationBuilder ConfigureSwagger2(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
+    //{
+    //    if (app is null)
+    //    {
+    //        throw new ArgumentNullException(nameof(app));
+    //    }
+    //    // app.UseSwagger(options => options.RouteTemplate = "swagger/"+ApiConstants.ServiceName+"/{documentName}/swagger.json");
+    //    app.UseSwagger();
+    //    app.UseSwaggerUI(
+    //        options =>
+    //        {
+    //            // build a swagger endpoint for each discovered API version
+    //            foreach (var description in provider.ApiVersionDescriptions)
+    //            {
+    //                options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+    //            }
+    //        });
+    //    return app;
+    //}
 }
 
 /// <summary>

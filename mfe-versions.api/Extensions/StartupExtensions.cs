@@ -1,5 +1,6 @@
 ﻿using mfe_versions.api.Extensions.DependencyInjection;
 using mfe_versions.api.Extensions.HealthCheck;
+using mfe_versions.api.Extensions.Middlewares;
 
 namespace mfe_versions.api.Extensions
 {
@@ -33,6 +34,10 @@ namespace mfe_versions.api.Extensions
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI();
+            }
+            if (!app.Environment.IsDevelopment()) // Prod environment
+            {
+                app.UseHttpStatusCodeMiddleware();
             }
 
             app.UseHttpsRedirection();

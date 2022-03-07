@@ -1,17 +1,13 @@
 ﻿using shared.web.infrastructure.Middlewares;
-using System;
 
 
-
-namespace VersioningService.Middlewares
+namespace mfe_versions.api.Extensions.Middlewares
 {
-    public static class HttpStatusCodeExceptionMiddlewareExtensions
+    public static class HttpStatusCodeMiddlewareExtensions
     {
         public static IApplicationBuilder UseHttpStatusCodeMiddleware(this IApplicationBuilder builder)
         {
             return builder.UseMiddleware<HttpStatusCodeMiddleware>();
         }
-    }
-
-    
+    }   
 }
