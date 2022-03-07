@@ -14,7 +14,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.AspNetCore.Builder;
 using mfe_versions.api.Extensions;
 
-public static class SwaggerConfiguration
+public static class SwaggerExtensions
 {
     public static IServiceCollection ConfigureSwaggerServices(this IServiceCollection services)
     {

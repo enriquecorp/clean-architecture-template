@@ -13,7 +13,7 @@ namespace mfe_versions.api.Extensions.DependencyInjection
     /// <summary>
     /// Class for application level dependecy injections
     /// </summary>
-    public static class Application
+    public static class ApplicationExtensions
     {
         public static IServiceCollection AddApplicationDependencies(this IServiceCollection services)
         {

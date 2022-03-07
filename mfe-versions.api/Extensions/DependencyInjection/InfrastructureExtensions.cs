@@ -2,7 +2,7 @@
 
 namespace mfe_versions.api.Extensions.DependencyInjection
 {
-    public static class Infrastructure
+    public static class InfrastructureExtensions
     {
         public static IServiceCollection AddInfrastructureDependencies(this IServiceCollection services, IConfiguration configuration)
         {
