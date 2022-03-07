@@ -70,7 +70,7 @@ namespace mfe_versions.api.Extensions
                 });
                 app.UseHealthChecksUI(delegate (Options options)
                 {
-                    options.UIPath = "/healthchek-ui";
+                    options.UIPath = "/healthcheck-ui";
                     options.AddCustomStylesheet($"{AppContext.BaseDirectory}/extensions/HealthCheck/custom.css");
                 });
                 // Health Cheks recommended here: https://tlvconfluence01.nice.com/display/IN/GEN+ADR4:+Health+Check+Endpoints
