@@ -61,7 +61,7 @@ public static class SwaggerExtensions
         }
     }
 
-    //public static IApplicationBuilder ConfigureSwagger2(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
+    //public static IApplicationBuilder UseSwagger2(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
     //{
     //    if (app is null)
     //    {
@@ -80,6 +80,27 @@ public static class SwaggerExtensions
     //        });
     //    return app;
     //}
+
+    public static IApplicationBuilder UseAppSwagger(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
+    {
+        if (app is null)
+        {
+            throw new ArgumentNullException(nameof(app));
+        }
+        // app.UseSwagger(options => options.RouteTemplate = "swagger/"+ApiConstants.ServiceName+"/{documentName}/swagger.json");
+        app.UseSwagger(options => options.RouteTemplate = "swagger/{documentName}/swagger.json");
+        app.UseSwaggerUI(c =>
+        {
+            // c.RoutePrefix = $"swagger/{ApiConstants.ServiceName}";
+            // Build a swagger endpoint for each discovered API version
+            foreach (ApiVersionDescription description in provider.ApiVersionDescriptions)
+            {
+                // c.SwaggerEndpoint("/swagger/v1/swagger.json", "MicrofrontEndService v1")
+                c.SwaggerEndpoint($"{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+            }
+        });
+        return app;
+    }
 }
 
 /// <summary>

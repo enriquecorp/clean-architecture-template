@@ -1,6 +1,7 @@
 ﻿using mfe_versions.api.Extensions.DependencyInjection;
 using mfe_versions.api.Extensions.HealthCheck;
 using mfe_versions.api.Extensions.Middlewares;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 namespace mfe_versions.api.Extensions
 {
@@ -32,12 +33,15 @@ namespace mfe_versions.api.Extensions
             {
                 // Enable dev html responses for errors.
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+                app.UseAppSwagger(provider);
+                //app.UseSwagger();
+                //app.UseSwaggerUI();
             }
             if (!app.Environment.IsDevelopment()) // Prod environment
             {
                 app.UseHttpStatusCodeMiddleware();
+                app.UseHsts();// Strict https transport header
             }
 
             app.UseHttpsRedirection();
