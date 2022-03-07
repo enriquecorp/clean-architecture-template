@@ -2,13 +2,13 @@
 {
     public static class Startup
     {
-        public static void ConfigureServices(this IServiceCollection services)
+        public const string CorsPolicyName = "CorsPolicy";
+
+        public static void ConfigureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            //services.ConfigureCors();
+            services.ConfigureCors();
 
             //services.ConfigureDependencyInjection(Configuration);
-
-            //services.AddControllers();
 
             ////services.ConfigureSwagger();
             //services.ConfigureSwagger2();
@@ -23,6 +23,14 @@
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+        }
+
+        private static void ConfigureCors(this IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(CorsPolicyName, builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
         }
     }
 }
