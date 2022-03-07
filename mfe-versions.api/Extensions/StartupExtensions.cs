@@ -1,8 +1,9 @@
 ﻿using mfe_versions.api.Extensions.DependencyInjection;
+using mfe_versions.api.Extensions.HealthCheck;
 
 namespace mfe_versions.api.Extensions
 {
-    public static class Startup
+    public static class StartupExtensions
     {
         public const string CorsPolicyName = "CorsPolicy";
 
@@ -20,10 +21,7 @@ namespace mfe_versions.api.Extensions
 
             services.AddRouting(options => options.LowercaseUrls = true);
 
-            //services.ConfigureHealthChecks(Configuration);
-
-
-           
+            services.ConfigureHealthChecks(configuration);           
         }
 
         private static void ConfigureCors(this IServiceCollection services)

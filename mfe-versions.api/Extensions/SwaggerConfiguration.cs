@@ -58,7 +58,7 @@ public static class SwaggerConfiguration
         get
         {
             var basePath = AppContext.BaseDirectory;
-            var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
+            var fileName = typeof(StartupExtensions).GetTypeInfo().Assembly.GetName().Name + ".xml";
             return Path.Combine(basePath, fileName);
         }
     }
