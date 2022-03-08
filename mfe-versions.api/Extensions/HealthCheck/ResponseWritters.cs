@@ -13,7 +13,7 @@ namespace mfe_versions.api.Extensions.HealthCheck
         public static Task HostProbeWriter(HttpContext context, HealthReport result)
         {
             context.Response.ContentType = "text/plain";
-            return context.Response.WriteAsync(text: result.Entries["host"].Description);
+            return context.Response.WriteAsync(result.Entries["host"].Description??"");
         }
 
         public static Task HealthReportWriter(HttpContext context, HealthReport result)

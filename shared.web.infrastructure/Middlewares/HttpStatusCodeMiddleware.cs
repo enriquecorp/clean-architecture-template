@@ -72,7 +72,7 @@ namespace shared.web.infrastructure.Middlewares
             }
         }
 
-        private async Task WriteAndLogResponseAsync(Exception ex, HttpContext httpContext, HttpStatusCode httpStatusCode, LogLevel logLevel, string alternateMessage = null)
+        private async Task WriteAndLogResponseAsync(Exception ex, HttpContext httpContext, HttpStatusCode httpStatusCode, LogLevel logLevel, string? alternateMessage = null)
         {
             string requestBody = string.Empty;
             if (httpContext.Request.Body.CanSeek)
@@ -88,16 +88,16 @@ namespace shared.web.infrastructure.Middlewares
             httpContext.Request.Headers.TryGetValue("Authorization", out authorization);
             var customDetails = new StringBuilder();
 
-            customDetails.AppendFormat("\n Service URL       :").Append(httpContext.Request.Path.ToString())
+            customDetails.AppendFormat("\n Service URL       :").Append(httpContext.Request?.Path.ToString())
                          .AppendFormat("\n Request Method    :").Append(httpContext.Request?.Method)
                          .AppendFormat("\n Request Body      :").Append(requestBody)
                          .AppendFormat("\n Authorization     :").Append(authorization)
-                         .AppendFormat("\n Content Type      :").Append(httpContext.Request.Headers["Content-type"].ToString())
-                         .AppendFormat("\n Cookie            :").Append(httpContext.Request.Headers["Cookie"].ToString())
-                         .AppendFormat("\n Host              :").Append(httpContext.Request.Headers["Host"].ToString())
-                         .AppendFormat("\n Referer           :").Append(httpContext.Request.Headers["Referer"].ToString())
-                         .AppendFormat("\n Origin            :").Append(httpContext.Request.Headers["Origin"].ToString())
-                         .AppendFormat("\n User Agent        :").Append(httpContext.Request.Headers["User-Agent"].ToString())
+                         .AppendFormat("\n Content Type      :").Append(httpContext.Request?.Headers["Content-type"].ToString())
+                         .AppendFormat("\n Cookie            :").Append(httpContext.Request?.Headers["Cookie"].ToString())
+                         .AppendFormat("\n Host              :").Append(httpContext.Request?.Headers["Host"].ToString())
+                         .AppendFormat("\n Referer           :").Append(httpContext.Request?.Headers["Referer"].ToString())
+                         .AppendFormat("\n Origin            :").Append(httpContext.Request?.Headers["Origin"].ToString())
+                         .AppendFormat("\n User Agent        :").Append(httpContext.Request?.Headers["User-Agent"].ToString())
                          .AppendFormat("\n Error Message     :").Append(ex.Message);
             logger.Log(logLevel, ex, customDetails.ToString());
 

@@ -13,11 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "versioning", "versioning", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mfe-versions", "mfe-versions", "{CB5B7CA1-90C9-4F6B-8B97-A80BD9EA51BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mfe-versions.application", "mfe-versions.application\mfe-versions.application.csproj", "{0FD901D7-9BB0-4930-9C22-E40E8C0DB4EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mfe-versions.application", "mfe-versions.application\mfe-versions.application.csproj", "{0FD901D7-9BB0-4930-9C22-E40E8C0DB4EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mfe-versions.domain", "mfe-versions.domain\mfe-versions.domain.csproj", "{AAC0F419-CE73-4599-8885-0A9051F4F567}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mfe-versions.domain", "mfe-versions.domain\mfe-versions.domain.csproj", "{AAC0F419-CE73-4599-8885-0A9051F4F567}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mfe-versions.infrastructure", "mfe-versions.infrastructure\mfe-versions.infrastructure.csproj", "{808A4598-67D2-4776-ACC6-F1260E3D3663}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mfe-versions.infrastructure", "mfe-versions.infrastructure\mfe-versions.infrastructure.csproj", "{808A4598-67D2-4776-ACC6-F1260E3D3663}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app.tests", "app.tests", "{BD98CB51-89CE-40B1-BFD5-6F3A8C0829F6}"
 EndProject
@@ -25,21 +25,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "versioning", "versioning", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mfe-versions", "mfe-versions", "{E894151D-FE3C-457E-B129-25DD33E0579E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mfe-versions.application.tests", "mfe-versions.application.tests\mfe-versions.application.tests.csproj", "{6FF0FA28-72D5-4A05-8105-F8942F8E3C45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mfe-versions.application.tests", "mfe-versions.application.tests\mfe-versions.application.tests.csproj", "{6FF0FA28-72D5-4A05-8105-F8942F8E3C45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mfe-versions.domain.tests", "mfe-versions.domain.tests\mfe-versions.domain.tests.csproj", "{8EFDE99C-43BD-45DC-8B5F-AE1BBAEC15DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mfe-versions.domain.tests", "mfe-versions.domain.tests\mfe-versions.domain.tests.csproj", "{8EFDE99C-43BD-45DC-8B5F-AE1BBAEC15DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mfe-versions.infrastructure.tests", "mfe-versions.infrastructure.tests\mfe-versions.infrastructure.tests.csproj", "{468840CC-B0F1-4AE6-A94F-98D0F6715DCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mfe-versions.infrastructure.tests", "mfe-versions.infrastructure.tests\mfe-versions.infrastructure.tests.csproj", "{468840CC-B0F1-4AE6-A94F-98D0F6715DCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mfe-versions.api", "mfe-versions.api\mfe-versions.api.csproj", "{FBB92E41-FE00-4384-9E6C-3D220E5DC587}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mfe-versions.api", "mfe-versions.api\mfe-versions.api.csproj", "{FBB92E41-FE00-4384-9E6C-3D220E5DC587}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{EDC0CA1A-F52D-4D6A-8F51-62EA5FF2EE37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shared.domain", "shared.domain\shared.domain.csproj", "{2BB10391-9D50-4581-BDBB-0E38962FBC2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "shared.domain", "shared.domain\shared.domain.csproj", "{2BB10391-9D50-4581-BDBB-0E38962FBC2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shared.infrastructure", "shared.infrastructure\shared.infrastructure.csproj", "{135E8A29-D0E0-40D3-B207-EF47D9BEEEB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "shared.infrastructure", "shared.infrastructure\shared.infrastructure.csproj", "{135E8A29-D0E0-40D3-B207-EF47D9BEEEB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shared.web.infrastructure", "shared.web.infrastructure\shared.web.infrastructure.csproj", "{D8F752D5-F8BC-4A64-BBB7-B3C76445FF2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "shared.web.infrastructure", "shared.web.infrastructure\shared.web.infrastructure.csproj", "{D8F752D5-F8BC-4A64-BBB7-B3C76445FF2B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4C5594B8-6442-4E8A-A4D1-1020424F37EA}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

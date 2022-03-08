@@ -1,4 +1,4 @@
-using Microsoft.Extensions.Diagnostics.HealthChecks;
+﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -29,7 +29,8 @@ namespace mfe_versions.api.Extensions.HealthCheck
             };
             var status = (allocated < options.Threshold) ? HealthStatus.Healthy : HealthStatus.Unhealthy;
             // return Task.FromResult(new HealthCheckResult(status, description: "Reports degraded status if", exception: null, data: data));
-            return new HealthCheckResult(status, description: $"Reports degraded status if allocated bytes >= {options.Threshold} bytes.", exception: null, data: data);
+            return await Task.Run(()=> new HealthCheckResult(status, description: $"Reports degraded status if allocated bytes >= {options.Threshold} bytes.", exception: null, data: data));
+            // return new HealthCheckResult(status, description: $"Reports degraded status if allocated bytes >= {options.Threshold} bytes.", exception: null, data: data);
         }
     }
 
