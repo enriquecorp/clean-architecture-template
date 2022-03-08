@@ -11,10 +11,7 @@ namespace mfe_versions.api.Extensions.HealthCheck
 
         private string Name => "memory_check";
 
-        public MemoryHealthCheck(IOptionsMonitor<MemoryCheckOptions> options)
-        {
-            this.options = options;
-        }
+        public MemoryHealthCheck(IOptionsMonitor<MemoryCheckOptions> options) => this.options = options;
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
             var options = this.options.Get(context.Registration.Name);

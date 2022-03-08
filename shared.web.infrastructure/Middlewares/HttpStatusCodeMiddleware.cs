@@ -1,10 +1,5 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using System.Security.Authentication;
+﻿using System.Net;
 using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
@@ -34,7 +29,7 @@ namespace shared.web.infrastructure.Middlewares
             try
             {
                 context.Request.EnableBuffering();
-                await next(context);
+                await this.next(context);
             }
             catch (Exception ex)
             {
@@ -66,7 +61,7 @@ namespace shared.web.infrastructure.Middlewares
                     default:
                         // Unhandled error
                         // context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
-                        await WriteAndLogResponseAsync(ex, context, HttpStatusCode.InternalServerError, LogLevel.Error, "Server Error! " + ex.Message);
+                        await this.WriteAndLogResponseAsync(ex, context, HttpStatusCode.InternalServerError, LogLevel.Error, "Server Error! " + ex.Message);
                         break;
                 }
             }
@@ -84,8 +79,7 @@ namespace shared.web.infrastructure.Middlewares
                 }
             }
 
-            StringValues authorization;
-            httpContext.Request.Headers.TryGetValue("Authorization", out authorization);
+            httpContext.Request.Headers.TryGetValue("Authorization", out var authorization);
             var customDetails = new StringBuilder();
 
             customDetails.AppendFormat("\n Service URL       :").Append(httpContext.Request?.Path.ToString())
@@ -99,11 +93,11 @@ namespace shared.web.infrastructure.Middlewares
                          .AppendFormat("\n Origin            :").Append(httpContext.Request?.Headers["Origin"].ToString())
                          .AppendFormat("\n User Agent        :").Append(httpContext.Request?.Headers["User-Agent"].ToString())
                          .AppendFormat("\n Error Message     :").Append(ex.Message);
-            logger.Log(logLevel, ex, customDetails.ToString());
+            this.logger.Log(logLevel, ex, customDetails.ToString());
 
             if (httpContext.Response.HasStarted)
             {
-                logger.LogError("The response has already started, the http status code middleware won't be executed");
+                this.logger.LogError("The response has already started, the http status code middleware won't be executed");
             }
 
             string responseMessage = JsonConvert.SerializeObject(

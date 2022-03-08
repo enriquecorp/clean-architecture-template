@@ -86,10 +86,7 @@ namespace mfe_versions.api.Extensions
 
         private static void ConfigureCors(this IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy(CorsPolicyName, builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            });
+            services.AddCors(options => options.AddPolicy(CorsPolicyName, builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
         }
 
         private static void ConfigureDependencyInjection(this IServiceCollection services,IConfiguration configuration)

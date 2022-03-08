@@ -26,7 +26,7 @@ namespace VersioningService.V1.Controllers
         public async Task<ActionResult<bool>> Get()
         {
             // return await Task.FromResult<ActionResult<bool>>(Ok(true));
-            return await Task.Run(() =>Ok(true));
+            return await Task.Run(() => this.Ok(true));
             //return Ok(true);
         }
     }

@@ -1,4 +1,4 @@
-
+﻿
 
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -52,12 +52,12 @@ public static class SwaggerExtensions
     /// <summary>
     /// This class needs to be used but it generates an error!
     /// </summary>
-    static string XmlCommentsFilePath
+    private static string XmlCommentsFilePath
     {
         get
         {
             var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            return (Path.Combine(AppContext.BaseDirectory, xmlFilename));
+            return Path.Combine(AppContext.BaseDirectory, xmlFilename);
         }
     }
 
@@ -167,7 +167,7 @@ public class SwaggerDefaultValues : IOperationFilter
 
 public class ConfigureSwaggerOptions : Microsoft.Extensions.Options.IConfigureOptions<SwaggerGenOptions>
 {
-    readonly IApiVersionDescriptionProvider provider;
+    private readonly IApiVersionDescriptionProvider provider;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ConfigureSwaggerOptions"/> class.
@@ -180,13 +180,13 @@ public class ConfigureSwaggerOptions : Microsoft.Extensions.Options.IConfigureOp
     {
         // add a swagger document for each discovered API version
         // note: you might choose to skip or document deprecated API versions differently
-        foreach (var description in provider.ApiVersionDescriptions)
+        foreach (var description in this.provider.ApiVersionDescriptions)
         {
             options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(description));
         }
     }
 
-    static OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description)
+    private static OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description)
     {
         var info = new OpenApiInfo()
         {

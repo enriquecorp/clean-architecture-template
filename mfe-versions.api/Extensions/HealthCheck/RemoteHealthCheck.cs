@@ -1,4 +1,4 @@
-
+﻿
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
 using System;
@@ -19,7 +19,7 @@ namespace mfe_versions.api.Extensions.HealthCheck
         }
         public async Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
-            using (var httpClient = httpClientFactory.CreateClient())
+            using (var httpClient = this.httpClientFactory.CreateClient())
             {
                 var response = await httpClient.GetAsync("https://api.ipify.org");
                 if (response.IsSuccessStatusCode)
