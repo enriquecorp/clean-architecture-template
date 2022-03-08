@@ -1,4 +1,4 @@
-﻿namespace mfe_versions.application
+﻿namespace Mfes.Domain
 {
     public class Class1
     {

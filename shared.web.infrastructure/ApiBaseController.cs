@@ -5,6 +5,7 @@ using shared.domain.bus.command;
 
 namespace shared.web.infrastructure
 {
+    [Produces("application/json")]
     public abstract class ApiBaseController : Controller
     {
         public ApiBaseController()
