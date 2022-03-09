@@ -13,6 +13,11 @@ namespace mfe_versions.api.V1.MfeConfigurations
     [Route("api/v{version:apiVersion}/mfe-configurations")]
     public class MfeConfigurationsPostController : ApiBaseController
     {
+        private readonly MfeConfigurationCreator configurationCreator = new();
+        public MfeConfigurationsPostController()
+        {
+
+        }
         // GET: api/<MfeConfigurationsPostController>
         //[HttpGet]
         //public IEnumerable<string> Get()
@@ -34,6 +39,8 @@ namespace mfe_versions.api.V1.MfeConfigurations
         {
             Console.WriteLine($"TenantId = {tenantId}");
             Console.WriteLine($"Configurations Length = {mfeConfiguration.Configurations.Count}");
+            mfeConfiguration.TenantId = tenantId;
+            this.configurationCreator.Execute(mfeConfiguration);
             return this.StatusCode(StatusCodes.Status201Created);
         }
 
