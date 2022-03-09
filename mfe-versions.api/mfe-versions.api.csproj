@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MfeConfigurations.Application\MfeConfigurations.Application.csproj" />
     <ProjectReference Include="..\Mfes.Application\Mfes.Application.csproj" />
     <ProjectReference Include="..\shared.web.infrastructure\shared.web.infrastructure.csproj" />
   </ItemGroup>
@@ -34,10 +35,6 @@
     <None Update="Extensions\HealthCheck\custom.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="V1\MfeConfigurations\" />
   </ItemGroup>
 
 </Project>
