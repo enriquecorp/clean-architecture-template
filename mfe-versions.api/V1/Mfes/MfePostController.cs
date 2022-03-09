@@ -11,10 +11,11 @@ namespace mfe_versions.api.V1.Mfes
     public class MfePostController : ApiBaseController
     {
         [HttpPost()]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult Index([FromBody] MfeRequest mfe)
         {
             Console.WriteLine(mfe);
-            return this.View();
+            return this.StatusCode(StatusCodes.Status201Created);
         }
     }
 }
