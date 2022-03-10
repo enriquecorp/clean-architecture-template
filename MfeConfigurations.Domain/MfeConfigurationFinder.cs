@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MfeConfigurations.Domain
 {
-    public class MfeConfigurationFinder
+    public sealed class MfeConfigurationFinder
     {
         private readonly IMfeConfigurationRepository repository;
 

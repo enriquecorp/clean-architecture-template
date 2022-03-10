@@ -13,10 +13,11 @@ namespace mfe_versions.api.V1.MfeConfigurations
     [Route("api/v{version:apiVersion}/mfe-configurations")]
     public class MfeConfigurationsPostController : ApiBaseController
     {
-        private readonly MfeConfigurationCreator configurationCreator = new();
-        public MfeConfigurationsPostController()
-        {
+        private readonly MfeConfigurationCreator configurationCreator; //= new();
 
+        public MfeConfigurationsPostController(MfeConfigurationCreator configurationCreator)
+        {
+            this.configurationCreator = configurationCreator;
         }
         // GET: api/<MfeConfigurationsPostController>
         //[HttpGet]
