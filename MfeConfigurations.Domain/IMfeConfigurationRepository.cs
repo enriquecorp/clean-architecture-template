@@ -8,5 +8,6 @@ namespace MfeConfigurations.Domain
 {
     public interface IMfeConfigurationRepository
     {
+        
     }
 }

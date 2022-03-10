@@ -4,18 +4,18 @@ namespace Versioning.Shared.Domain.ValueObjects
 {
     public class TenantId
     {
-        private readonly string value;
+        public string Value { get; }
 
         public TenantId(string value)
         {
             this.EnsureIsValidUuid(value);
             this.EnsureIsNumber(value);
-            this.value = value;
+            this.Value = value;
         }
 
-        public bool IsUHTenantId => Guid.TryParse(this.value, out _);
+        public bool IsUHTenantId => Guid.TryParse(this.Value, out _);
 
-        public bool IsBusinessUnitId => Regex.IsMatch(this.value, @"^\d+$");
+        public bool IsBusinessUnitId => Regex.IsMatch(this.Value, @"^\d+$");
 
         private void EnsureIsValidUuid(string value)
         {

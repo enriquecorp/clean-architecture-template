@@ -1,12 +1,11 @@
-﻿namespace Versioning.Shared.Domain.ValueObjects
-{
-    public class MfeName
-    {
-        private readonly string value;
+﻿using shared.domain.ValueObjects;
 
-        public MfeName(string value)
+namespace Versioning.Shared.Domain.ValueObjects
+{
+    public class MfeName : StringValueObject
+    {
+        public MfeName(string value) : base(value)
         {
-            this.value = value;
         }
     }
 }
