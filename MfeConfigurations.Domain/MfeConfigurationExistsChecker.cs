@@ -16,10 +16,10 @@ namespace MfeConfigurations.Domain
             this.repository = repository;
         }
 
-        public bool Execute(TenantId id, MfeId name)
+        public bool Exists(MfeConfiguration configuration)
         {
-            var configuration = this.repository.Search(id, name);
-            return configuration!=null;
+            var mfeconfiguration = this.repository.Search(configuration.TenantId, configuration.MfeId);
+            return mfeconfiguration != null;
         }
     }
 }

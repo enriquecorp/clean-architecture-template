@@ -12,12 +12,14 @@ namespace shared.domain.Expceptions
         {
         }
 
-        public DomainException(string message)
-            : base(message)
-        {
-        }
+        //public DomainException(string message)
+        //    : base(message)
+        //{
+        //}
 
-        public abstract string ErrorCode();
+        public abstract override string Message { get; }
+
+        public abstract string ErrorCode { get; }
 
         //public DomainException(string message, Exception inner)
         //    : base(message, inner)
