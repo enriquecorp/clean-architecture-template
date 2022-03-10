@@ -8,31 +8,25 @@ namespace Versioning.Shared.Domain.ValueObjects
 
         public TenantId(string value)
         {
-            this.EnsureIsValidUuid(value);
-            this.EnsureIsNumber(value);
+            this.EnsureIsUuidOrNumber(value);
             this.Value = value;
         }
 
-        public bool IsUHTenantId => Guid.TryParse(this.Value, out _);
+        public bool IsUHTenantId => this.IsUuid(this.Value);
 
-        public bool IsBusinessUnitId => Regex.IsMatch(this.Value, @"^\d+$");
+        public bool IsBusinessUnitId => this.IsNumber(this.Value);
 
-        private void EnsureIsValidUuid(string value)
+        private void EnsureIsUuidOrNumber(string value)
         {
-            var isValid = this.IsUHTenantId;
+            var isValid = this.IsUuid(value) || this.IsNumber(value);
             if (!isValid)
             {
                 throw new ArgumentException($"{nameof(TenantId)} doesn't allow the value {value}");
             }
         }
 
-        private void EnsureIsNumber(string value)
-        {
-            var isValid = this.IsBusinessUnitId;
-            if (!isValid)
-            {
-                throw new ArgumentException($"{nameof(TenantId)} doesn't allow the value {value}");
-            }
+        private bool IsUuid(string value) => Guid.TryParse(value, out _);
+
+        private bool IsNumber(string value) => Regex.IsMatch(value, @"^\d+$");
         }
-    }
 }
