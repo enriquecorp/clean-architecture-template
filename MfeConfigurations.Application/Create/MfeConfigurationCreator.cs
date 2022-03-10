@@ -29,6 +29,7 @@ namespace MfeConfigurations.Application.Create
             {
                 throw new MfeConfigurationAlreadyExistsException(mfeConfiguration);
             }
+            this.repository.Save(mfeConfiguration);
         }
     }
 }

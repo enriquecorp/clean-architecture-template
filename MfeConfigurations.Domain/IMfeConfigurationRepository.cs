@@ -10,5 +10,6 @@ namespace MfeConfigurations.Domain
     public interface IMfeConfigurationRepository
     {
         public MfeConfiguration? Search(TenantId id, MfeId name);
+        public void Save(MfeConfiguration mfeConfiguration);
     }
 }
