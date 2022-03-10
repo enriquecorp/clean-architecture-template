@@ -27,9 +27,10 @@ namespace MfeConfigurations.Application.Create
             var mfeConfiguration = MfeConfiguration.Create(new TenantId(configuration.TenantId), new MfeId(configuration.MfeId));
             if (this.mfeConfigurationExistsChecker.Exists(mfeConfiguration))
             {
-                throw new MfeConfigurationAlreadyExistsException(mfeConfiguration);
+                throw new MfeConfigurationAlreadyExistsException(mfeConfiguration.TenantId, mfeConfiguration.MfeId);
             }
             this.repository.Save(mfeConfiguration);
+            // $this->bus->publish(...$course->pullDomainEvents());
         }
     }
 }
