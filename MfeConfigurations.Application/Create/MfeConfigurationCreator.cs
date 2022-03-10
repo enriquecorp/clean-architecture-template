@@ -20,7 +20,7 @@ namespace MfeConfigurations.Application.Create
         {
             Console.WriteLine($"Execute repository or coordinate repositories");
             Console.WriteLine($"Configurations to add {configuration.Configurations.Count}");
-            MfeConfiguration.Create(new TenantId(configuration.TenantId), new MfeName(configuration.MfeId));
+            MfeConfiguration.Create(new TenantId(configuration.TenantId), new MfeId(configuration.MfeId));
         }
     }
 }

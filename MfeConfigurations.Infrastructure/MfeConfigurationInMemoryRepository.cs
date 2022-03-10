@@ -10,7 +10,7 @@ namespace MfeConfigurations.Infrastructure
 {
     public sealed class MfeConfigurationInMemoryRepository : IMfeConfigurationRepository
     {
-        public MfeConfiguration? Search(TenantId id, MfeName name)
+        public MfeConfiguration? Search(TenantId id, MfeId name)
         {
             //throw new NotImplementedException();
             return null;

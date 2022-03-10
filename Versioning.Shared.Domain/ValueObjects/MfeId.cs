@@ -2,9 +2,9 @@
 
 namespace Versioning.Shared.Domain.ValueObjects
 {
-    public class MfeName : StringValueObject
+    public class MfeId : StringValueObject
     {
-        public MfeName(string value) : base(value)
+        public MfeId(string value) : base(value)
         {
         }
     }

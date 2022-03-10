@@ -16,7 +16,7 @@ namespace MfeConfigurations.Domain
             this.repository = repository;
         }
 
-        public bool Execute(TenantId id, MfeName name)
+        public bool Execute(TenantId id, MfeId name)
         {
             var configuration = this.repository.Search(id, name);
             return configuration!=null;
