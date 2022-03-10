@@ -1,7 +1,5 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
-using shared.domain.bus.query;
-using shared.domain.bus.command;
 
 namespace shared.web.infrastructure
 {

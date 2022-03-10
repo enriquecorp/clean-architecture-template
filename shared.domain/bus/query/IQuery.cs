@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace shared.domain.bus.query
+namespace shared.domain.Bus.Query
 {
     public interface IQuery
     {

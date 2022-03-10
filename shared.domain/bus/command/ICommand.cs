@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace shared.domain.bus.command
+namespace shared.domain.Bus.Command
 {
     public interface ICommand
     {
