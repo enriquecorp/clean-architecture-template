@@ -68,7 +68,7 @@ namespace shared.web.infrastructure.Filters
                 //    StatusCode = httpStatusCode
                 //};
 
-                var error = new ApiErrorResponse() { ErrorCode = errorCode, ErrorDescription = context.Exception.Message, HttpStatusCodeError = httpStatusCode };
+                var error = new ApiErrorResponse() { ErrorCode = errorCode ?? "no_error_code_defined", ErrorDescription = context.Exception.Message, HttpStatusCodeError = httpStatusCode };
                 context.Result = new JsonResult(error)
                 {
                     StatusCode = httpStatusCode

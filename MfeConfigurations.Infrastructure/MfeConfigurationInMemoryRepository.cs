@@ -8,16 +8,16 @@ using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeConfigurations.Infrastructure
 {
-    public sealed class MfeConfigurationInMemoryRepository : IMfeConfigurationRepository
+    public sealed class MfeConfigurationInMemoryRepository : IMfeTenantConfigurationRepository
     {
-        private static readonly Dictionary<Tuple<string, string>, MfeConfiguration> ConfigurationsByTenant = new();
+        private static readonly Dictionary<Tuple<string, string>, MfeTenantConfiguration> ConfigurationsByTenant = new();
 
-        public void Save(MfeConfiguration mfeConfiguration)
+        public void Save(MfeTenantConfiguration mfeConfiguration)
         {
             ConfigurationsByTenant[Tuple.Create(mfeConfiguration.TenantId.Value, mfeConfiguration.MfeId.Value)] = mfeConfiguration;
         }
 
-        public MfeConfiguration? Search(TenantId id, MfeId name)
+        public MfeTenantConfiguration? Search(TenantId id, MfeId name)
         {
             var exists = ConfigurationsByTenant.TryGetValue(Tuple.Create(id.Value, name.Value), out var mfeConfiguration);
             return exists && mfeConfiguration != null ? mfeConfiguration : null;

@@ -7,16 +7,16 @@ using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeConfigurations.Domain
 {
-    public sealed class MfeConfigurationExistsChecker
+    public sealed class MfeTenantConfigurationExistsChecker
     {
-        private readonly IMfeConfigurationRepository repository;
+        private readonly IMfeTenantConfigurationRepository repository;
 
-        public MfeConfigurationExistsChecker(IMfeConfigurationRepository repository)
+        public MfeTenantConfigurationExistsChecker(IMfeTenantConfigurationRepository repository)
         {
             this.repository = repository;
         }
 
-        public bool Exists(MfeConfiguration configuration)
+        public bool Exists(MfeTenantConfiguration configuration)
         {
             var mfeconfiguration = this.repository.Search(configuration.TenantId, configuration.MfeId);
             return mfeconfiguration != null;

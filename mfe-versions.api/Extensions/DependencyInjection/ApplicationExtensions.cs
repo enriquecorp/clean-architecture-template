@@ -25,7 +25,7 @@ namespace mfe_versions.api.Extensions.DependencyInjection
                 throw new ArgumentNullException(nameof(services));
             }
             services.AddScoped<MfeConfigurationCreator>();
-            services.AddScoped<IMfeConfigurationRepository, MfeConfigurationInMemoryRepository>();
+            services.AddScoped<IMfeTenantConfigurationRepository, MfeConfigurationInMemoryRepository>();
             //services.AddScoped<IMicrofrontEndService, MicrofrontEndService>();
             //services.AddScoped<IMicrofrontEndRepository, MicrofronEndRepository>();
             //services.AddHttpClient();

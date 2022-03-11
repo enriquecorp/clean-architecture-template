@@ -9,9 +9,9 @@ namespace MfeConfigurations.Domain
 {
     public sealed class MfeConfigurationFinder
     {
-        private readonly IMfeConfigurationRepository repository;
+        private readonly IMfeTenantConfigurationRepository repository;
 
-        public MfeConfigurationFinder(IMfeConfigurationRepository repository)
+        public MfeConfigurationFinder(IMfeTenantConfigurationRepository repository)
         {
             this.repository = repository;
         }

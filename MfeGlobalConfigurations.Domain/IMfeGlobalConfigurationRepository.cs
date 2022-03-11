@@ -7,9 +7,9 @@ using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeConfigurations.Domain
 {
-    public interface IMfeConfigurationRepository
+    public interface IMfeGlobalConfigurationRepository
     {
-        public MfeConfiguration? Search(TenantId id, MfeId name);
-        public void Save(MfeConfiguration mfeConfiguration);
+        public MfeGlobalConfiguration? Search(MfeId name);
+        public void Save(MfeGlobalConfiguration globalConfiguration);
     }
 }

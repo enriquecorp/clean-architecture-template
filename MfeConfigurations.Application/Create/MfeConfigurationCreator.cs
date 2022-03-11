@@ -11,20 +11,20 @@ namespace MfeConfigurations.Application.Create
 {
     public sealed class MfeConfigurationCreator
     {
-        private readonly IMfeConfigurationRepository repository;
-        private readonly MfeConfigurationExistsChecker mfeConfigurationExistsChecker;
+        private readonly IMfeTenantConfigurationRepository repository;
+        private readonly MfeTenantConfigurationExistsChecker mfeConfigurationExistsChecker;
 
-        public MfeConfigurationCreator(IMfeConfigurationRepository repository)
+        public MfeConfigurationCreator(IMfeTenantConfigurationRepository repository)
         {
             this.repository = repository;
-            this.mfeConfigurationExistsChecker = new MfeConfigurationExistsChecker(repository);
+            this.mfeConfigurationExistsChecker = new MfeTenantConfigurationExistsChecker(repository);
 
         }
         public void Execute (MfeConfigurationRequest configuration)
         {
             Console.WriteLine($"Execute repository or coordinate repositories");
             Console.WriteLine($"Configurations to add {configuration.Configurations.Count}");
-            var mfeConfiguration = MfeConfiguration.Create(new TenantId(configuration.TenantId), new MfeId(configuration.MfeId));
+            var mfeConfiguration = MfeTenantConfiguration.Create(new TenantId(configuration.TenantId), new MfeId(configuration.MfeId));
             if (this.mfeConfigurationExistsChecker.Exists(mfeConfiguration))
             {
                 throw new MfeConfigurationAlreadyExistsException(mfeConfiguration.TenantId, mfeConfiguration.MfeId);

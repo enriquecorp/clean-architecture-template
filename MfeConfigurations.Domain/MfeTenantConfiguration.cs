@@ -8,20 +8,20 @@ using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeConfigurations.Domain
 {
-    public sealed class MfeConfiguration: AggregateRoot
+    public sealed class MfeTenantConfiguration: AggregateRoot
     {
         public TenantId TenantId { get; private set; }
         public MfeId MfeId { get; private set; }
 
-        public MfeConfiguration(TenantId id, MfeId name)
+        public MfeTenantConfiguration(TenantId id, MfeId name)
         {
             this.TenantId = id;
             this.MfeId = name;
         }
 
-        public static MfeConfiguration Create(TenantId id, MfeId name)
+        public static MfeTenantConfiguration Create(TenantId id, MfeId name)
         {
-            var configuration = new MfeConfiguration(id, name);
+            var configuration = new MfeTenantConfiguration(id, name);
 
             //configuration.Record(
             //new MfeConfigurationDomainEvent(

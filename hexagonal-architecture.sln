@@ -48,23 +48,31 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mfes.Domain.Tests", "Mfes.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mfes.Infrastructure.Tests", "Mfes.Infrastructure.Tests\Mfes.Infrastructure.Tests.csproj", "{B8CBAB31-F4C3-4DC1-BDFF-B3F76EB1E7A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeConfigurations.Application", "MfeConfigurations.Application\MfeConfigurations.Application.csproj", "{A7A1C28D-7875-4943-A569-8E21334CAC64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MfeConfigurations.Application", "MfeConfigurations.Application\MfeConfigurations.Application.csproj", "{A7A1C28D-7875-4943-A569-8E21334CAC64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeConfigurations.Domain", "MfeConfigurations.Domain\MfeConfigurations.Domain.csproj", "{6B4F56F5-8004-423D-AA69-6ED8CDD19B23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MfeConfigurations.Domain", "MfeConfigurations.Domain\MfeConfigurations.Domain.csproj", "{6B4F56F5-8004-423D-AA69-6ED8CDD19B23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeConfigurations.Infrastructure", "MfeConfigurations.Infrastructure\MfeConfigurations.Infrastructure.csproj", "{50646D00-7090-4587-BAF1-7F20CFA559B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MfeConfigurations.Infrastructure", "MfeConfigurations.Infrastructure\MfeConfigurations.Infrastructure.csproj", "{50646D00-7090-4587-BAF1-7F20CFA559B5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MfeConfigurations", "MfeConfigurations", "{2E8BF2E0-FAED-46C8-B6F2-0345EC537E2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeConfigurations.Application.Tests", "MfeConfigurations.Application.Tests\MfeConfigurations.Application.Tests.csproj", "{84B44507-EA42-4714-93F5-194202075888}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MfeConfigurations.Application.Tests", "MfeConfigurations.Application.Tests\MfeConfigurations.Application.Tests.csproj", "{84B44507-EA42-4714-93F5-194202075888}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeConfigurations.Domain.Tests", "MfeConfigurations.Domain.Tests\MfeConfigurations.Domain.Tests.csproj", "{CF22F23F-A3C2-4432-852D-2287FE595311}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MfeConfigurations.Domain.Tests", "MfeConfigurations.Domain.Tests\MfeConfigurations.Domain.Tests.csproj", "{CF22F23F-A3C2-4432-852D-2287FE595311}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeConfigurations.Infrastructure.Tests", "MfeConfigurations.Infrastructure.Tests\MfeConfigurations.Infrastructure.Tests.csproj", "{94A99439-3A3E-4D7F-A45F-55E27CF661C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MfeConfigurations.Infrastructure.Tests", "MfeConfigurations.Infrastructure.Tests\MfeConfigurations.Infrastructure.Tests.csproj", "{94A99439-3A3E-4D7F-A45F-55E27CF661C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Versioning.Shared.Domain", "Versioning.Shared.Domain\Versioning.Shared.Domain.csproj", "{2A751E78-1B5A-41BE-864D-E833BC7D1733}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Versioning.Shared.Domain", "Versioning.Shared.Domain\Versioning.Shared.Domain.csproj", "{2A751E78-1B5A-41BE-864D-E833BC7D1733}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{FA8C8966-0EFE-428D-A3F1-26E4EDDB0988}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MfeGlobalConfigurations", "MfeGlobalConfigurations", "{B1312033-C6E0-4A0E-89C6-1EEA9927BE05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeGlobalConfigurations.Application", "MfeGlobalConfigurations.Application\MfeGlobalConfigurations.Application.csproj", "{47A5DA4F-7AB2-4FD3-AADE-A587980E2587}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeGlobalConfigurations.Domain", "MfeGlobalConfigurations.Domain\MfeGlobalConfigurations.Domain.csproj", "{374B5C12-1D9A-4BFC-8A83-276D40F1C0BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeGlobalConfigurations.Infrastructure", "MfeGlobalConfigurations.Infrastructure\MfeGlobalConfigurations.Infrastructure.csproj", "{31F13EE5-4F8C-449D-9D5E-FE6877C39B04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -140,6 +148,18 @@ Global
 		{2A751E78-1B5A-41BE-864D-E833BC7D1733}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A751E78-1B5A-41BE-864D-E833BC7D1733}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A751E78-1B5A-41BE-864D-E833BC7D1733}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47A5DA4F-7AB2-4FD3-AADE-A587980E2587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47A5DA4F-7AB2-4FD3-AADE-A587980E2587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47A5DA4F-7AB2-4FD3-AADE-A587980E2587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47A5DA4F-7AB2-4FD3-AADE-A587980E2587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{374B5C12-1D9A-4BFC-8A83-276D40F1C0BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{374B5C12-1D9A-4BFC-8A83-276D40F1C0BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{374B5C12-1D9A-4BFC-8A83-276D40F1C0BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{374B5C12-1D9A-4BFC-8A83-276D40F1C0BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31F13EE5-4F8C-449D-9D5E-FE6877C39B04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31F13EE5-4F8C-449D-9D5E-FE6877C39B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31F13EE5-4F8C-449D-9D5E-FE6877C39B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31F13EE5-4F8C-449D-9D5E-FE6877C39B04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -170,6 +190,10 @@ Global
 		{94A99439-3A3E-4D7F-A45F-55E27CF661C9} = {2E8BF2E0-FAED-46C8-B6F2-0345EC537E2C}
 		{2A751E78-1B5A-41BE-864D-E833BC7D1733} = {FA8C8966-0EFE-428D-A3F1-26E4EDDB0988}
 		{FA8C8966-0EFE-428D-A3F1-26E4EDDB0988} = {C724F8BF-7C40-4F7B-A0CD-424E728FBFE3}
+		{B1312033-C6E0-4A0E-89C6-1EEA9927BE05} = {C724F8BF-7C40-4F7B-A0CD-424E728FBFE3}
+		{47A5DA4F-7AB2-4FD3-AADE-A587980E2587} = {B1312033-C6E0-4A0E-89C6-1EEA9927BE05}
+		{374B5C12-1D9A-4BFC-8A83-276D40F1C0BA} = {B1312033-C6E0-4A0E-89C6-1EEA9927BE05}
+		{31F13EE5-4F8C-449D-9D5E-FE6877C39B04} = {B1312033-C6E0-4A0E-89C6-1EEA9927BE05}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCA23B81-A1B0-48DA-B644-21F404C18230}
