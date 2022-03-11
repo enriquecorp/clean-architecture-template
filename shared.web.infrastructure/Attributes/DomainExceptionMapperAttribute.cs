@@ -12,8 +12,6 @@ namespace shared.web.infrastructure.Attributes
 {
     public sealed class DomainExceptionMapperAttribute : Attribute, IFilterMetadata
     {
-        // public Dictionary<DomainException, int> Mapping { get; set; } = new();
-        // public Dictionary<string, int> Mapping { get; set; } = new();
         public string ExceptionTypeName { get; set; }
         public HttpStatusCode HttpStatusCode { get; set; }
     }

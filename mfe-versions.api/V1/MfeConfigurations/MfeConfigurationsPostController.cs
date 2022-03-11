@@ -37,7 +37,7 @@ namespace mfe_versions.api.V1.MfeConfigurations
         //    return "value";
         //}
 
-        // POST api/<MfeConfigurationsPostController>
+        // POST api/v{version:apiVersion}/mfe-configurations
         [TypeFilter(typeof(DomainExceptionFilter))]
         [DomainExceptionMapper(ExceptionTypeName =nameof(MfeConfigurationAlreadyExistsException), HttpStatusCode = HttpStatusCode.Conflict)]
         [HttpPost()]
