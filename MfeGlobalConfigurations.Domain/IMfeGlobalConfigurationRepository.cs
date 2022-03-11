@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Versioning.Shared.Domain.ValueObjects;
 
-namespace MfeConfigurations.Domain
+namespace MfeGlobalConfigurations.Domain
 {
     public interface IMfeGlobalConfigurationRepository
     {

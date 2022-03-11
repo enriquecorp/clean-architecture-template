@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using shared.domain.Aggregate;
 using Versioning.Shared.Domain.ValueObjects;
 
-namespace MfeConfigurations.Domain
+namespace MfeGlobalConfigurations.Domain
 {
     public sealed class MfeGlobalConfiguration : AggregateRoot
     {
@@ -20,6 +20,11 @@ namespace MfeConfigurations.Domain
         {
             this.MfeId = name;
             this.ActiveVersion = active;
+            this.Versions = versions;
+        }
+
+        public void UpdateVersions(VersionList versions)
+        {
             this.Versions = versions;
         }
     }

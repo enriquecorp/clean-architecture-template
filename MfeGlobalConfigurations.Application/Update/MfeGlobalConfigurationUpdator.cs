@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MfeConfigurations.Domain;
+using MfeGlobalConfigurations.Domain;
 using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeGlobalConfigurations.Application.Update
@@ -22,7 +22,8 @@ namespace MfeGlobalConfigurations.Application.Update
 
         public void Execute(MfeGlobalConfigurationRequest configuration)
         {
-            //var mfeConfiguration = MfeConfiguration.Create(new TenantId(configuration.TenantId), new MfeId(configuration.MfeId));
+
+            //var mfeConfiguration = MfeGlobalConfiguration.Create(new TenantId(configuration.TenantId), new MfeId(configuration.MfeId));
             //if (this.mfeConfigurationExistsChecker.Exists(mfeConfiguration))
             //{
             //    throw new MfeConfigurationAlreadyExistsException(mfeConfiguration.TenantId, mfeConfiguration.MfeId);
