@@ -1,7 +1,10 @@
-﻿using mfe_versions.api.Constants;
+﻿using System.Net;
+using mfe_versions.api.Constants;
 using MfeConfigurations.Application.Create;
 using Microsoft.AspNetCore.Mvc;
 using shared.web.infrastructure;
+using shared.web.infrastructure.Attributes;
+using shared.web.infrastructure.Filters;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,6 +37,8 @@ namespace mfe_versions.api.V1.MfeConfigurations
         //}
 
         // POST api/<MfeConfigurationsPostController>
+        [TypeFilter(typeof(DomainExceptionFilter))]
+        [DomainExceptionMapper(ExceptionTypeName ="", HttpStatusCode = HttpStatusCode.OK)]
         [HttpPost()]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult Post([FromHeader(Name = ApiHeaders.TENANT_ID)] string tenantId, [FromBody] MfeConfigurationRequest mfeConfiguration)
