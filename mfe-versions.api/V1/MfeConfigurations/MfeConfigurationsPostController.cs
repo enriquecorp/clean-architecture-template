@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using mfe_versions.api.Constants;
 using MfeConfigurations.Application.Create;
+using MfeConfigurations.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using shared.web.infrastructure;
 using shared.web.infrastructure.Attributes;
@@ -38,7 +39,7 @@ namespace mfe_versions.api.V1.MfeConfigurations
 
         // POST api/<MfeConfigurationsPostController>
         [TypeFilter(typeof(DomainExceptionFilter))]
-        [DomainExceptionMapper(ExceptionTypeName ="", HttpStatusCode = HttpStatusCode.OK)]
+        [DomainExceptionMapper(ExceptionTypeName =nameof(MfeConfigurationAlreadyExistsException), HttpStatusCode = HttpStatusCode.Conflict)]
         [HttpPost()]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult Post([FromHeader(Name = ApiHeaders.TENANT_ID)] string tenantId, [FromBody] MfeConfigurationRequest mfeConfiguration)
