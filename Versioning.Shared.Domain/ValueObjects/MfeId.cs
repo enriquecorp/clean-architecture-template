@@ -4,7 +4,7 @@ namespace Versioning.Shared.Domain.ValueObjects
 {
     public class MfeId : StringValueObject
     {
-        public MfeId(string value) : base(value)
+        public MfeId(string value) : base(value.Trim().ToLower())
         {
         }
     }
