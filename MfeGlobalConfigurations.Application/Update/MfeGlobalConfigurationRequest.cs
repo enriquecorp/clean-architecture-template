@@ -9,6 +9,7 @@ namespace MfeGlobalConfigurations.Application.Update
     public sealed class MfeGlobalConfigurationRequest
     {
         public string MfeId { get; set; } = string.Empty;
+        public string ActiveConfiguration { get; set; } = string.Empty;
         public Dictionary<string, string> Versions { get; set; }
     }
 }

@@ -2,6 +2,9 @@
 using MfeConfigurations.Application.Create;
 using MfeConfigurations.Domain;
 using MfeConfigurations.Infrastructure;
+using MfeGlobalConfigurations.Application.Update;
+using MfeGlobalConfigurations.Domain;
+using MfeGlobalConfigurations.Infrastructure;
 //using Microsoft.EntityFrameworkCore;
 //using Microsoft.Extensions.Configuration;
 //using Microsoft.Extensions.DependencyInjection;
@@ -25,7 +28,9 @@ namespace mfe_versions.api.Extensions.DependencyInjection
                 throw new ArgumentNullException(nameof(services));
             }
             services.AddScoped<MfeConfigurationCreator>();
+            services.AddScoped<MfeGlobalConfigurationUpdator>();
             services.AddScoped<IMfeTenantConfigurationRepository, MfeConfigurationInMemoryRepository>();
+            services.AddScoped<IMfeGlobalConfigurationRepository, MfeGlobalConfigurationInMemoryRepository>();
             //services.AddScoped<IMicrofrontEndService, MicrofrontEndService>();
             //services.AddScoped<IMicrofrontEndRepository, MicrofronEndRepository>();
             //services.AddHttpClient();

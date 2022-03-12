@@ -10,16 +10,16 @@ namespace MfeConfigurations.Infrastructure
 {
     public sealed class MfeConfigurationInMemoryRepository : IMfeTenantConfigurationRepository
     {
-        private static readonly Dictionary<Tuple<string, string>, MfeTenantConfiguration> ConfigurationsByTenant = new();
+        private static readonly Dictionary<Tuple<string, string>, MfeTenantConfiguration> TenantConfiguration = new();
 
         public void Save(MfeTenantConfiguration mfeConfiguration)
         {
-            ConfigurationsByTenant[Tuple.Create(mfeConfiguration.TenantId.Value, mfeConfiguration.MfeId.Value)] = mfeConfiguration;
+            TenantConfiguration[Tuple.Create(mfeConfiguration.TenantId.Value, mfeConfiguration.MfeId.Value)] = mfeConfiguration;
         }
 
         public MfeTenantConfiguration? Search(TenantId id, MfeId name)
         {
-            var exists = ConfigurationsByTenant.TryGetValue(Tuple.Create(id.Value, name.Value), out var mfeConfiguration);
+            var exists = TenantConfiguration.TryGetValue(Tuple.Create(id.Value, name.Value), out var mfeConfiguration);
             return exists && mfeConfiguration != null ? mfeConfiguration : null;
         }
     }

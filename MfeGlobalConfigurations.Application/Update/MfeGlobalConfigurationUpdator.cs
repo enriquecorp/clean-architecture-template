@@ -21,7 +21,7 @@ namespace MfeGlobalConfigurations.Application.Update
 
         public void Execute(MfeId name, VersionList versions)
         {
-            this.EnsureVersionsAreNotEmpty(name, versions);
+            //this.EnsureVersionsAreNotEmpty(name, versions);
 
             var configuration = this.repository.Search(name);
             if (configuration == null)
