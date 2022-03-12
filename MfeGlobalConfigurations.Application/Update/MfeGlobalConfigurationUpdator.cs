@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MfeGlobalConfigurations.Domain;
+using MfeGlobalConfigurations.Domain.Exceptions;
 using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeGlobalConfigurations.Application.Update
@@ -11,26 +12,36 @@ namespace MfeGlobalConfigurations.Application.Update
     public sealed class MfeGlobalConfigurationUpdator
     {
         private readonly IMfeGlobalConfigurationRepository repository;
-        private readonly MfeGlobalConfigurationFinder mfeGlobalConfigurationFinder;
 
         public MfeGlobalConfigurationUpdator(IMfeGlobalConfigurationRepository repository)
         {
             this.repository = repository;
-            this.mfeGlobalConfigurationFinder = new MfeGlobalConfigurationFinder(repository);
 
         }
 
         public void Execute(MfeId name, VersionList versions)
         {
-            var configuration = this.mfeGlobalConfigurationFinder.Execute(name);
+            this.EnsureVersionsAreNotEmpty(name, versions);
 
-            //var mfeConfiguration = MfeGlobalConfiguration.Create(new TenantId(configuration.TenantId), new MfeId(configuration.MfeId));
-            //if (this.mfeConfigurationExistsChecker.Exists(mfeConfiguration))
-            //{
-            //    throw new MfeConfigurationAlreadyExistsException(mfeConfiguration.TenantId, mfeConfiguration.MfeId);
-            //}
-            //this.repository.Save(mfeConfiguration);
-            //// $this->bus->publish(...$course->pullDomainEvents());
+            var configuration = this.repository.Search(name);
+            if (configuration == null)
+            {
+                configuration = MfeGlobalConfiguration.Create(name, versions);
+                this.repository.Save(configuration);
+                // $this->bus->publish(...$course->pullDomainEvents());
+                return;
+            }
+            configuration.UpdateVersions(versions);
+            this.repository.Update(configuration);
+            // $this->bus->publish(...$course->pullDomainEvents());
+        }
+
+        private void EnsureVersionsAreNotEmpty(MfeId name, VersionList versions)
+        {
+            if (versions==null || versions.Length < 0)
+            {
+                throw new MfeVersionsAreEmpty(name);
+            }
         }
     }
 }

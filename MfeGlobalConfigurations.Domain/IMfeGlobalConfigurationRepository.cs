@@ -10,6 +10,7 @@ namespace MfeGlobalConfigurations.Domain
     public interface IMfeGlobalConfigurationRepository
     {
         public MfeGlobalConfiguration? Search(MfeId name);
-        public void Save(MfeGlobalConfiguration globalConfiguration);
+        public void Save(MfeGlobalConfiguration configuration);
+        void Update(MfeGlobalConfiguration configuration);
     }
 }

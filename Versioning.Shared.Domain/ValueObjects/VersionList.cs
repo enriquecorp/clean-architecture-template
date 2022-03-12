@@ -9,6 +9,9 @@ namespace Versioning.Shared.Domain.ValueObjects
     public sealed class VersionList
     {
         private readonly Dictionary<MfeConfigurationName, MfeVersion> versions = new();
+
+        public int Length => this.versions.Count;
+
         public MfeVersion this[MfeConfigurationName index]
         {
             get => this.versions[index];
@@ -22,5 +25,7 @@ namespace Versioning.Shared.Domain.ValueObjects
                 this[new MfeConfigurationName(item.Key)] = new MfeVersion(item.Value);
             }
         }
+
+        public MfeConfigurationName GetFirstConfigurationName() => this.versions.First().Key;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using MfeGlobalConfigurations.Application.Update;
+using MfeGlobalConfigurations.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using shared.web.infrastructure;
 using shared.web.infrastructure.Attributes;
@@ -24,8 +25,8 @@ namespace mfe_versions.api.V1.MfeGlobalConfigurations
         }
 
         // POST api/v{version:apiVersion}/mfe-configurations
-        //[TypeFilter(typeof(DomainExceptionFilter))]
-        //[DomainExceptionMapper(ExceptionTypeName =nameof(MfeConfigurationAlreadyExistsException), HttpStatusCode = HttpStatusCode.Conflict)]
+        [TypeFilter(typeof(DomainExceptionFilter))]
+        [DomainExceptionMapper(ExceptionTypeName = nameof(MfeVersionsAreEmpty), HttpStatusCode = HttpStatusCode.BadRequest)]
         [HttpPut()]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Put([FromBody] MfeGlobalConfigurationRequest globalConfiguration)
