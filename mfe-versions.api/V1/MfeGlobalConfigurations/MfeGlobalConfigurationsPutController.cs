@@ -32,7 +32,7 @@ namespace mfe_versions.api.V1.MfeGlobalConfigurations
         public async Task<IActionResult> Put([FromBody] MfeGlobalConfigurationRequest globalConfiguration)
         {
             await this.configurationUpdator.Execute(new MfeId(globalConfiguration.MfeId), new VersionList(globalConfiguration.Versions));
-            return this.StatusCode(StatusCodes.Status201Created);
+            return this.StatusCode(StatusCodes.Status204NoContent);
         }
     }
 }
