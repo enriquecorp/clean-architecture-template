@@ -17,9 +17,9 @@ namespace MfeGlobalConfigurations.Domain
             this.repository = repository;
         }
 
-        public MfeGlobalConfiguration Execute(MfeId name)
+        public async Task<MfeGlobalConfiguration> Execute(MfeId name)
         {
-            var configuration = this.repository.Search(name);
+            var configuration = await this.repository.Search(name);
             if (configuration == null)
             {
                 throw new MfeGlobalConfigurationNotFound(name);

@@ -6,26 +6,36 @@ using System.Threading.Tasks;
 
 namespace Versioning.Shared.Domain.ValueObjects
 {
-    public sealed class VersionList
+    public sealed class VersionList : Dictionary<MfeConfigurationName, MfeVersion>
     {
-        private readonly Dictionary<MfeConfigurationName, MfeVersion> versions = new();
+        private readonly string[] supportedConfigurations = { "current", "previous", "preview" };
+        //private readonly Dictionary<MfeConfigurationName, MfeVersion> versions = new();
 
-        public int Length => this.versions.Count;
+        public int Length => this.Count;
 
-        public MfeVersion this[MfeConfigurationName index]
-        {
-            get => this.versions[index];
-            set => this.versions[index] = value;
-        }
+        //public MfeVersion this[MfeConfigurationName index]
+        //{
+        //    get => this.versions[index];
+        //    set => this.versions[index] = value;
+        //}
 
         public VersionList(Dictionary<string, string> versions)
         {
-            foreach (var item in versions)
+            foreach (var configuration in this.supportedConfigurations)
             {
-                this[new MfeConfigurationName(item.Key)] = new MfeVersion(item.Value);
+                versions.TryGetValue(configuration, out var version);
+                this[new MfeConfigurationName(configuration)] = version != null ? new MfeVersion(version) : new MfeVersion("");
+                //if (version != null)
+                //{
+                //    this[new MfeConfigurationName(configuration)] = new MfeVersion(version);
+                //}
+                //else
+                //{
+                //    this[new MfeConfigurationName(configuration)] = new MfeVersion("");
+                //}
             }
         }
 
-        public MfeConfigurationName GetFirstConfigurationName() => this.versions.First().Key;
+        public MfeConfigurationName GetFirstConfigurationName() => this.First().Key;
     }
 }

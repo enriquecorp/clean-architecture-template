@@ -9,7 +9,7 @@ namespace MfeConfigurations.Domain
 {
     public interface IMfeTenantConfigurationRepository
     {
-        public MfeTenantConfiguration? Search(TenantId id, MfeId name);
-        public void Save(MfeTenantConfiguration mfeConfiguration);
+        public Task<MfeTenantConfiguration?> Search(TenantId id, MfeId name);
+        public Task Save(MfeTenantConfiguration mfeConfiguration);
     }
 }

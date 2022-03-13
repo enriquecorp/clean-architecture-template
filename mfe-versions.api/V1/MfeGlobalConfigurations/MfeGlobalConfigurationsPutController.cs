@@ -24,14 +24,14 @@ namespace mfe_versions.api.V1.MfeGlobalConfigurations
             this.configurationUpdator = configurationUpdator;
         }
 
-        // POST api/v{version:apiVersion}/mfe-configurations
+        // PUT api/v{version:apiVersion}/mfe-global-configurations
         [TypeFilter(typeof(DomainExceptionFilter))]
         [DomainExceptionMapper(ExceptionTypeName = nameof(MfeVersionsAreEmpty), HttpStatusCode = HttpStatusCode.BadRequest)]
         [HttpPut()]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Put([FromBody] MfeGlobalConfigurationRequest globalConfiguration)
         {
-            this.configurationUpdator.Execute(new MfeId(globalConfiguration.MfeId), new VersionList(globalConfiguration.Versions));
+            await this.configurationUpdator.Execute(new MfeId(globalConfiguration.MfeId), new VersionList(globalConfiguration.Versions));
             return this.StatusCode(StatusCodes.Status201Created);
         }
     }

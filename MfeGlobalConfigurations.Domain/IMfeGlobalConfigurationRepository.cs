@@ -9,8 +9,8 @@ namespace MfeGlobalConfigurations.Domain
 {
     public interface IMfeGlobalConfigurationRepository
     {
-        public MfeGlobalConfiguration? Search(MfeId name);
-        public void Save(MfeGlobalConfiguration configuration);
-        void Update(MfeGlobalConfiguration configuration);
+        public Task<MfeGlobalConfiguration?> Search(MfeId name);
+        public Task Save(MfeGlobalConfiguration configuration);
+        Task Update(MfeGlobalConfiguration configuration);
     }
 }

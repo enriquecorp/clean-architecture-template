@@ -25,7 +25,7 @@ namespace MfeGlobalConfigurations.Domain
 
         public static MfeGlobalConfiguration Create(MfeId name, VersionList versions, MfeConfigurationName? active = null)
         {
-            var configuration = new MfeGlobalConfiguration(name, active?? GetFirstConfiguration(versions), versions);
+            var configuration = new MfeGlobalConfiguration(name, active ?? GetFirstConfiguration(versions), versions);
 
             //configuration.Record(
             //new MfeConfigurationDomainEvent(
@@ -34,6 +34,10 @@ namespace MfeGlobalConfigurations.Domain
             return configuration;
         }
 
+        /// <summary>
+        /// This will merge the incoming version list with the current one
+        /// </summary>
+        /// <param name="versions"></param>
         public void UpdateVersions(VersionList versions)
         {
             this.Versions = versions;

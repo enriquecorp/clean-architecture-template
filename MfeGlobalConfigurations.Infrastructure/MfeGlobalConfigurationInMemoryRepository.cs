@@ -10,20 +10,23 @@ namespace MfeGlobalConfigurations.Infrastructure
     {
         private static readonly Dictionary<MfeId, MfeGlobalConfiguration> GlobalConfigurations = new();
 
-        public void Save(MfeGlobalConfiguration configuration)
+        public async Task Save(MfeGlobalConfiguration configuration)
         {
-            GlobalConfigurations[configuration.MfeId] = configuration;
+            await Task.Run(() => GlobalConfigurations[configuration.MfeId] = configuration);
         }
 
-        public MfeGlobalConfiguration? Search(MfeId name)
+        public async Task<MfeGlobalConfiguration?> Search(MfeId name)
         {
-            GlobalConfigurations.TryGetValue(name, out var value);
-            return value;
+            return await Task.Run(() =>
+            {
+                _ = GlobalConfigurations.TryGetValue(name, out var value);
+                return value;
+            });
         }
 
-        public void Update(MfeGlobalConfiguration configuration)
+        public async Task Update(MfeGlobalConfiguration configuration)
         {
-            GlobalConfigurations[configuration.MfeId] = configuration;
+            await Task.Run(() => GlobalConfigurations[configuration.MfeId] = configuration);
         }
     }
 }
