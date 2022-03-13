@@ -3,15 +3,29 @@ using shared.domain.ValueObjects;
 
 namespace Versioning.Shared.Domain.ValueObjects
 {
-    public class MfeId : StringValueObject, IEquatable<MfeId>
+    public class MfeId : StringValueObject//, IEquatable<MfeId>
     {
         public MfeId(string value) : base(value.Trim().ToLower())
         {
         }
 
-        public bool Equals(MfeId? other)
+        //public bool Equals(MfeId? other)
+        //{
+        //    return this.Value.Equals(other?.Value);
+        //}
+
+        public override bool Equals(object? obj)
         {
-            return this.Value.Equals(other?.Value);
+            if (obj is MfeId nameId)
+            {
+                return this.Value.Equals(nameId.Value);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Value.GetHashCode();
         }
     }
 }

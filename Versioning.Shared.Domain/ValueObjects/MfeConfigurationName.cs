@@ -7,16 +7,16 @@ using shared.domain.ValueObjects;
 
 namespace Versioning.Shared.Domain.ValueObjects
 {
-    public sealed class MfeConfigurationName : StringValueObject, IEquatable<MfeConfigurationName>
+    public sealed class MfeConfigurationName : StringValueObject//, IEquatable<MfeConfigurationName>
     {
         public MfeConfigurationName(string value) : base(value.Trim().ToLower())
         {
         }
 
-        public bool Equals(MfeConfigurationName? other)
-        {
-            return this.Value.Equals(other?.Value);
-        }
+        //public bool Equals(MfeConfigurationName? other)
+        //{
+        //    return this.Value.Equals(other?.Value);
+        //}
 
         public override bool Equals(object? obj)
         {
