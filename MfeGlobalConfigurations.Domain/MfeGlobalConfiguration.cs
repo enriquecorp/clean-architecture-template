@@ -40,7 +40,15 @@ namespace MfeGlobalConfigurations.Domain
         /// <param name="versions"></param>
         public void UpdateVersions(VersionList versions)
         {
-            this.Versions = versions;
+            // this.Versions = versions;
+            foreach (var item in this.Versions)
+            {
+                versions.TryGetValue(item.Key, out var incomingVersion);
+                if (incomingVersion != null)
+                {
+                    this.Versions[item.Key] = incomingVersion; // it will update only if the incoming version has a value
+                }
+            }
         }
 
         private static MfeConfigurationName GetFirstConfiguration(VersionList versions) => versions.GetFirstConfigurationName();
