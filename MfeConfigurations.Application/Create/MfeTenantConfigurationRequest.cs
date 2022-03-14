@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MfeConfigurations.Application.Create
 {
-    public sealed class MfeConfigurationRequest
+    public sealed class MfeTenantConfigurationRequest
     {
         public string TenantId { get; set; } = string.Empty;
         public string MfeId { get; set; } = string.Empty;

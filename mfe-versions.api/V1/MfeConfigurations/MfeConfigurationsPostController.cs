@@ -42,7 +42,7 @@ namespace mfe_versions.api.V1.MfeConfigurations
         [DomainExceptionMapper(ExceptionTypeName =nameof(MfeConfigurationAlreadyExistsException), HttpStatusCode = HttpStatusCode.Conflict)]
         [HttpPost()]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public IActionResult Post([FromHeader(Name = ApiHeaders.TENANT_ID)] string tenantId, [FromBody] MfeConfigurationRequest mfeConfiguration)
+        public IActionResult Post([FromHeader(Name = ApiHeaders.TENANT_ID)] string tenantId, [FromBody] MfeTenantConfigurationRequest mfeConfiguration)
         {
             Console.WriteLine($"TenantId = {tenantId}");
             Console.WriteLine($"Configurations Length = {mfeConfiguration.Configurations.Count}");

@@ -20,7 +20,7 @@ namespace MfeConfigurations.Application.Create
             this.mfeConfigurationExistsChecker = new MfeTenantConfigurationExistsChecker(repository);
 
         }
-        public void Execute (MfeConfigurationRequest configuration)
+        public void Execute (MfeTenantConfigurationRequest configuration)
         {
             var mfeConfiguration = MfeTenantConfiguration.Create(new MfeId(configuration.MfeId), new TenantId(configuration.TenantId), new MfeConfigurationName(""), new ConfigurationList(new Dictionary<string, string>()));
             if (this.mfeConfigurationExistsChecker.Exists(mfeConfiguration))
