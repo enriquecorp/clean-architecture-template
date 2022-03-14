@@ -17,9 +17,9 @@ namespace mfe_versions.api.V1.MfeConfigurations
     [Route("api/v{version:apiVersion}/mfe-tenant-configurations")]
     public class MfeConfigurationsPostController : ApiBaseController
     {
-        private readonly MfeConfigurationCreator configurationCreator; //= new();
+        private readonly MfeTenantConfigurationCreator configurationCreator; //= new();
 
-        public MfeConfigurationsPostController(MfeConfigurationCreator configurationCreator)
+        public MfeConfigurationsPostController(MfeTenantConfigurationCreator configurationCreator)
         {
             this.configurationCreator = configurationCreator;
         }

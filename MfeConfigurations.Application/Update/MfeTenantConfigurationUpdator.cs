@@ -40,7 +40,7 @@ namespace MfeConfigurations.Application.Update
             //    return;
             //}
             //configuration.UpdateVersions(configurations);
-            //await this.repository.Update(configuration);
+            await this.repository.Update(configurations);
             //// $this->bus->publish(...$course->pullDomainEvents());
         }
     }

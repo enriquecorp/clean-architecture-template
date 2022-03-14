@@ -12,5 +12,6 @@ namespace MfeConfigurations.Domain
         public Task<MfeTenantConfiguration?> Search(MfeId name, TenantId id);
         public Task<List<MfeTenantConfiguration>> Search(MfeId name, List<TenantId> tenants);
         public Task Save(MfeTenantConfiguration mfeConfiguration);
+        public Task Update(List<MfeTenantConfiguration> configurations);
     }
 }
