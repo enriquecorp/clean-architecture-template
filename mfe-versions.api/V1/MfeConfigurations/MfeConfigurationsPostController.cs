@@ -44,8 +44,6 @@ namespace mfe_versions.api.V1.MfeConfigurations
         [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult Post([FromHeader(Name = ApiHeaders.TENANT_ID)] string tenantId, [FromBody] MfeTenantConfigurationRequest mfeConfiguration)
         {
-            Console.WriteLine($"TenantId = {tenantId}");
-            Console.WriteLine($"Configurations Length = {mfeConfiguration.Configurations.Count}");
             mfeConfiguration.TenantId = tenantId;
             this.configurationCreator.Execute(mfeConfiguration);
             return this.StatusCode(StatusCodes.Status201Created);
