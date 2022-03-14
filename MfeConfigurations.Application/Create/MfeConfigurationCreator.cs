@@ -22,9 +22,7 @@ namespace MfeConfigurations.Application.Create
         }
         public void Execute (MfeConfigurationRequest configuration)
         {
-            Console.WriteLine($"Execute repository or coordinate repositories");
-            Console.WriteLine($"Configurations to add {configuration.Configurations.Count}");
-            var mfeConfiguration = MfeTenantConfiguration.Create(new TenantId(configuration.TenantId), new MfeId(configuration.MfeId));
+            var mfeConfiguration = MfeTenantConfiguration.Create(new MfeId(configuration.MfeId), new TenantId(configuration.TenantId), new MfeConfigurationName(""), new ConfigurationList(new Dictionary<string, string>()));
             if (this.mfeConfigurationExistsChecker.Exists(mfeConfiguration))
             {
                 throw new MfeConfigurationAlreadyExistsException(mfeConfiguration.TenantId, mfeConfiguration.MfeId);

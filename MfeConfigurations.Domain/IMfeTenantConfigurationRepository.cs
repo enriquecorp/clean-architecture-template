@@ -9,7 +9,8 @@ namespace MfeConfigurations.Domain
 {
     public interface IMfeTenantConfigurationRepository
     {
-        public Task<MfeTenantConfiguration?> Search(TenantId id, MfeId name);
+        public Task<MfeTenantConfiguration?> Search(MfeId name, TenantId id);
+        public Task<List<MfeTenantConfiguration>> Search(MfeId name, List<TenantId> tenants);
         public Task Save(MfeTenantConfiguration mfeConfiguration);
     }
 }

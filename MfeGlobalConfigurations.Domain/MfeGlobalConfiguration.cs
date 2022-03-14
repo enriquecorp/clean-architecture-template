@@ -14,16 +14,16 @@ namespace MfeGlobalConfigurations.Domain
 
         public MfeConfigurationName ActiveConfiguration { get; private set; }
 
-        public VersionList Versions { get; private set; }
+        public ConfigurationList Versions { get; private set; }
 
-        public MfeGlobalConfiguration(MfeId name, MfeConfigurationName active, VersionList versions)
+        public MfeGlobalConfiguration(MfeId name, MfeConfigurationName active, ConfigurationList versions)
         {
             this.MfeId = name;
             this.ActiveConfiguration = active;
             this.Versions = versions;
         }
 
-        public static MfeGlobalConfiguration Create(MfeId name, VersionList versions, MfeConfigurationName? active = null)
+        public static MfeGlobalConfiguration Create(MfeId name, ConfigurationList versions, MfeConfigurationName? active = null)
         {
             var configuration = new MfeGlobalConfiguration(name, active ?? GetFirstConfiguration(versions), versions);
 
@@ -38,7 +38,7 @@ namespace MfeGlobalConfigurations.Domain
         /// This will merge the incoming version list with the current one
         /// </summary>
         /// <param name="versions"></param>
-        public void UpdateVersions(VersionList versions)
+        public void UpdateConfigurations(ConfigurationList versions)
         {
             // this.Versions = versions;
             foreach (var item in this.Versions)
@@ -51,6 +51,6 @@ namespace MfeGlobalConfigurations.Domain
             }
         }
 
-        private static MfeConfigurationName GetFirstConfiguration(VersionList versions) => versions.GetFirstConfigurationName();
+        private static MfeConfigurationName GetFirstConfiguration(ConfigurationList versions) => versions.GetFirstConfigurationName();
     }
 }

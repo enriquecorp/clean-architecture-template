@@ -12,6 +12,6 @@ namespace MfeGlobalConfigurations.Application.Update
         public string ActiveConfiguration { get; set; } = string.Empty;
 
         // ConfigurationVersions
-        public Dictionary<string, string> Versions { get; set; }
+        public Dictionary<string, string> Configurations { get; set; }
     }
 }

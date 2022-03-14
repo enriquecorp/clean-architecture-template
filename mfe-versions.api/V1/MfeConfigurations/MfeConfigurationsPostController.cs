@@ -11,10 +11,10 @@ using shared.web.infrastructure.Filters;
 
 namespace mfe_versions.api.V1.MfeConfigurations
 {
-    [Tags("MfeConfigurations")]
+    [Tags("MfeTenantConfigurations")]
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/mfe-configurations")]
+    [Route("api/v{version:apiVersion}/mfe-tenant-configurations")]
     public class MfeConfigurationsPostController : ApiBaseController
     {
         private readonly MfeConfigurationCreator configurationCreator; //= new();
@@ -37,7 +37,7 @@ namespace mfe_versions.api.V1.MfeConfigurations
         //    return "value";
         //}
 
-        // POST api/v{version:apiVersion}/mfe-configurations
+        // POST api/v{version:apiVersion}/mfe-tenant-configurations
         [TypeFilter(typeof(DomainExceptionFilter))]
         [DomainExceptionMapper(ExceptionTypeName =nameof(MfeConfigurationAlreadyExistsException), HttpStatusCode = HttpStatusCode.Conflict)]
         [HttpPost()]

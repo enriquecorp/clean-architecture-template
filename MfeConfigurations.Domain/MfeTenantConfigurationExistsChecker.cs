@@ -18,7 +18,7 @@ namespace MfeConfigurations.Domain
 
         public bool Exists(MfeTenantConfiguration configuration)
         {
-            var mfeconfiguration = this.repository.Search(configuration.TenantId, configuration.MfeId);
+            var mfeconfiguration = this.repository.Search(configuration.MfeId, configuration.TenantId);
             return mfeconfiguration != null;
         }
     }
