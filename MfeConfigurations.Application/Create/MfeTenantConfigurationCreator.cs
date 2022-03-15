@@ -20,14 +20,14 @@ namespace MfeConfigurations.Application.Create
             this.mfeConfigurationExistsChecker = new MfeTenantConfigurationExistsChecker(repository);
 
         }
-        public void Execute (MfeTenantConfigurationRequest configuration)
+        public async Task Execute (MfeTenantConfigurationRequest configuration)
         {
             var mfeConfiguration = MfeTenantConfiguration.Create(new MfeId(configuration.MfeId), new TenantId(configuration.TenantId), new MfeConfigurationName(""), new ConfigurationList(new Dictionary<string, string>()));
-            if (this.mfeConfigurationExistsChecker.Exists(mfeConfiguration))
+            if (await this.mfeConfigurationExistsChecker.Exists(mfeConfiguration))
             {
                 throw new MfeConfigurationAlreadyExistsException(mfeConfiguration.TenantId, mfeConfiguration.MfeId);
             }
-            this.repository.Save(mfeConfiguration);
+            await this.repository.Save(mfeConfiguration);
             // $this->bus->publish(...$course->pullDomainEvents());
         }
     }

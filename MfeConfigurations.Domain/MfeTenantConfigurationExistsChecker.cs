@@ -16,9 +16,9 @@ namespace MfeConfigurations.Domain
             this.repository = repository;
         }
 
-        public bool Exists(MfeTenantConfiguration configuration)
+        public async Task<bool> Exists(MfeTenantConfiguration configuration)
         {
-            var mfeconfiguration = this.repository.Search(configuration.MfeId, configuration.TenantId);
+            var mfeconfiguration = await this.repository.Search(configuration.MfeId, configuration.TenantId);
             return mfeconfiguration != null;
         }
     }
