@@ -32,7 +32,7 @@ namespace mfe_versions.api.V1.MfeConfigurations
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Post([FromBody] MfeTenantConfigurationUpdateRequest mfeConfiguration)
         {
-            await this.configurationUpdator.Execute(new MfeId(mfeConfiguration.MfeId), new MfeConfigurationName(mfeConfiguration.Configuration), mfeConfiguration.TenantIds.Select(t => new TenantId(t)), new MfeVersion(mfeConfiguration.Version), mfeConfiguration.SetConfigurationAsActive);
+            await this.configurationUpdator.Execute(new MfeId(mfeConfiguration.MfeId), new MfeConfigurationName(mfeConfiguration.Configuration), mfeConfiguration.Tenants.Select(t => new TenantId(t)), new MfeVersion(mfeConfiguration.Version), mfeConfiguration.SetConfigurationAsActive);
             return this.StatusCode(StatusCodes.Status204NoContent);
         }
     }
