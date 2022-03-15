@@ -13,10 +13,12 @@ namespace Versioning.Shared.Domain.ValueObjects
         {
         }
 
-        //public bool Equals(MfeConfigurationName? other)
-        //{
-        //    return this.Value.Equals(other?.Value);
-        //}
+        public static MfeConfigurationName CreateEmpty()
+        {
+            return new MfeConfigurationName("");
+        }
+
+        public bool IsEmpty() { return string.IsNullOrEmpty(this.Value); }
 
         public override bool Equals(object? obj)
         {

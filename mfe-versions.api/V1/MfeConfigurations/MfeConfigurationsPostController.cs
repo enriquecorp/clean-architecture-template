@@ -42,9 +42,8 @@ namespace mfe_versions.api.V1.MfeConfigurations
         [DomainExceptionMapper(ExceptionTypeName =nameof(MfeConfigurationAlreadyExistsException), HttpStatusCode = HttpStatusCode.Conflict)]
         [HttpPost()]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> Post([FromHeader(Name = ApiHeaders.TENANT_ID)] string tenantId, [FromBody] MfeTenantConfigurationRequest mfeConfiguration)
+        public async Task<IActionResult> Post([FromBody] MfeTenantConfigurationRequest mfeConfiguration)
         {
-            mfeConfiguration.TenantId = tenantId;
             await this.configurationCreator.Execute(mfeConfiguration);
             return this.StatusCode(StatusCodes.Status201Created);
         }

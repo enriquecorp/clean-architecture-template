@@ -8,8 +8,8 @@ namespace MfeConfigurations.Application.Create
 {
     public sealed class MfeTenantConfigurationRequest
     {
-        public string TenantId { get; set; } = string.Empty;
-        public string MfeId { get; set; } = string.Empty;
+        public string TenantId { get; set; }
+        public string MfeId { get; set; }
         public Dictionary<string, string> Configurations { get; set; }
     }
 }

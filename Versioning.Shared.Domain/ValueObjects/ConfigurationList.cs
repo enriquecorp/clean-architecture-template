@@ -24,7 +24,7 @@ namespace Versioning.Shared.Domain.ValueObjects
             foreach (var configuration in this.supportedConfigurations)
             {
                 configurations.TryGetValue(configuration, out var version);
-                this[new MfeConfigurationName(configuration)] = version != null ? new MfeVersion(version) : new MfeVersion("");
+                this[new MfeConfigurationName(configuration)] = version != null ? new MfeVersion(version) : MfeVersion.CreateEmpty();
             }
         }
 

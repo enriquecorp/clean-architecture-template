@@ -22,7 +22,7 @@ namespace MfeConfigurations.Application.Create
         }
         public async Task Execute (MfeTenantConfigurationRequest configuration)
         {
-            var mfeConfiguration = MfeTenantConfiguration.Create(new MfeId(configuration.MfeId), new TenantId(configuration.TenantId), new MfeConfigurationName(""), new ConfigurationList(new Dictionary<string, string>()));
+            var mfeConfiguration = MfeTenantConfiguration.Create(new MfeId(configuration.MfeId), new TenantId(configuration.TenantId), MfeConfigurationName.CreateEmpty(), new ConfigurationList(new Dictionary<string, string>()));
             if (await this.mfeConfigurationExistsChecker.Exists(mfeConfiguration))
             {
                 throw new MfeConfigurationAlreadyExistsException(mfeConfiguration.TenantId, mfeConfiguration.MfeId);

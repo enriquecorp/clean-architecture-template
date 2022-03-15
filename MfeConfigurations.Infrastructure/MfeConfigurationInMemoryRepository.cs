@@ -10,16 +10,16 @@ namespace MfeConfigurations.Infrastructure
 {
     public sealed class MfeConfigurationInMemoryRepository : IMfeTenantConfigurationRepository
     {
-        private static readonly Dictionary<Tuple<string, string>, MfeTenantConfiguration> TenantConfiguration = new();
+        private static readonly Dictionary<(string tenantId, string mfeId), MfeTenantConfiguration> TenantConfiguration = new();
 
         public async Task Save(MfeTenantConfiguration mfeConfiguration)
         {
-            await Task.Run(() => TenantConfiguration[Tuple.Create(mfeConfiguration.TenantId.Value, mfeConfiguration.MfeId.Value)] = mfeConfiguration);
+            await Task.Run(() => TenantConfiguration[(mfeConfiguration.TenantId.Value, mfeConfiguration.MfeId.Value)] = mfeConfiguration);
         }
 
         public Task<MfeTenantConfiguration?> Search(MfeId name, TenantId id)
         {
-            var exists = TenantConfiguration.TryGetValue(Tuple.Create(id.Value, name.Value), out var mfeConfiguration);
+            var exists = TenantConfiguration.TryGetValue((id.Value, name.Value), out var mfeConfiguration);
             return Task.Run(() => exists && mfeConfiguration != null ? mfeConfiguration : null);
         }
 
@@ -34,7 +34,7 @@ namespace MfeConfigurations.Infrastructure
             {
                 foreach (var c in configurations)
                 {
-                    TenantConfiguration[Tuple.Create(c.TenantId.Value, c.MfeId.Value)] = c;
+                    TenantConfiguration[(c.TenantId.Value, c.MfeId.Value)] = c;
                 }
             });
         }

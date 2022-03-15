@@ -11,9 +11,14 @@ namespace Versioning.Shared.Domain.ValueObjects
     {
         // private readonly string version;
 
-        public MfeVersion(string version) : base(version)
+        public MfeVersion(string version) : base(version.Trim().ToLower())
         {
             //this.version = version;
+        }
+
+        public static MfeVersion CreateEmpty()
+        {
+            return new MfeVersion("");
         }
     }
 }

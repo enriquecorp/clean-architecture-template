@@ -29,6 +29,7 @@ namespace mfe_versions.api.V1.MfeConfigurations
         // GET api/v{version:apiVersion}/mfe-tenant-configurations
         [TypeFilter(typeof(DomainExceptionFilter))]
         [DomainExceptionMapper(ExceptionTypeName = nameof(MfeConfigurationDoesntExistsException), HttpStatusCode = HttpStatusCode.NotFound)]
+        [DomainExceptionMapper(ExceptionTypeName = nameof(NoActiveConfigurationExistsException), HttpStatusCode = HttpStatusCode.NotFound)]
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
