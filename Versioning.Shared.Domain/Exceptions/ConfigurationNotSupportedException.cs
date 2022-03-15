@@ -18,6 +18,6 @@ namespace Versioning.Shared.Domain.Exceptions
         }
         public override string Message => $"The configuration {this.name.Value} is not supported.";
 
-        public override string ErrorCode => "no_active_configuration_exists";
+        public override string ErrorCode => "configuration_not_supported";
     }
 }

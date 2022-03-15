@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using shared.web.infrastructure;
 using shared.web.infrastructure.Attributes;
 using shared.web.infrastructure.Filters;
+using Versioning.Shared.Domain.Exceptions;
 using Versioning.Shared.Domain.ValueObjects;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -26,8 +27,8 @@ namespace mfe_versions.api.V1.MfeConfigurations
         }
 
         // PUT api/v{version:apiVersion}/mfe-active-tenant-configurations
-        //[TypeFilter(typeof(DomainExceptionFilter))]
-        //[DomainExceptionMapper(ExceptionTypeName =nameof(MfeConfigurationAlreadyExistsException), HttpStatusCode = HttpStatusCode.Conflict)]
+        [TypeFilter(typeof(DomainExceptionFilter))]
+        [DomainExceptionMapper(ExceptionTypeName = nameof(ConfigurationNotSupportedException), HttpStatusCode = HttpStatusCode.BadRequest)]
         [HttpPut()]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Put([FromBody] MfeActiveConfigurationRequest configuration)
