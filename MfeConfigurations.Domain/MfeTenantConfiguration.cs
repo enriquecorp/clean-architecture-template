@@ -23,7 +23,7 @@ namespace MfeConfigurations.Domain
             this.Configurations = configurations;
         }
 
-        public static MfeTenantConfiguration Create(MfeId name, TenantId id, MfeConfigurationName activeConfiguration, ConfigurationList configurations)
+        public static MfeTenantConfiguration Create(MfeId name, TenantId id, ConfigurationList configurations, MfeConfigurationName activeConfiguration)
         {
             var configuration = new MfeTenantConfiguration(id, name, activeConfiguration, configurations);
 

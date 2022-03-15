@@ -25,7 +25,7 @@ namespace MfeConfigurations.Infrastructure
 
         public Task<List<MfeTenantConfiguration>> Search(MfeId name, List<TenantId> tenants)
         {
-            return Task.Run(() => TenantConfiguration.Select(t => t.Value).Where(t => t.MfeId == name && tenants.Contains(t.TenantId)).ToList());
+            return Task.Run(() => TenantConfiguration.Select(t => t.Value).Where(t => t.MfeId.Value == name.Value && tenants.Contains(t.TenantId)).ToList());
         }
 
         public Task Update(List<MfeTenantConfiguration> configurations)

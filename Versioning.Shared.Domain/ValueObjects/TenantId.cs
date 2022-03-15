@@ -28,5 +28,19 @@ namespace Versioning.Shared.Domain.ValueObjects
         private bool IsUuid(string value) => Guid.TryParse(value, out _);
 
         private bool IsNumber(string value) => Regex.IsMatch(value, @"^\d+$");
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is TenantId tenantId)
+            {
+                return this.Value.Equals(tenantId.Value);
+            }
+            return false;
         }
+
+        public override int GetHashCode()
+        {
+            return this.Value.GetHashCode();
+        }
+    }
 }

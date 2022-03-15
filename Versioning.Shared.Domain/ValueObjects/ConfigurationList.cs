@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Versioning.Shared.Domain.Constants;
 
 namespace Versioning.Shared.Domain.ValueObjects
 {
     public sealed class ConfigurationList : Dictionary<MfeConfigurationName, MfeVersion>
     {
-        private readonly string[] supportedConfigurations = { "current", "previous", "preview" };
         //private readonly Dictionary<MfeConfigurationName, MfeVersion> versions = new();
 
         public int Length => this.Count;
@@ -21,7 +21,7 @@ namespace Versioning.Shared.Domain.ValueObjects
 
         public ConfigurationList(Dictionary<string, string> configurations)
         {
-            foreach (var configuration in this.supportedConfigurations)
+            foreach (var configuration in Configuration.SupportedConfigurations)
             {
                 configurations.TryGetValue(configuration, out var version);
                 this[new MfeConfigurationName(configuration)] = version != null ? new MfeVersion(version) : MfeVersion.CreateEmpty();
@@ -30,7 +30,7 @@ namespace Versioning.Shared.Domain.ValueObjects
 
         public ConfigurationList(Dictionary<MfeConfigurationName, MfeVersion> configurations)
         {
-            foreach (var configuration in this.supportedConfigurations)
+            foreach (var configuration in Configuration.SupportedConfigurations)
             {
                 var c = new MfeConfigurationName(configuration);
                 configurations.TryGetValue(c, out var version);

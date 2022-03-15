@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MfeConfigurations.Domain;
+using Versioning.Shared.Domain.Constants;
+using Versioning.Shared.Domain.Exceptions;
 using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeConfigurations.Application.UpdateActiveConfiguration
@@ -20,7 +22,7 @@ namespace MfeConfigurations.Application.UpdateActiveConfiguration
 
         public async Task Execute(MfeId name, MfeConfigurationName activeConfiguration, IEnumerable<TenantId> tenants)
         {
-            //this.EnsureVersionsAreNotEmpty(name, versions);
+            this.EnsureSupportedConfigurationName(activeConfiguration);
 
             var configurations = await this.repository.Search(name, tenants.ToList());
             foreach (var c in configurations)
@@ -37,6 +39,14 @@ namespace MfeConfigurations.Application.UpdateActiveConfiguration
             //configuration.UpdateVersions(configurations);
             await this.repository.Update(configurations);
             //// $this->bus->publish(...$course->pullDomainEvents());
+        }
+
+        private void EnsureSupportedConfigurationName(MfeConfigurationName configuration)
+        {
+            if (!Configuration.SupportedConfigurations.Contains(configuration.Value))
+            {
+                throw new ConfigurationNotSupportedException(configuration);
+            }
         }
     }
 }
