@@ -27,13 +27,16 @@ namespace mfe_versions.api.V1.MfeConfigurations
             this.configurationFinder = configurationFinder;
         }
         // GET api/v{version:apiVersion}/mfe-tenant-configurations
-        //[TypeFilter(typeof(DomainExceptionFilter))]
-        //[DomainExceptionMapper(ExceptionTypeName =nameof(MfeConfigurationAlreadyExistsException), HttpStatusCode = HttpStatusCode.Conflict)]
+        [TypeFilter(typeof(DomainExceptionFilter))]
+        [DomainExceptionMapper(ExceptionTypeName = nameof(MfeConfigurationDoesntExistsException), HttpStatusCode = HttpStatusCode.NotFound)]
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Get([FromHeader(Name = ApiHeaders.TENANT_ID)] string tenantId, [FromQuery]string mfeId, [FromQuery]string configuration)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public async Task<IActionResult> Get([FromHeader(Name = ApiHeaders.TENANT_ID)] string tenantId, [FromQuery]string mfeId, [FromQuery]string configuration)
+        public async Task<IActionResult> Get([FromHeader(Name = ApiHeaders.TENANT_ID)] string tenantId, [FromQuery] ConfigurationVersionRequest configurationRequest)
         {
-            var response = await this.configurationFinder.Execute(new TenantId(tenantId),new MfeId(mfeId), new MfeConfigurationName(configuration));
+            //var response = await this.configurationFinder.Execute(new TenantId(tenantId),new MfeId(mfeId), new MfeConfigurationName(configuration));
+            var response = await this.configurationFinder.Execute(new TenantId(tenantId), new MfeId(configurationRequest.MfeId), configurationRequest.Configuration != null ? new MfeConfigurationName(configurationRequest.Configuration) : null);
             return this.StatusCode(StatusCodes.Status200OK, response);
         }
     }

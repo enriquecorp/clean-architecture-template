@@ -1,5 +1,6 @@
 ﻿using System;
 using MfeConfigurations.Application.Create;
+using MfeConfigurations.Application.Find;
 using MfeConfigurations.Application.Update;
 using MfeConfigurations.Application.UpdateActiveConfiguration;
 using MfeConfigurations.Domain;
@@ -33,6 +34,8 @@ namespace mfe_versions.api.Extensions.DependencyInjection
             services.AddScoped<MfeTenantConfigurationUpdator>();
             services.AddScoped<MfeActiveConfigurationUpdator>();
             services.AddScoped<MfeGlobalConfigurationUpdator>();
+            services.AddScoped<MfeTenantConfigurationFinder>();
+
             services.AddScoped<IMfeTenantConfigurationRepository, MfeConfigurationInMemoryRepository>();
             services.AddScoped<IMfeGlobalConfigurationRepository, MfeGlobalConfigurationInMemoryRepository>();
             //services.AddScoped<IMicrofrontEndService, MicrofrontEndService>();
