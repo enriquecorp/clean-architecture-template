@@ -17,6 +17,11 @@ namespace MfeConfigurations.Infrastructure
             await Task.Run(() => TenantConfiguration[(mfeConfiguration.TenantId.Value, mfeConfiguration.MfeId.Value)] = mfeConfiguration);
         }
 
+        public Task SaveBatch(List<MfeTenantConfiguration> mfeConfiguration)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<MfeTenantConfiguration?> Search(MfeId name, TenantId id)
         {
             var exists = TenantConfiguration.TryGetValue((id.Value, name.Value), out var mfeConfiguration);
@@ -28,7 +33,7 @@ namespace MfeConfigurations.Infrastructure
             return Task.Run(() => TenantConfiguration.Select(t => t.Value).Where(t => t.MfeId.Value == name.Value && tenants.Contains(t.TenantId)).ToList());
         }
 
-        public Task Update(List<MfeTenantConfiguration> configurations)
+        public Task UpdateBatch(List<MfeTenantConfiguration> configurations)
         {
             return Task.Run(() =>
             {

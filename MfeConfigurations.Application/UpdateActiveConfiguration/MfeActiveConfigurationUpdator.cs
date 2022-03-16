@@ -37,7 +37,7 @@ namespace MfeConfigurations.Application.UpdateActiveConfiguration
             //    return;
             //}
             //configuration.UpdateVersions(configurations);
-            await this.repository.Update(configurations);
+            await this.repository.UpdateBatch(configurations);
             //// $this->bus->publish(...$course->pullDomainEvents());
         }
 
