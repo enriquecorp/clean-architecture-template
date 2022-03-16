@@ -23,7 +23,7 @@ namespace MfeConfigurations.Infrastructure
             return Task.Run(() => exists && mfeConfiguration != null ? mfeConfiguration : null);
         }
 
-        public Task<List<MfeTenantConfiguration>> Search(MfeId name, List<TenantId> tenants)
+        public Task<List<MfeTenantConfiguration>> SearchBatch(MfeId name, List<TenantId> tenants)
         {
             return Task.Run(() => TenantConfiguration.Select(t => t.Value).Where(t => t.MfeId.Value == name.Value && tenants.Contains(t.TenantId)).ToList());
         }

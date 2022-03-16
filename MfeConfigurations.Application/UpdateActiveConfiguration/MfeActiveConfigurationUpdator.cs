@@ -24,7 +24,7 @@ namespace MfeConfigurations.Application.UpdateActiveConfiguration
         {
             this.EnsureSupportedConfigurationName(activeConfiguration);
 
-            var configurations = await this.repository.Search(name, tenants.ToList());
+            var configurations = await this.repository.SearchBatch(name, tenants.ToList());
             foreach (var c in configurations)
             {
                 c.UpdateActiveConfiguration(activeConfiguration);

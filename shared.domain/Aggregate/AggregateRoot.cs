@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using shared.domain.Bus.Event;
 
 namespace shared.domain.Aggregate
 {
@@ -24,5 +25,20 @@ namespace shared.domain.Aggregate
         $this->domainEvents[] = $domainEvent;
     }
          * */
+
+        private List<DomainEvent> domainEvents = new();
+
+        public List<DomainEvent> PullDomainEvents()
+        {
+            var events = this.domainEvents;
+            this.domainEvents = new List<DomainEvent>();
+            return events;
+        }
+
+        protected void Record(DomainEvent domainEvent)
+        {
+            this.domainEvents.Add(domainEvent);
+        }
     }
+
 }

@@ -22,7 +22,7 @@ namespace MfeConfigurations.Application.Update
         {
             //this.EnsureVersionsAreNotEmpty(name, versions);
 
-            var configurations = await this.repository.Search(name, tenants.ToList());
+            var configurations = await this.repository.SearchBatch(name, tenants.ToList());
             foreach (var c in configurations)
             {
                 if (setConfigurationActive && c.ActiveConfiguration != configuration)
