@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using shared.web.infrastructure;
 using shared.web.infrastructure.Attributes;
 using shared.web.infrastructure.Filters;
+using Versioning.Shared.Domain.Exceptions;
 using Versioning.Shared.Domain.ValueObjects;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -29,7 +30,8 @@ namespace mfe_versions.api.V1.MfeConfigurations
         // GET api/v{version:apiVersion}/mfe-tenant-configurations
         [TypeFilter(typeof(DomainExceptionFilter))]
         [DomainExceptionMapper(ExceptionTypeName = nameof(MfeConfigurationDoesntExistsException), HttpStatusCode = HttpStatusCode.NotFound)]
-        [DomainExceptionMapper(ExceptionTypeName = nameof(NoActiveConfigurationExistsException), HttpStatusCode = HttpStatusCode.NotFound)]
+        [DomainExceptionMapper(ExceptionTypeName = nameof(NoActiveConfigurationExistsException), HttpStatusCode = HttpStatusCode.BadRequest)]
+        [DomainExceptionMapper(ExceptionTypeName = nameof(ConfigurationNotSupportedException), HttpStatusCode = HttpStatusCode.BadRequest)]
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

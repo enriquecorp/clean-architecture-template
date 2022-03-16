@@ -12,15 +12,15 @@ namespace MfeConfigurations.Domain.Exceptions
     {
         private readonly TenantId id;
         private readonly MfeId name;
-        private readonly MfeConfigurationName? config;
+        private readonly MfeConfigurationName? configurationName;
 
-        public MfeConfigurationDoesntExistsException(TenantId id, MfeId name, MfeConfigurationName? config): base()
+        public MfeConfigurationDoesntExistsException(TenantId id, MfeId name, MfeConfigurationName? configurationName): base()
         {
             this.id = id;
             this.name = name;
-            this.config = config;
+            this.configurationName = configurationName;
         }
-        public override string Message => $"The microfrontend '{(this.config!=null?this.config.Value:"`active`")}' configuration for tenantid={this.id.Value} and mfeid={this.name.Value} doesn't exists";
+        public override string Message => $"The microfrontend '{(this.configurationName!=null?this.configurationName.Value:"`active`")}' configuration for tenantid={this.id.Value} and mfeid={this.name.Value} doesn't exists";
 
         public override string ErrorCode => "tenant_config_doesnt_exists";
         
