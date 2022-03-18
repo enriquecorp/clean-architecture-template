@@ -21,7 +21,7 @@ namespace mfe_versions.api.Extensions.HealthCheck
         {
             using (var httpClient = this.httpClientFactory.CreateClient())
             {
-                var response = await httpClient.GetAsync("https://api.ipify.org");
+                var response = await httpClient.GetAsync("https://api.ipify.org", cancellationToken);
                 if (response.IsSuccessStatusCode)
                 {
                     return HealthCheckResult.Healthy("Remote Endpoints are healthy");

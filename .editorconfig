@@ -61,7 +61,12 @@ charset = utf-8-bom
 indent_size = 4
 insert_final_newline = true
 # Default Severity for all .NET Code Style rules below
-# dotnet_analyzer_diagnostic.severity = warning
+# dotnet_analyzer_diagnostic.severity = suggestion
+# dotnet_analyzer_diagnostic.category-Reliability.severity = warning
+# dotnet_code_quality.CA2007.severity = warning
+# Suggest to use ConfigureAwait(false) but not mandatory in asp.net core
+# https://stackoverflow.com/questions/42053135/configureawaitfalse-relevant-in-asp-net-core
+dotnet_diagnostic.CA2007.severity = suggestion 
 
 ###############################
 # .NET Coding Conventions     #

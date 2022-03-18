@@ -11,4 +11,8 @@
     <ProjectReference Include="..\Versioning.Shared.Domain\Versioning.Shared.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ValueObjects\" />
+  </ItemGroup>
+
 </Project>
