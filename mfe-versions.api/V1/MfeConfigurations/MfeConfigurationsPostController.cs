@@ -23,19 +23,6 @@ namespace mfe_versions.api.V1.MfeConfigurations
         {
             this.configurationCreator = configurationCreator;
         }
-        // GET: api/<MfeConfigurationsPostController>
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
-        //// GET api/<MfeConfigurationsPostController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
 
         // POST api/v{version:apiVersion}/mfe-tenant-configurations
         [TypeFilter(typeof(DomainExceptionFilter))]
@@ -47,17 +34,5 @@ namespace mfe_versions.api.V1.MfeConfigurations
             await this.configurationCreator.Execute(mfeConfiguration);
             return this.StatusCode(StatusCodes.Status201Created);
         }
-
-        //// PUT api/<MfeConfigurationsPostController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<MfeConfigurationsPostController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

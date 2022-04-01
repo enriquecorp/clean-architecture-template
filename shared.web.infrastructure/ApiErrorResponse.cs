@@ -9,11 +9,12 @@ namespace shared.web.infrastructure
     //[DataContract]
     public partial class ApiErrorResponse
     {
+
         /// <summary>
-        /// Gets or Sets the HttpStatusCodeError Code
+        /// Gets or Sets the HttpCodeStatus Code
         /// </summary>
         //[DataMember(Name = "error")]
-        public int HttpStatusCodeError { get; set; }
+        public int HttpCodeStatus { get; set; }
 
         /// <summary>
         /// Gets or Sets the Error Description
@@ -21,19 +22,19 @@ namespace shared.web.infrastructure
         //[DataMember(Name = "errorDescription")]
         public string ErrorDescription { get; set; }
 
-        public string ErrorCode { get; set; }
+        public string ErrorKey { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
-        /// <returns>String presentation of the object</returns>
+        /// <returns>String presentation of the object</returns>F
         public override string ToString()
         {
             var sb = new StringBuilder();
             sb.Append("class ApiErrorResponse {\n");
-            sb.Append("  HttpStatusCodeError: ").Append(this.HttpStatusCodeError).Append("\n");
-            sb.Append("  ErrorCode: ").Append(this.ErrorCode).Append("\n");
-            sb.Append("  ErrorDescription: ").Append(this.ErrorDescription).Append("\n");
+            sb.Append($"  {nameof(this.HttpCodeStatus)}: ").Append(this.HttpCodeStatus).Append("\n");
+            sb.Append($"  {nameof(this.ErrorKey)}: ").Append(this.ErrorKey).Append("\n");
+            sb.Append($"  {nameof(this.ErrorDescription)}: ").Append(this.ErrorDescription).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
