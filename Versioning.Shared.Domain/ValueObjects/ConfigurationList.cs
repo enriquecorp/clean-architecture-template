@@ -9,8 +9,6 @@ namespace Versioning.Shared.Domain.ValueObjects
 {
     public sealed class ConfigurationList : Dictionary<MfeConfigurationName, MfeVersion>
     {
-        //private readonly Dictionary<MfeConfigurationName, MfeVersion> versions = new();
-
         public int Length => this.Count;
 
         //public MfeVersion this[MfeConfigurationName index]
@@ -39,5 +37,18 @@ namespace Versioning.Shared.Domain.ValueObjects
         }
 
         public MfeConfigurationName GetFirstConfigurationName() => this.First().Key;
+
+        public string Value
+        {
+            get
+            {
+                string dictionaryString = "{";
+                foreach (KeyValuePair<MfeConfigurationName, MfeVersion> keyValues in this)
+                {
+                    dictionaryString += keyValues.Key.Value + " : " + keyValues.Value + ", ";
+                }
+                return dictionaryString.TrimEnd(',', ' ') + "}";
+            }
+        }
     }
 }

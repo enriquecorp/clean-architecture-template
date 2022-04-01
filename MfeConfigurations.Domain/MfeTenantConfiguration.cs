@@ -8,7 +8,7 @@ using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeConfigurations.Domain
 {
-    public sealed class MfeTenantConfiguration: AggregateRoot
+    public sealed class MfeTenantConfiguration : AggregateRoot
     {
         public MfeId MfeId { get; private set; }
         public TenantId TenantId { get; private set; }
@@ -26,6 +26,7 @@ namespace MfeConfigurations.Domain
         public static MfeTenantConfiguration Create(MfeId name, TenantId id, ConfigurationList configurations, MfeConfigurationName activeConfiguration)
         {
             var configuration = new MfeTenantConfiguration(id, name, activeConfiguration, configurations);
+            configuration.Record(new MfeTenantConfigurationCreatedDomainEvent($"{name.Value}#{id.Value}", configurations.Value, activeConfiguration.Value));
 
             //configuration.Record(
             //new MfeConfigurationDomainEvent(
