@@ -1,10 +1,10 @@
-﻿using mfe_versions.api.Extensions.DependencyInjection;
+﻿using HealthChecks.UI.Client;
+using HealthChecks.UI.Configuration;
+using mfe_versions.api.Extensions.DependencyInjection;
 using mfe_versions.api.Extensions.HealthCheck;
 using mfe_versions.api.Extensions.Middlewares;
-using HealthChecks.UI.Configuration;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using HealthChecks.UI.Client;
 //using VersioningService.HealthChecks;
 //using VersioningService.Middlewares;
 
@@ -28,10 +28,10 @@ namespace mfe_versions.api.Extensions
 
             services.AddRouting(options => options.LowercaseUrls = true);
 
-            services.ConfigureHealthChecks(configuration);           
+            services.ConfigureHealthChecks(configuration);
         }
 
-        public static void UseServices (this WebApplication app)
+        public static void UseServices(this WebApplication app)
         {
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -89,7 +89,7 @@ namespace mfe_versions.api.Extensions
             services.AddCors(options => options.AddPolicy(CorsPolicyName, builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
         }
 
-        private static void ConfigureDependencyInjection(this IServiceCollection services,IConfiguration configuration)
+        private static void ConfigureDependencyInjection(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddApplicationDependencies();
             services.AddInfrastructureDependencies(configuration);

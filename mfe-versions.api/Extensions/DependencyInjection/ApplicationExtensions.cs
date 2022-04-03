@@ -1,5 +1,4 @@
-﻿using System;
-using MfeConfigurations.Application.Create;
+﻿using MfeConfigurations.Application.Create;
 using MfeConfigurations.Application.Find;
 using MfeConfigurations.Application.Update;
 using MfeConfigurations.Application.UpdateActiveConfiguration;

@@ -9,5 +9,5 @@ namespace mfe_versions.api.Extensions.Middlewares
         {
             return builder.UseMiddleware<HttpStatusCodeMiddleware>();
         }
-    }   
+    }
 }

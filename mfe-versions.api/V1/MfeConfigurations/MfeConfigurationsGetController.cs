@@ -1,8 +1,6 @@
 ﻿using System.Net;
 using mfe_versions.api.Constants;
-using MfeConfigurations.Application.Create;
 using MfeConfigurations.Application.Find;
-using MfeConfigurations.Application.Update;
 using MfeConfigurations.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using shared.web.infrastructure;

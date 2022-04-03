@@ -17,29 +17,29 @@ namespace mfe_versions.api.Extensions
             services.AddApiVersioning(
                     options =>
                     {
-                    // reporting api versions will return the headers "api-supported-versions" and "api-deprecated-versions"
-                    options.ReportApiVersions = true;
+                        // reporting api versions will return the headers "api-supported-versions" and "api-deprecated-versions"
+                        options.ReportApiVersions = true;
                     });
             services.AddVersionedApiExplorer(
                 options =>
                 {
-                // add the versioned api explorer, which also adds IApiVersionDescriptionProvider service
-                // note: the specified format code will format the version as "'v'major[.minor][-status]"
-                options.GroupNameFormat = "'v'VVV";
+                    // add the versioned api explorer, which also adds IApiVersionDescriptionProvider service
+                    // note: the specified format code will format the version as "'v'major[.minor][-status]"
+                    options.GroupNameFormat = "'v'VVV";
 
-                // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
-                // can also be used to control the format of the API version in route templates
-                options.SubstituteApiVersionInUrl = true;
+                    // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
+                    // can also be used to control the format of the API version in route templates
+                    options.SubstituteApiVersionInUrl = true;
                 });
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
             services.AddSwaggerGen(
                 options =>
                 {
-                // add a custom operation filter which sets default values
-                options.OperationFilter<SwaggerDefaultValues>();
+                    // add a custom operation filter which sets default values
+                    options.OperationFilter<SwaggerDefaultValues>();
 
-                // integrate xml comments
-                options.IncludeXmlComments(XmlCommentsFilePath);
+                    // integrate xml comments
+                    options.IncludeXmlComments(XmlCommentsFilePath);
                 });
 
             return services;
@@ -87,12 +87,12 @@ namespace mfe_versions.api.Extensions
             app.UseSwagger(options => options.RouteTemplate = "swagger/{documentName}/swagger.json");
             app.UseSwaggerUI(c =>
             {
-            // c.RoutePrefix = $"swagger/{ApiConstants.ServiceName}";
-            // Build a swagger endpoint for each discovered API version
-            foreach (ApiVersionDescription description in provider.ApiVersionDescriptions)
+                // c.RoutePrefix = $"swagger/{ApiConstants.ServiceName}";
+                // Build a swagger endpoint for each discovered API version
+                foreach (ApiVersionDescription description in provider.ApiVersionDescriptions)
                 {
-                // c.SwaggerEndpoint("/swagger/v1/swagger.json", "MicrofrontEndService v1")
-                c.SwaggerEndpoint($"{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+                    // c.SwaggerEndpoint("/swagger/v1/swagger.json", "MicrofrontEndService v1")
+                    c.SwaggerEndpoint($"{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
                 }
             });
             return app;

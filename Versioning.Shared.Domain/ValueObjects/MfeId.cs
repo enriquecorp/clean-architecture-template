@@ -1,5 +1,4 @@
-﻿using System;
-using shared.domain.ValueObjects;
+﻿using shared.domain.ValueObjects;
 
 namespace Versioning.Shared.Domain.ValueObjects
 {

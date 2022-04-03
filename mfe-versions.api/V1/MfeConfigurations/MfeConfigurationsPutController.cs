@@ -1,12 +1,6 @@
-﻿using System.Net;
-using mfe_versions.api.Constants;
-using MfeConfigurations.Application.Create;
-using MfeConfigurations.Application.Update;
-using MfeConfigurations.Domain.Exceptions;
+﻿using MfeConfigurations.Application.Update;
 using Microsoft.AspNetCore.Mvc;
 using shared.web.infrastructure;
-using shared.web.infrastructure.Attributes;
-using shared.web.infrastructure.Filters;
 using Versioning.Shared.Domain.ValueObjects;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

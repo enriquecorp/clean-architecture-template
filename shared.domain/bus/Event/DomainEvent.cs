@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using shared.domain.ValueObjects;
+﻿using shared.domain.ValueObjects;
 
 namespace shared.domain.Bus.Event
 {

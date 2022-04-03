@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MfeConfigurations.Domain;
+﻿using MfeConfigurations.Domain;
 using MfeConfigurations.Domain.Exceptions;
 using Versioning.Shared.Domain.ValueObjects;
 
@@ -20,7 +15,7 @@ namespace MfeConfigurations.Application.Create
             this.mfeConfigurationExistsChecker = new MfeTenantConfigurationExistsChecker(repository);
 
         }
-        public async Task Execute (MfeTenantConfigurationRequest configuration)
+        public async Task Execute(MfeTenantConfigurationRequest configuration)
         {
             var mfeConfiguration = MfeTenantConfiguration.Create(new MfeId(configuration.MfeId), new TenantId(configuration.TenantId), new ConfigurationList(configuration.Configurations), MfeConfigurationName.CreateEmpty());
             if (await this.mfeConfigurationExistsChecker.Exists(mfeConfiguration))

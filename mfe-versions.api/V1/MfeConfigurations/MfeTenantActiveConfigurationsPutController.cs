@@ -1,7 +1,5 @@
 ﻿using System.Net;
-using mfe_versions.api.Constants;
 using MfeConfigurations.Application.UpdateActiveConfiguration;
-using MfeConfigurations.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using shared.web.infrastructure;
 using shared.web.infrastructure.Attributes;

@@ -1,10 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
+﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace mfe_versions.api.Extensions.HealthCheck
 {
@@ -13,7 +9,7 @@ namespace mfe_versions.api.Extensions.HealthCheck
         public static Task HostProbeWriter(HttpContext context, HealthReport result)
         {
             context.Response.ContentType = "text/plain";
-            return context.Response.WriteAsync(result.Entries["host"].Description??"");
+            return context.Response.WriteAsync(result.Entries["host"].Description ?? "");
         }
 
         public static Task HealthReportWriter(HttpContext context, HealthReport result)

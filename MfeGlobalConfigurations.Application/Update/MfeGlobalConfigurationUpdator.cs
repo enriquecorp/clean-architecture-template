@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MfeGlobalConfigurations.Domain;
+﻿using MfeGlobalConfigurations.Domain;
 using MfeGlobalConfigurations.Domain.Exceptions;
 using Versioning.Shared.Domain.ValueObjects;
 
@@ -21,7 +16,7 @@ namespace MfeGlobalConfigurations.Application.Update
 
         public async Task Execute(MfeId name, ConfigurationList configurations)
         {
-           
+
 
             var configuration = await this.repository.Search(name);
             if (configuration == null)
@@ -38,7 +33,7 @@ namespace MfeGlobalConfigurations.Application.Update
 
         private void EnsureVersionsAreNotEmpty(MfeId name, ConfigurationList versions)
         {
-            if (versions==null || versions.Length < 0)
+            if (versions == null || versions.Length < 0)
             {
                 throw new MfeVersionsAreEmpty(name);
             }

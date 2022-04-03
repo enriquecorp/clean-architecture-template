@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace shared.domain.Expceptions
+﻿namespace shared.domain.Expceptions
 {
-    public abstract class DomainException: Exception
+    public abstract class DomainException : Exception
     {
         public DomainException()
         {

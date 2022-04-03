@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace mfe_versions.api.Extensions.DependencyInjection
+﻿namespace mfe_versions.api.Extensions.DependencyInjection
 {
     public static class InfrastructureExtensions
     {
@@ -32,5 +30,5 @@ namespace mfe_versions.api.Extensions.DependencyInjection
             return services;
         }
     }
-    
+
 }

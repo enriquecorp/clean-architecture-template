@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using mfe_versions.api.Constants;
 using MfeConfigurations.Application.Create;
 using MfeConfigurations.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +25,7 @@ namespace mfe_versions.api.V1.MfeConfigurations
 
         // POST api/v{version:apiVersion}/mfe-tenant-configurations
         [TypeFilter(typeof(DomainExceptionFilter))]
-        [DomainExceptionMapper(ExceptionTypeName =nameof(MfeConfigurationAlreadyExistsException), HttpStatusCode = HttpStatusCode.Conflict)]
+        [DomainExceptionMapper(ExceptionTypeName = nameof(MfeConfigurationAlreadyExistsException), HttpStatusCode = HttpStatusCode.Conflict)]
         [HttpPost()]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> Post([FromBody] MfeTenantConfigurationRequest mfeConfiguration)
