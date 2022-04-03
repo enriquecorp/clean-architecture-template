@@ -9,7 +9,8 @@ namespace MfeConfigurations.Domain
 
         public MfeTenantConfigurationCreatedDomainEvent(string id, string configurations, string activeConfiguration, string eventId = null, string occurredOn = null) : base(id, eventId, occurredOn)
         {
-
+            this.Configurations = configurations;
+            this.ActiveConfiguration = activeConfiguration;
         }
         public override string EventName()
         {
