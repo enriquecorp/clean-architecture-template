@@ -10,11 +10,11 @@
             this.Value = value;
         }
 
-        private bool IsGuidId => Guid.TryParse(this.Value, out _);
+        private bool IsGuidId(string value) => Guid.TryParse(value, out _);
 
         private void EnsureIsValidUuid(string value)
         {
-            var isValid = this.IsGuidId;
+            var isValid = this.IsGuidId(value);
             if (!isValid)
             {
                 throw new ArgumentException($"{nameof(UuidValueObject)} doesn't allow the value {value}");
