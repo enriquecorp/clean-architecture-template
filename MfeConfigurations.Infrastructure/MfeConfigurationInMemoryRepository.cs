@@ -1,7 +1,7 @@
 ﻿using MfeConfigurations.Domain;
 using Versioning.Shared.Domain.ValueObjects;
 
-namespace MfeConfigurations.Infrastructure
+namespace MfeConfigurations.Infrastructure.Persistence
 {
     public sealed class MfeConfigurationInMemoryRepository : IMfeTenantConfigurationRepository
     {

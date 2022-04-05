@@ -3,7 +3,7 @@ using MfeConfigurations.Application.Find;
 using MfeConfigurations.Application.Update;
 using MfeConfigurations.Application.UpdateActiveConfiguration;
 using MfeConfigurations.Domain;
-using MfeConfigurations.Infrastructure;
+using MfeConfigurations.Infrastructure.Persistence;
 using MfeGlobalConfigurations.Application.Update;
 using MfeGlobalConfigurations.Domain;
 using MfeGlobalConfigurations.Infrastructure;
