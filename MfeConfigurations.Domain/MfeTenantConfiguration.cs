@@ -34,16 +34,16 @@ namespace MfeConfigurations.Domain
                 configurations.TryGetValue(item.Key, out var incomingVersion);
                 if (incomingVersion != null && this.Configurations.ContainsKey(item.Key))
                 {
-                    this.Record(new MfeVersionChangedDomainEvent($"{this.MfeId.Value}#{this.TenantId.Value}", this.Configurations[item.Key].Value, incomingVersion.Value));
                     this.Configurations[item.Key] = incomingVersion; // it will update only if the incoming version has a value
+                    this.Record(new MfeVersionChangedDomainEvent($"{this.MfeId.Value}#{this.TenantId.Value}", configurationName: item.Key.Value, version: incomingVersion.Value));
                 }
             }
         }
 
         public void UpdateActiveConfiguration(MfeConfigurationName configuration)
         {
-            this.Record(new MfeActiveConfigurationChangedDomainEvent($"{this.MfeId.Value}#{this.TenantId.Value}", this.ActiveConfiguration.Value, configuration.Value));
             this.ActiveConfiguration = configuration;
+            this.Record(new MfeActiveConfigurationChangedDomainEvent($"{this.MfeId.Value}#{this.TenantId.Value}", this.ActiveConfiguration.Value));
         }
     }
 }
