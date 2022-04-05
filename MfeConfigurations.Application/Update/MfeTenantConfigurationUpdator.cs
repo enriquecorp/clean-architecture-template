@@ -30,12 +30,12 @@ namespace MfeConfigurations.Application.Update
             var configurations = await this.repository.SearchBatch(name, tenants.ToList());
             foreach (var c in configurations)
             {
+                var newConfigurationList = new ConfigurationList(new Dictionary<MfeConfigurationName, MfeVersion>() { { configuration, version } });
+                c.UpdateConfigurations(newConfigurationList);
                 if (setConfigurationActive && c.ActiveConfiguration != configuration)
                 {
                     c.UpdateActiveConfiguration(configuration);
                 }
-                var newConfigurationList = new ConfigurationList(new Dictionary<MfeConfigurationName, MfeVersion>() { { configuration, version } });
-                c.UpdateConfigurations(newConfigurationList);
             }
             //if (configuration == null)
             //{
@@ -46,7 +46,7 @@ namespace MfeConfigurations.Application.Update
             //}
             //configuration.UpdateVersions(configurations);
             await this.repository.UpdateBatch(configurations);
-            //// $this->bus->publish(...$course->pullDomainEvents());
+            // $this->bus->publish(...$course->pullDomainEvents());
         }
     }
 }
