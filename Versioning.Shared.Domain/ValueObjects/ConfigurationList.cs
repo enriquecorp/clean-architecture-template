@@ -6,12 +6,6 @@ namespace Versioning.Shared.Domain.ValueObjects
     {
         public int Length => this.Count;
 
-        //public MfeVersion this[MfeConfigurationName index]
-        //{
-        //    get => this.versions[index];
-        //    set => this.versions[index] = value;
-        //}
-
         public ConfigurationList(Dictionary<string, string> configurations)
         {
             foreach (var configuration in Configuration.SupportedConfigurations)

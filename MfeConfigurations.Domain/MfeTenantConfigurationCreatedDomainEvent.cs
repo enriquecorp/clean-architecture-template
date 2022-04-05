@@ -7,7 +7,7 @@ namespace MfeConfigurations.Domain
         public string Configurations { get; }
         public string ActiveConfiguration { get; }
 
-        public MfeTenantConfigurationCreatedDomainEvent(string id, string configurations, string activeConfiguration, string eventId = null, string occurredOn = null) : base(id, eventId, occurredOn)
+        public MfeTenantConfigurationCreatedDomainEvent(string id, string configurations, string activeConfiguration, string? eventId = null, string? occurredOn = null) : base(id, eventId, occurredOn)
         {
             this.Configurations = configurations;
             this.ActiveConfiguration = activeConfiguration;

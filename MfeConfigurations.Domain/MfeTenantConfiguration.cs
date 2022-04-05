@@ -23,10 +23,6 @@ namespace MfeConfigurations.Domain
             var configuration = new MfeTenantConfiguration(id, name, activeConfiguration, configurations);
             configuration.Record(new MfeTenantConfigurationCreatedDomainEvent($"{name.Value}#{id.Value}", configurations.Value, activeConfiguration.Value));
 
-            //configuration.Record(
-            //new MfeConfigurationDomainEvent(
-            //    id.Value, name.Value));
-
             return configuration;
         }
 
@@ -36,8 +32,9 @@ namespace MfeConfigurations.Domain
             foreach (var item in this.Configurations)
             {
                 configurations.TryGetValue(item.Key, out var incomingVersion);
-                if (incomingVersion != null)
+                if (incomingVersion != null && this.Configurations.ContainsKey(item.Key))
                 {
+                    this.Record(new MfeVersionChangedDomainEvent($"{this.MfeId.Value}#{this.TenantId.Value}", this.Configurations[item.Key].Value, incomingVersion.Value));
                     this.Configurations[item.Key] = incomingVersion; // it will update only if the incoming version has a value
                 }
             }
@@ -45,6 +42,7 @@ namespace MfeConfigurations.Domain
 
         public void UpdateActiveConfiguration(MfeConfigurationName configuration)
         {
+            this.Record(new MfeActiveConfigurationChangedDomainEvent($"{this.MfeId.Value}#{this.TenantId.Value}", this.ActiveConfiguration.Value, configuration.Value));
             this.ActiveConfiguration = configuration;
         }
     }

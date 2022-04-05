@@ -1,5 +1,6 @@
 ﻿using MfeConfigurations.Domain;
 using MfeConfigurations.Domain.Exceptions;
+using shared.domain.Bus.Event;
 using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeConfigurations.Application.Create
@@ -8,11 +9,13 @@ namespace MfeConfigurations.Application.Create
     {
         private readonly IMfeTenantConfigurationRepository repository;
         private readonly MfeTenantConfigurationExistsChecker mfeConfigurationExistsChecker;
+        private readonly IEventBus eventBus;
 
-        public MfeTenantConfigurationCreator(IMfeTenantConfigurationRepository repository)
+        public MfeTenantConfigurationCreator(IMfeTenantConfigurationRepository repository, IEventBus bus)
         {
             this.repository = repository;
             this.mfeConfigurationExistsChecker = new MfeTenantConfigurationExistsChecker(repository);
+            this.eventBus = bus;
 
         }
         public async Task Execute(MfeTenantConfigurationRequest configuration)
@@ -23,7 +26,7 @@ namespace MfeConfigurations.Application.Create
                 throw new MfeConfigurationAlreadyExistsException(mfeConfiguration.TenantId, mfeConfiguration.MfeId);
             }
             await this.repository.Save(mfeConfiguration);
-            // $this->bus->publish(...$course->pullDomainEvents());
+            await this.eventBus.Publish(mfeConfiguration.PullDomainEvents());
         }
     }
 }
