@@ -1,4 +1,4 @@
-﻿namespace shared.infrastructure
+﻿namespace Shared.Infrastructure
 {
     public class Class1
     {

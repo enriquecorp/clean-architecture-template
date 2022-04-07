@@ -7,10 +7,10 @@ namespace shared.web.infrastructure
     {
 
         /// <summary>
-        /// Gets or Sets the HttpCodeStatus Code
+        /// Gets or Sets the HttpStatusCode Code
         /// </summary>
         //[DataMember(Name = "error")]
-        public int HttpCodeStatus { get; set; }
+        public int HttpStatusCode { get; set; }
 
         /// <summary>
         /// Gets or Sets the Error Description
@@ -28,7 +28,7 @@ namespace shared.web.infrastructure
         {
             var sb = new StringBuilder();
             sb.Append("class ApiErrorResponse {\n");
-            sb.Append($"  {nameof(this.HttpCodeStatus)}: ").Append(this.HttpCodeStatus).Append("\n");
+            sb.Append($"  {nameof(this.HttpStatusCode)}: ").Append(this.HttpStatusCode).Append("\n");
             sb.Append($"  {nameof(this.ErrorKey)}: ").Append(this.ErrorKey).Append("\n");
             sb.Append($"  {nameof(this.ErrorDescription)}: ").Append(this.ErrorDescription).Append("\n");
             sb.Append("}\n");
