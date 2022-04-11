@@ -20,23 +20,23 @@ namespace MfeConfigurations.Application.Find
         public async Task<ConfigurationVersionResponse> Execute(TenantId tenantId, MfeId name, MfeConfigurationName? configurationName)
         {
             var configuration = await this.repository.Search(name, tenantId);
-            //var configuration = configurationName==null? await this.repository.SearchActiveConfiguration(name, tenantId): await this.repository.SearchByConfigurationName(name, tenantId, configurationName);
-            this.EnsureSupportedConfigurationName(configurationName);
 
             if (configuration == null)
             {
                 throw new MfeConfigurationDoesntExistsException(tenantId, name, configurationName);
             }
-            this.EnsureActiveConfigurationIsNotEmpty(tenantId, name, configuration);
+
+            if (configurationName is null)
+            {
+                this.EnsureActiveConfigurationIsNotEmpty(tenantId, name, configuration);
+            }
+            else
+            {
+                this.EnsureSupportedConfigurationName(configurationName);
+            }
 
             var version = configurationName != null ? configuration.Configurations[configurationName] : configuration.Configurations[configuration.ActiveConfiguration];
-            //await this.repository.Save(configuration);
-            // $this->bus->publish(...$course->pullDomainEvents());
             return new ConfigurationVersionResponse() { Version = version.Value, ConfigurationName = configurationName != null ? configurationName.Value : "active" };
-
-            //configuration.UpdateVersions(configurations);
-
-            //// $this->bus->publish(...$course->pullDomainEvents());
         }
 
         private void EnsureActiveConfigurationIsNotEmpty(TenantId tenantId, MfeId name, MfeTenantConfiguration configuration)
