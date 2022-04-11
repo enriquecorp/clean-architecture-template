@@ -1,4 +1,7 @@
-﻿namespace mfe_versions.api.Extensions.DependencyInjection
+﻿using shared.domain.Bus.Event;
+using Shared.Infrastructure.Bus.Event;
+
+namespace mfe_versions.api.Extensions.DependencyInjection
 {
     public static class InfrastructureExtensions
     {
@@ -26,6 +29,7 @@
             ////NOT for production
             //services.AddDbContext<VersioningDbContext>(opts => opts.UseInMemoryDatabase("MemInDB")); // This is just a workaround for using in-memory storage temporaly
             //// services.AddDbContext<VersioningDbContext>(optionsAction: opt => opt.UseSqlServer(connectionString), contextLifetime: ServiceLifetime.Transient, optionsLifetime: ServiceLifetime.Transient);
+            services.AddScoped<IEventBus, InMemoryApplicationEventBus>();
 
             return services;
         }
