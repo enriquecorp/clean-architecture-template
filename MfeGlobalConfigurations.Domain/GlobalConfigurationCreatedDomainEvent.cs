@@ -1,25 +1,25 @@
 ﻿using shared.domain.Bus.Event;
 
-namespace MfeConfigurations.Domain
+namespace MfeGlobalConfigurations.Domain
 {
-    public sealed class MfeTenantConfigurationCreatedDomainEvent : DomainEvent
+    public sealed class GlobalConfigurationCreatedDomainEvent : DomainEvent
     {
         public string Configurations { get; }
         public string ActiveConfiguration { get; }
 
-        public MfeTenantConfigurationCreatedDomainEvent(string mfeIdTenantId, string configurations, string activeConfiguration, string? eventId = null, string? occurredOn = null) : base(mfeIdTenantId, eventId, occurredOn)
+        public GlobalConfigurationCreatedDomainEvent(string mfeId, string configurations, string activeConfiguration, string? eventId = null, string? occurredOn = null) : base(mfeId, eventId, occurredOn)
         {
             this.Configurations = configurations;
             this.ActiveConfiguration = activeConfiguration;
         }
         public override string EventName()
         {
-            return "mfe-tenant-configuration.created";
+            return "mfe-global-configuration.created";
         }
 
         public override DomainEvent FromPrimitives(string aggregateId, Dictionary<string, string> body, string eventId, string occurredOn)
         {
-            return new MfeTenantConfigurationCreatedDomainEvent(aggregateId, body["configurations"], body["activeConfiguration"], eventId, occurredOn);
+            return new GlobalConfigurationCreatedDomainEvent(aggregateId, body["configurations"], body["activeConfiguration"], eventId, occurredOn);
         }
 
         public override Dictionary<string, string> ToPrimitives()
@@ -37,7 +37,7 @@ namespace MfeConfigurations.Domain
                 return true;
             }
 
-            if (obj is not MfeTenantConfigurationCreatedDomainEvent item)
+            if (obj is not GlobalConfigurationCreatedDomainEvent item)
             {
                 return false;
             }

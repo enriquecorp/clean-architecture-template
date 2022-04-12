@@ -1,13 +1,13 @@
 ﻿using shared.domain.Bus.Event;
 
-namespace MfeConfigurations.Domain
+namespace MfeGlobalConfigurations.Domain
 {
-    public sealed class MfeVersionChangedDomainEvent : DomainEvent
+    public sealed class GlobalVersionChangedDomainEvent : DomainEvent
     {
         public string ConfigurationName { get; }
         public string Version { get; }
 
-        public MfeVersionChangedDomainEvent(string id, string configurationName, string version, string? eventId = null, string? occurredOn = null) : base(id, eventId, occurredOn)
+        public GlobalVersionChangedDomainEvent(string mfeId, string configurationName, string version, string? eventId = null, string? occurredOn = null) : base(mfeId, eventId, occurredOn)
         {
             this.ConfigurationName = configurationName;
             this.Version = version;
@@ -19,7 +19,7 @@ namespace MfeConfigurations.Domain
 
         public override DomainEvent FromPrimitives(string aggregateId, Dictionary<string, string> body, string eventId, string occurredOn)
         {
-            return new MfeVersionChangedDomainEvent(aggregateId, body[nameof(this.ConfigurationName)], body[nameof(this.Version)], eventId, occurredOn);
+            return new GlobalVersionChangedDomainEvent(aggregateId, body[nameof(this.ConfigurationName)], body[nameof(this.Version)], eventId, occurredOn);
         }
 
         public override Dictionary<string, string> ToPrimitives()
@@ -37,7 +37,7 @@ namespace MfeConfigurations.Domain
                 return true;
             }
 
-            if (obj is not MfeVersionChangedDomainEvent item)
+            if (obj is not GlobalVersionChangedDomainEvent item)
             {
                 return false;
             }

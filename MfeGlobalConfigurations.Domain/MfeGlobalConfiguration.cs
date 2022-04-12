@@ -20,11 +20,9 @@ namespace MfeGlobalConfigurations.Domain
 
         public static MfeGlobalConfiguration Create(MfeId name, ConfigurationList configurations, MfeConfigurationName active)
         {
-            var configuration = new MfeGlobalConfiguration(name, active.IsEmpty() ? GetFirstConfiguration(configurations) : active, configurations);
-
-            //configuration.Record(
-            //new MfeConfigurationDomainEvent(
-            //    id.Value, name.Value));
+            var activeConfiguration = active.IsEmpty() ? GetFirstConfiguration(configurations) : active;
+            var configuration = new MfeGlobalConfiguration(name, activeConfiguration, configurations);
+            configuration.Record(new GlobalConfigurationCreatedDomainEvent(name.Value, configurations.Value, activeConfiguration.Value));
 
             return configuration;
         }
@@ -35,9 +33,10 @@ namespace MfeGlobalConfigurations.Domain
         /// <param name="configurations"></param>
         public void Update(MfeConfigurationName activeConfiguration, ConfigurationList configurations)
         {
-            if (!activeConfiguration.IsEmpty())
+            if (!activeConfiguration.IsEmpty() && this.ActiveConfiguration != activeConfiguration)
             {
                 this.ActiveConfiguration = activeConfiguration;
+                this.Record(new GlobalActiveConfigurationChangedDomainEvent(this.MfeId.Value, activeConfiguration.Value));
             }
             foreach (var item in this.Configurations)
             {
@@ -46,6 +45,7 @@ namespace MfeGlobalConfigurations.Domain
                 {
                     // it will update only if the incoming version has a value and it is different than current value
                     this.Configurations[item.Key] = incomingVersion;
+                    this.Record(new GlobalVersionChangedDomainEvent(this.MfeId.Value, item.Key.Value, incomingVersion.Value));
                 }
             }
         }

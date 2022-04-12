@@ -1,4 +1,5 @@
 ﻿using MfeConfigurations.Domain;
+using shared.domain.Bus.Event;
 using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeConfigurations.Application.Update
@@ -6,11 +7,12 @@ namespace MfeConfigurations.Application.Update
     public sealed class MfeTenantConfigurationUpdator
     {
         private readonly IMfeTenantConfigurationRepository repository;
+        private readonly IEventBus eventBus;
 
-        public MfeTenantConfigurationUpdator(IMfeTenantConfigurationRepository repository)
+        public MfeTenantConfigurationUpdator(IMfeTenantConfigurationRepository repository, IEventBus bus)
         {
             this.repository = repository;
-
+            this.eventBus = bus;
         }
 
         /// <summary>
@@ -26,7 +28,6 @@ namespace MfeConfigurations.Application.Update
         public async Task Execute(MfeId name, MfeConfigurationName configuration, IEnumerable<TenantId> tenants, MfeVersion version, bool setConfigurationActive)
         {
             //this.EnsureVersionsAreNotEmpty(name, versions);
-
             var configurations = await this.repository.SearchBatch(name, tenants.ToList());
             foreach (var c in configurations)
             {
@@ -37,15 +38,8 @@ namespace MfeConfigurations.Application.Update
                     c.UpdateActiveConfiguration(configuration);
                 }
             }
-            //if (configuration == null)
-            //{
-            //    configuration = MfeGlobalConfiguration.Create(name, configurations);
-            //    await this.repository.Save(configuration);
-            //    // $this->bus->publish(...$course->pullDomainEvents());
-            //    return;
-            //}
-            //configuration.UpdateVersions(configurations);
             await this.repository.UpdateBatch(configurations);
+            configurations.ForEach(async c => await this.eventBus.Publish(c.PullDomainEvents()));
             // $this->bus->publish(...$course->pullDomainEvents());
         }
     }
