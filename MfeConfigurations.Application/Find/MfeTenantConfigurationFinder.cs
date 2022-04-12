@@ -24,6 +24,7 @@ namespace MfeConfigurations.Application.Find
             if (configuration == null)
             {
                 throw new MfeConfigurationDoesntExistsException(tenantId, name, configurationName);
+                //look up Global configuration!!!! Share Domain Service or use GlobalConfigurationQueryBus
             }
 
             if (configurationName is null)
