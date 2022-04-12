@@ -1,5 +1,6 @@
 ﻿using MfeConfigurations.Domain;
 using MfeConfigurations.Domain.Exceptions;
+using MfeGlobalConfigurations.Domain;
 using Versioning.Shared.Domain.Constants;
 using Versioning.Shared.Domain.Exceptions;
 using Versioning.Shared.Domain.ValueObjects;
@@ -10,11 +11,14 @@ namespace MfeConfigurations.Application.Find
     public sealed class MfeTenantConfigurationFinder
     {
         private readonly IMfeTenantConfigurationRepository repository;
+        //TODO: Remove GlobalFinder once we implement QueryBus
+        //TODO: and remove project reference from MfeConfigurations.Application project!
+        private readonly MfeGlobalConfigurationFinder globalConfigurationFinder;
 
-        public MfeTenantConfigurationFinder(IMfeTenantConfigurationRepository repository)
+        public MfeTenantConfigurationFinder(IMfeTenantConfigurationRepository repository, MfeGlobalConfigurationFinder globalFinder)
         {
             this.repository = repository;
-
+            this.globalConfigurationFinder = globalFinder;
         }
 
         public async Task<ConfigurationVersionResponse> Execute(TenantId tenantId, MfeId name, MfeConfigurationName? configurationName)
@@ -23,8 +27,14 @@ namespace MfeConfigurations.Application.Find
 
             if (configuration == null)
             {
-                throw new MfeConfigurationDoesntExistsException(tenantId, name, configurationName);
+                // throw new MfeConfigurationDoesntExistsException(tenantId, name, configurationName);
                 //look up Global configuration!!!! Share Domain Service or use GlobalConfigurationQueryBus
+                MfeGlobalConfiguration? globalConfiguration = await this.globalConfigurationFinder.Find(name);
+                if (globalConfiguration == null)
+                {
+                    throw new MfeConfigurationDoesntExistsException(tenantId, name, configurationName);
+                }
+                configuration = new MfeTenantConfiguration(tenantId, name, globalConfiguration.ActiveConfiguration, globalConfiguration.Configurations);
             }
 
             if (configurationName is null)

@@ -39,6 +39,7 @@ namespace mfe_versions.api.Extensions.DependencyInjection
             services.AddScoped<IMfeGlobalConfigurationRepository, MfeGlobalConfigurationInMemoryRepository>();
             //services.AddScoped<IMicrofrontEndService, MicrofrontEndService>();
             //services.AddScoped<IMicrofrontEndRepository, MicrofronEndRepository>();
+            services.AddScoped<MfeGlobalConfigurationFinder>();//TODO: Remove after QueryBus usage?
             //services.AddHttpClient();
             return services;
         }

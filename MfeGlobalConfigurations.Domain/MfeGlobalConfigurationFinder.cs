@@ -22,5 +22,12 @@ namespace MfeGlobalConfigurations.Domain
 
             return configuration;
         }
+
+        public async Task<MfeGlobalConfiguration?> Find(MfeId name)
+        {
+            var configuration = await this.repository.Search(name);
+
+            return configuration;
+        }
     }
 }

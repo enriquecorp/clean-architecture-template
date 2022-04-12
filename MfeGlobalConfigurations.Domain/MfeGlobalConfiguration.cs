@@ -9,13 +9,13 @@ namespace MfeGlobalConfigurations.Domain
 
         public MfeConfigurationName ActiveConfiguration { get; private set; }
 
-        public ConfigurationList Versions { get; private set; }
+        public ConfigurationList Configurations { get; private set; }
 
-        public MfeGlobalConfiguration(MfeId name, MfeConfigurationName active, ConfigurationList versions)
+        public MfeGlobalConfiguration(MfeId name, MfeConfigurationName active, ConfigurationList configurations)
         {
             this.MfeId = name;
             this.ActiveConfiguration = active;
-            this.Versions = versions;
+            this.Configurations = configurations;
         }
 
         public static MfeGlobalConfiguration Create(MfeId name, ConfigurationList versions, MfeConfigurationName? active = null)
@@ -32,16 +32,16 @@ namespace MfeGlobalConfigurations.Domain
         /// <summary>
         /// This will merge the incoming version list with the current one
         /// </summary>
-        /// <param name="versions"></param>
-        public void UpdateConfigurations(ConfigurationList versions)
+        /// <param name="configurations"></param>
+        public void UpdateConfigurations(ConfigurationList configurations)
         {
             // this.Versions = versions;
-            foreach (var item in this.Versions)
+            foreach (var item in this.Configurations)
             {
-                versions.TryGetValue(item.Key, out var incomingVersion);
+                configurations.TryGetValue(item.Key, out var incomingVersion);
                 if (incomingVersion != null)
                 {
-                    this.Versions[item.Key] = incomingVersion; // it will update only if the incoming version has a value
+                    this.Configurations[item.Key] = incomingVersion; // it will update only if the incoming version has a value
                 }
             }
         }
