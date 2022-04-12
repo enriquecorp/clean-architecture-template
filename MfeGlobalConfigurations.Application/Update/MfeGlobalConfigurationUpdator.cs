@@ -14,26 +14,24 @@ namespace MfeGlobalConfigurations.Application.Update
 
         }
 
-        public async Task Execute(MfeId name, ConfigurationList configurations)
+        public async Task Execute(MfeId name, ConfigurationList configurations, MfeConfigurationName activeConfiguration)
         {
-
-
             var configuration = await this.repository.Search(name);
             if (configuration == null)
             {
-                configuration = MfeGlobalConfiguration.Create(name, configurations);
+                configuration = MfeGlobalConfiguration.Create(name, configurations, activeConfiguration);
                 await this.repository.Save(configuration);
                 // $this->bus->publish(...$course->pullDomainEvents());
                 return;
             }
-            configuration.UpdateConfigurations(configurations);
+            configuration.Update(activeConfiguration, configurations);
             await this.repository.Update(configuration);
             // $this->bus->publish(...$course->pullDomainEvents());
         }
 
-        private void EnsureVersionsAreNotEmpty(MfeId name, ConfigurationList versions)
+        private void EnsureVersionsAreNotEmpty(MfeId name, ConfigurationList configurations)
         {
-            if (versions == null || versions.Length < 0)
+            if (configurations == null || configurations.Length < 0)
             {
                 throw new MfeVersionsAreEmpty(name);
             }

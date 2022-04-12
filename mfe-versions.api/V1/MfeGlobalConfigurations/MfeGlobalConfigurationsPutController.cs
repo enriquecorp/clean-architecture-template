@@ -31,7 +31,7 @@ namespace mfe_versions.api.V1.MfeGlobalConfigurations
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Put([FromBody] MfeGlobalConfigurationRequest globalConfiguration)
         {
-            await this.configurationUpdator.Execute(new MfeId(globalConfiguration.MfeId), new ConfigurationList(globalConfiguration.Configurations));
+            await this.configurationUpdator.Execute(new MfeId(globalConfiguration.MfeId), new ConfigurationList(globalConfiguration.Configurations), new MfeConfigurationName(globalConfiguration.ActiveConfiguration));
             return this.StatusCode(StatusCodes.Status204NoContent);
         }
     }

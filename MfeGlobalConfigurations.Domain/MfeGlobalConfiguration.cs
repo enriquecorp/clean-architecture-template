@@ -18,9 +18,9 @@ namespace MfeGlobalConfigurations.Domain
             this.Configurations = configurations;
         }
 
-        public static MfeGlobalConfiguration Create(MfeId name, ConfigurationList versions, MfeConfigurationName? active = null)
+        public static MfeGlobalConfiguration Create(MfeId name, ConfigurationList configurations, MfeConfigurationName active)
         {
-            var configuration = new MfeGlobalConfiguration(name, active ?? GetFirstConfiguration(versions), versions);
+            var configuration = new MfeGlobalConfiguration(name, active.IsEmpty() ? GetFirstConfiguration(configurations) : active, configurations);
 
             //configuration.Record(
             //new MfeConfigurationDomainEvent(
@@ -33,19 +33,23 @@ namespace MfeGlobalConfigurations.Domain
         /// This will merge the incoming version list with the current one
         /// </summary>
         /// <param name="configurations"></param>
-        public void UpdateConfigurations(ConfigurationList configurations)
+        public void Update(MfeConfigurationName activeConfiguration, ConfigurationList configurations)
         {
-            // this.Versions = versions;
+            if (!activeConfiguration.IsEmpty())
+            {
+                this.ActiveConfiguration = activeConfiguration;
+            }
             foreach (var item in this.Configurations)
             {
                 configurations.TryGetValue(item.Key, out var incomingVersion);
-                if (incomingVersion != null)
+                if (incomingVersion != null && this.Configurations[item.Key] != incomingVersion)
                 {
-                    this.Configurations[item.Key] = incomingVersion; // it will update only if the incoming version has a value
+                    // it will update only if the incoming version has a value and it is different than current value
+                    this.Configurations[item.Key] = incomingVersion;
                 }
             }
         }
 
-        private static MfeConfigurationName GetFirstConfiguration(ConfigurationList versions) => versions.GetFirstConfigurationName();
+        private static MfeConfigurationName GetFirstConfiguration(ConfigurationList configurations) => configurations.GetFirstConfigurationName();
     }
 }
