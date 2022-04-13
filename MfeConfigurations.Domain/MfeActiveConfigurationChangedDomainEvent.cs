@@ -14,7 +14,7 @@ namespace MfeConfigurations.Domain
         }
         public override string EventName()
         {
-            return "mfe-active-configuration.changed";
+            return "mfe-tenant-active-configuration.changed";
         }
 
         public override DomainEvent FromPrimitives(string aggregateId, Dictionary<string, string> body, string eventId, string occurredOn)

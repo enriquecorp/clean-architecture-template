@@ -12,7 +12,7 @@ namespace MfeGlobalConfigurations.Domain
         }
         public override string EventName()
         {
-            return "global-active-configuration.changed";
+            return "mfe-global-active-configuration.changed";
         }
 
         public override DomainEvent FromPrimitives(string aggregateId, Dictionary<string, string> body, string eventId, string occurredOn)

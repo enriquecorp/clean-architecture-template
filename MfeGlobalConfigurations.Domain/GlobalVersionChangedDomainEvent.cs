@@ -14,7 +14,7 @@ namespace MfeGlobalConfigurations.Domain
         }
         public override string EventName()
         {
-            return "mfe-configuration-version.changed";
+            return "mfe-global-configuration-version.changed";
         }
 
         public override DomainEvent FromPrimitives(string aggregateId, Dictionary<string, string> body, string eventId, string occurredOn)
