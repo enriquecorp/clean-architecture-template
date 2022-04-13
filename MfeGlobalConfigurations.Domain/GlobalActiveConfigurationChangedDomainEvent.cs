@@ -27,7 +27,7 @@ namespace MfeGlobalConfigurations.Domain
             };
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (this == obj)
             {
