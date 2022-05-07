@@ -40,7 +40,6 @@ namespace MfeConfigurations.Application.Update
             }
             await this.repository.UpdateBatch(configurations);
             configurations.ForEach(async c => await this.eventBus.Publish(c.PullDomainEvents()));
-            // $this->bus->publish(...$course->pullDomainEvents());
         }
     }
 }
