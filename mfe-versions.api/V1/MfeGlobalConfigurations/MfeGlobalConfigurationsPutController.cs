@@ -24,9 +24,8 @@ namespace mfe_versions.api.V1.MfeGlobalConfigurations
             this.configurationUpdator = configurationUpdator;
         }
 
-        // PUT api/v{version:apiVersion}/mfe-global-configurations
         [TypeFilter(typeof(DomainExceptionFilter))]
-        [DomainExceptionMapper(ExceptionTypeName = nameof(MfeVersionsAreEmpty), HttpStatusCode = HttpStatusCode.BadRequest)]
+        [DomainExceptionMapper(ExceptionTypeName = nameof(ConfigurationsAreEmpty), HttpStatusCode = HttpStatusCode.BadRequest)]
         [HttpPut()]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Put([FromBody] MfeGlobalConfigurationRequest globalConfiguration)

@@ -2,31 +2,31 @@
 
 namespace MfeConfigurations.Domain
 {
-    public sealed class MfeVersionChangedDomainEvent : DomainEvent
+    public sealed class VersionUrlChangedDomainEvent : DomainEvent
     {
         public string ConfigurationName { get; }
-        public string Version { get; }
+        public string VersionUrl { get; }
 
-        public MfeVersionChangedDomainEvent(string id, string configurationName, string version, string? eventId = null, string? occurredOn = null) : base(id, eventId, occurredOn)
+        public VersionUrlChangedDomainEvent(string id, string configurationName, string versionUrl, string? eventId = null, string? occurredOn = null) : base(id, eventId, occurredOn)
         {
             this.ConfigurationName = configurationName;
-            this.Version = version;
+            this.VersionUrl = versionUrl;
         }
         public override string EventName()
         {
-            return "mfe-tenant-configuration-version.changed";
+            return "mfe-tenant-configuration-versionurl.changed";
         }
 
         public override DomainEvent FromPrimitives(string aggregateId, Dictionary<string, string> body, string eventId, string occurredOn)
         {
-            return new MfeVersionChangedDomainEvent(aggregateId, body[nameof(this.ConfigurationName)], body[nameof(this.Version)], eventId, occurredOn);
+            return new VersionUrlChangedDomainEvent(aggregateId, body[nameof(this.ConfigurationName)], body[nameof(this.VersionUrl)], eventId, occurredOn);
         }
 
         public override Dictionary<string, string> ToPrimitives()
         {
             return new Dictionary<string, string>{
                 {nameof(this.ConfigurationName), this.ConfigurationName },
-                {nameof(this.Version), this.Version},
+                {nameof(this.VersionUrl), this.VersionUrl},
             };
         }
 
@@ -37,17 +37,17 @@ namespace MfeConfigurations.Domain
                 return true;
             }
 
-            if (obj is not MfeVersionChangedDomainEvent item)
+            if (obj is not VersionUrlChangedDomainEvent item)
             {
                 return false;
             }
 
-            return this.AggregateId.Equals(item.AggregateId) && this.ConfigurationName.Equals(item.ConfigurationName) && this.Version.Equals(item.Version);
+            return this.AggregateId.Equals(item.AggregateId) && this.ConfigurationName.Equals(item.ConfigurationName) && this.VersionUrl.Equals(item.VersionUrl);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(this.AggregateId, this.ConfigurationName, this.Version);
+            return HashCode.Combine(this.AggregateId, this.ConfigurationName, this.VersionUrl);
         }
     }
 }

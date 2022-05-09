@@ -46,8 +46,8 @@ namespace MfeConfigurations.Application.Find
                 this.EnsureSupportedConfigurationName(configurationName);
             }
 
-            var version = configurationName != null ? configuration.Configurations[configurationName] : configuration.Configurations[configuration.ActiveConfiguration];
-            return new ConfigurationVersionResponse() { Version = version.Value, ConfigurationName = configurationName != null ? configurationName.Value : "active" };
+            var versionUrl = configurationName != null ? configuration.Configurations[configurationName] : configuration.Configurations[configuration.ActiveConfiguration];
+            return new ConfigurationVersionResponse() { VersionUrl = versionUrl.Value, ConfigurationName = configurationName != null ? configurationName.Value : "active" };
         }
 
         private void EnsureActiveConfigurationIsNotEmpty(TenantId tenantId, MfeId name, MfeTenantConfiguration configuration)

@@ -16,22 +16,22 @@ namespace MfeConfigurations.Application.Update
         }
 
         /// <summary>
-        /// It will update the {version} for a given {configuration} for one microfrontend {name} & {tenants} list
+        /// It will update the {versionUrl} for a given {configuration} for one microfrontend {name} & {tenants} list
         /// Optionally, it will set that {configuration} as active
         /// </summary>
         /// <param name="name"></param>
         /// <param name="configuration"></param>
         /// <param name="tenants"></param>
-        /// <param name="version"></param>
+        /// <param name="versionUrl"></param>
         /// <param name="setConfigurationActive"></param>
         /// <returns></returns>
-        public async Task Execute(MfeId name, MfeConfigurationName configuration, IEnumerable<TenantId> tenants, MfeVersion version, bool setConfigurationActive)
+        public async Task Execute(MfeId name, MfeConfigurationName configuration, IEnumerable<TenantId> tenants, VersionUrl versionUrl, bool setConfigurationActive)
         {
             //this.EnsureVersionsAreNotEmpty(name, versions);
             var configurations = await this.repository.SearchBatch(name, tenants.ToList());
             foreach (var c in configurations)
             {
-                var newConfigurationList = new ConfigurationList(new Dictionary<MfeConfigurationName, MfeVersion>() { { configuration, version } });
+                var newConfigurationList = new ConfigurationList(new Dictionary<MfeConfigurationName, VersionUrl>() { { configuration, versionUrl } });
                 c.UpdateConfigurations(newConfigurationList);
                 if (setConfigurationActive && c.ActiveConfiguration != configuration)
                 {

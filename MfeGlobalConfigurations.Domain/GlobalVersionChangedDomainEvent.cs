@@ -5,28 +5,28 @@ namespace MfeGlobalConfigurations.Domain
     public sealed class GlobalVersionChangedDomainEvent : DomainEvent
     {
         public string ConfigurationName { get; }
-        public string Version { get; }
+        public string VersionUrl { get; }
 
-        public GlobalVersionChangedDomainEvent(string mfeId, string configurationName, string version, string? eventId = null, string? occurredOn = null) : base(mfeId, eventId, occurredOn)
+        public GlobalVersionChangedDomainEvent(string mfeId, string configurationName, string versionUrl, string? eventId = null, string? occurredOn = null) : base(mfeId, eventId, occurredOn)
         {
             this.ConfigurationName = configurationName;
-            this.Version = version;
+            this.VersionUrl = versionUrl;
         }
         public override string EventName()
         {
-            return "mfe-global-configuration-version.changed";
+            return "mfe-global-configuration-versionurl.changed";
         }
 
         public override DomainEvent FromPrimitives(string aggregateId, Dictionary<string, string> body, string eventId, string occurredOn)
         {
-            return new GlobalVersionChangedDomainEvent(aggregateId, body[nameof(this.ConfigurationName)], body[nameof(this.Version)], eventId, occurredOn);
+            return new GlobalVersionChangedDomainEvent(aggregateId, body[nameof(this.ConfigurationName)], body[nameof(this.VersionUrl)], eventId, occurredOn);
         }
 
         public override Dictionary<string, string> ToPrimitives()
         {
             return new Dictionary<string, string>{
                 {nameof(this.ConfigurationName), this.ConfigurationName },
-                {nameof(this.Version), this.Version},
+                {nameof(this.VersionUrl), this.VersionUrl},
             };
         }
 
@@ -42,12 +42,12 @@ namespace MfeGlobalConfigurations.Domain
                 return false;
             }
 
-            return this.AggregateId.Equals(item.AggregateId) && this.ConfigurationName.Equals(item.ConfigurationName) && this.Version.Equals(item.Version);
+            return this.AggregateId.Equals(item.AggregateId) && this.ConfigurationName.Equals(item.ConfigurationName) && this.VersionUrl.Equals(item.VersionUrl);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(this.AggregateId, this.ConfigurationName, this.Version);
+            return HashCode.Combine(this.AggregateId, this.ConfigurationName, this.VersionUrl);
         }
     }
 }

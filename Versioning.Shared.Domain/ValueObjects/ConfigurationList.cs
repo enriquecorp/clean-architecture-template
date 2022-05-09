@@ -2,7 +2,7 @@
 
 namespace Versioning.Shared.Domain.ValueObjects
 {
-    public sealed class ConfigurationList : Dictionary<MfeConfigurationName, MfeVersion>
+    public sealed class ConfigurationList : Dictionary<MfeConfigurationName, VersionUrl>
     {
         public int Length => this.Count;
 
@@ -10,18 +10,18 @@ namespace Versioning.Shared.Domain.ValueObjects
         {
             foreach (var configuration in Configuration.SupportedConfigurations)
             {
-                configurations.TryGetValue(configuration, out var version);
-                this[new MfeConfigurationName(configuration)] = version != null ? new MfeVersion(version) : MfeVersion.CreateEmpty();
+                configurations.TryGetValue(configuration, out var versionUrl);
+                this[new MfeConfigurationName(configuration)] = versionUrl != null ? new VersionUrl(versionUrl) : VersionUrl.CreateEmpty();
             }
         }
 
-        public ConfigurationList(Dictionary<MfeConfigurationName, MfeVersion> configurations)
+        public ConfigurationList(Dictionary<MfeConfigurationName, VersionUrl> configurations)
         {
             foreach (var configuration in Configuration.SupportedConfigurations)
             {
                 var c = new MfeConfigurationName(configuration);
-                configurations.TryGetValue(c, out var version);
-                this[c] = version ?? new MfeVersion("");
+                configurations.TryGetValue(c, out var versionUrl);
+                this[c] = versionUrl ?? new VersionUrl("");
             }
         }
 
@@ -32,9 +32,9 @@ namespace Versioning.Shared.Domain.ValueObjects
             get
             {
                 string dictionaryString = "{";
-                foreach (KeyValuePair<MfeConfigurationName, MfeVersion> keyValues in this)
+                foreach (KeyValuePair<MfeConfigurationName, VersionUrl> configurations in this)
                 {
-                    dictionaryString += keyValues.Key.Value + " : " + keyValues.Value + ", ";
+                    dictionaryString += configurations.Key.Value + " : " + configurations.Value + ", ";
                 }
                 return dictionaryString.TrimEnd(',', ' ') + "}";
             }

@@ -31,11 +31,11 @@ namespace MfeConfigurations.Domain
             // this.Versions = versions;
             foreach (var item in this.Configurations)
             {
-                configurations.TryGetValue(item.Key, out var incomingVersion);
-                if (incomingVersion != null && this.Configurations.ContainsKey(item.Key))
+                configurations.TryGetValue(item.Key, out var incomingVersionUrl);
+                if (incomingVersionUrl != null && this.Configurations.ContainsKey(item.Key))
                 {
-                    this.Configurations[item.Key] = incomingVersion; // it will update only if the incoming version has a value
-                    this.Record(new MfeVersionChangedDomainEvent($"{this.MfeId.Value}#{this.TenantId.Value}", configurationName: item.Key.Value, version: incomingVersion.Value));
+                    this.Configurations[item.Key] = incomingVersionUrl; // it will update only if the incoming versionUrl has a value
+                    this.Record(new VersionUrlChangedDomainEvent($"{this.MfeId.Value}#{this.TenantId.Value}", configurationName: item.Key.Value, versionUrl: incomingVersionUrl.Value));
                 }
             }
         }

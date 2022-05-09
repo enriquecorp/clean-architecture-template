@@ -18,6 +18,8 @@ namespace MfeGlobalConfigurations.Application.Update
 
         public async Task Execute(MfeId name, ConfigurationList configurations, MfeConfigurationName activeConfiguration)
         {
+            this.EnsureConfigurationsAreNotEmpty(name, configurations);
+
             var configuration = await this.repository.Search(name);
             if (configuration == null)
             {
@@ -31,11 +33,11 @@ namespace MfeGlobalConfigurations.Application.Update
             await this.eventBus.Publish(configuration.PullDomainEvents());
         }
 
-        private void EnsureVersionsAreNotEmpty(MfeId name, ConfigurationList configurations)
+        private void EnsureConfigurationsAreNotEmpty(MfeId name, ConfigurationList configurations)
         {
             if (configurations == null || configurations.Length < 0)
             {
-                throw new MfeVersionsAreEmpty(name);
+                throw new ConfigurationsAreEmpty(name);
             }
         }
     }

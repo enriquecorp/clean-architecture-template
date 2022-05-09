@@ -28,7 +28,7 @@ namespace MfeGlobalConfigurations.Domain
         }
 
         /// <summary>
-        /// This will merge the incoming version list with the current one
+        /// This will merge the incoming configuration list with the current one
         /// </summary>
         /// <param name="configurations"></param>
         public void Update(MfeConfigurationName activeConfiguration, ConfigurationList configurations)
@@ -40,12 +40,12 @@ namespace MfeGlobalConfigurations.Domain
             }
             foreach (var item in this.Configurations)
             {
-                configurations.TryGetValue(item.Key, out var incomingVersion);
-                if (incomingVersion != null && this.Configurations[item.Key] != incomingVersion)
+                configurations.TryGetValue(item.Key, out var incomingVersionUrl);
+                if (incomingVersionUrl != null && this.Configurations[item.Key] != incomingVersionUrl)
                 {
-                    // it will update only if the incoming version has a value and it is different than current value
-                    this.Configurations[item.Key] = incomingVersion;
-                    this.Record(new GlobalVersionChangedDomainEvent(this.MfeId.Value, item.Key.Value, incomingVersion.Value));
+                    // it will update only if the incoming versionurl has a value and it is different than current value
+                    this.Configurations[item.Key] = incomingVersionUrl;
+                    this.Record(new GlobalVersionChangedDomainEvent(this.MfeId.Value, item.Key.Value, incomingVersionUrl.Value));
                 }
             }
         }
