@@ -68,13 +68,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{FA8C89
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MfeGlobalConfigurations", "MfeGlobalConfigurations", "{B1312033-C6E0-4A0E-89C6-1EEA9927BE05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeGlobalConfigurations.Application", "MfeGlobalConfigurations.Application\MfeGlobalConfigurations.Application.csproj", "{47A5DA4F-7AB2-4FD3-AADE-A587980E2587}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MfeGlobalConfigurations.Application", "MfeGlobalConfigurations.Application\MfeGlobalConfigurations.Application.csproj", "{47A5DA4F-7AB2-4FD3-AADE-A587980E2587}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeGlobalConfigurations.Domain", "MfeGlobalConfigurations.Domain\MfeGlobalConfigurations.Domain.csproj", "{374B5C12-1D9A-4BFC-8A83-276D40F1C0BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MfeGlobalConfigurations.Domain", "MfeGlobalConfigurations.Domain\MfeGlobalConfigurations.Domain.csproj", "{374B5C12-1D9A-4BFC-8A83-276D40F1C0BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeGlobalConfigurations.Infrastructure", "MfeGlobalConfigurations.Infrastructure\MfeGlobalConfigurations.Infrastructure.csproj", "{31F13EE5-4F8C-449D-9D5E-FE6877C39B04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MfeGlobalConfigurations.Infrastructure", "MfeGlobalConfigurations.Infrastructure\MfeGlobalConfigurations.Infrastructure.csproj", "{31F13EE5-4F8C-449D-9D5E-FE6877C39B04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Infrastructure.Bus", "Shared.Infrastructure.Bus\Shared.Infrastructure.Bus.csproj", "{CD846ADD-3579-4922-814C-668B06D70016}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.Infrastructure.Bus", "Shared.Infrastructure.Bus\Shared.Infrastructure.Bus.csproj", "{CD846ADD-3579-4922-814C-668B06D70016}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MfeClusterConfigurations", "MfeClusterConfigurations", "{6EF9B0AD-1824-4B6D-AD4B-1E6BBB86C290}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeClusterConfigurations.Application", "MfeClusterConfigurations.Application\MfeClusterConfigurations.Application.csproj", "{0EE8CA7D-19C5-4B2B-8359-BEB5402962C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeClusterConfigurations.Infrastructure", "MfeClusterConfigurations.Infrastructure\MfeClusterConfigurations.Infrastructure.csproj", "{40B99D0A-5B11-48FF-8483-2B51EDFF4D70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeClusterConfigurations.Domain", "MfeClusterConfigurations.Domain\MfeClusterConfigurations.Domain.csproj", "{783900D5-9156-4010-9234-E44641BC2AA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -166,6 +174,18 @@ Global
 		{CD846ADD-3579-4922-814C-668B06D70016}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD846ADD-3579-4922-814C-668B06D70016}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD846ADD-3579-4922-814C-668B06D70016}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EE8CA7D-19C5-4B2B-8359-BEB5402962C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EE8CA7D-19C5-4B2B-8359-BEB5402962C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EE8CA7D-19C5-4B2B-8359-BEB5402962C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EE8CA7D-19C5-4B2B-8359-BEB5402962C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40B99D0A-5B11-48FF-8483-2B51EDFF4D70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40B99D0A-5B11-48FF-8483-2B51EDFF4D70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40B99D0A-5B11-48FF-8483-2B51EDFF4D70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40B99D0A-5B11-48FF-8483-2B51EDFF4D70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{783900D5-9156-4010-9234-E44641BC2AA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{783900D5-9156-4010-9234-E44641BC2AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{783900D5-9156-4010-9234-E44641BC2AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{783900D5-9156-4010-9234-E44641BC2AA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -201,6 +221,10 @@ Global
 		{374B5C12-1D9A-4BFC-8A83-276D40F1C0BA} = {B1312033-C6E0-4A0E-89C6-1EEA9927BE05}
 		{31F13EE5-4F8C-449D-9D5E-FE6877C39B04} = {B1312033-C6E0-4A0E-89C6-1EEA9927BE05}
 		{CD846ADD-3579-4922-814C-668B06D70016} = {EDC0CA1A-F52D-4D6A-8F51-62EA5FF2EE37}
+		{6EF9B0AD-1824-4B6D-AD4B-1E6BBB86C290} = {C724F8BF-7C40-4F7B-A0CD-424E728FBFE3}
+		{0EE8CA7D-19C5-4B2B-8359-BEB5402962C6} = {6EF9B0AD-1824-4B6D-AD4B-1E6BBB86C290}
+		{40B99D0A-5B11-48FF-8483-2B51EDFF4D70} = {6EF9B0AD-1824-4B6D-AD4B-1E6BBB86C290}
+		{783900D5-9156-4010-9234-E44641BC2AA5} = {6EF9B0AD-1824-4B6D-AD4B-1E6BBB86C290}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCA23B81-A1B0-48DA-B644-21F404C18230}
