@@ -20,9 +20,9 @@ namespace MfeClusterConfigurations.Application.Find
             //this.globalConfigurationFinder = globalFinder;
         }
 
-        public async Task<ClusterConfigurationVersionResponse> Execute(TenantId tenantId, MfeId name, MfeConfigurationName? configurationName)
+        public async Task<ClusterConfigurationVersionResponse> Execute(ClusterId clusterId, MfeId name, MfeConfigurationName? configurationName)
         {
-            var configuration = await this.repository.Search(name, tenantId);
+            var configuration = await this.repository.Search(name, clusterId);
 
             if (configuration == null)
             {
@@ -31,14 +31,14 @@ namespace MfeClusterConfigurations.Application.Find
                 //    MfeGlobalConfiguration? globalConfiguration = await this.globalConfigurationFinder.Find(name);
                 //    if (globalConfiguration == null)
                 //    {
-                throw new MfeClusterConfigurationDoesntExistsException(tenantId, name, configurationName);
+                throw new MfeClusterConfigurationDoesntExistsException(clusterId, name, configurationName);
                 //    }
                 //    configuration = new MfeClusterConfiguration(tenantId, name, globalConfiguration.ActiveConfiguration, globalConfiguration.Configurations);
             }
 
             if (configurationName is null)
             {
-                this.EnsureActiveConfigurationIsNotEmpty(tenantId, name, configuration);
+                this.EnsureActiveConfigurationIsNotEmpty(clusterId, name, configuration);
             }
             else
             {
@@ -49,11 +49,11 @@ namespace MfeClusterConfigurations.Application.Find
             return new ClusterConfigurationVersionResponse() { VersionUrl = versionUrl.Value, ConfigurationName = configurationName != null ? configurationName.Value : "active" };
         }
 
-        private void EnsureActiveConfigurationIsNotEmpty(TenantId tenantId, MfeId name, MfeClusterConfiguration configuration)
+        private void EnsureActiveConfigurationIsNotEmpty(ClusterId clusterId, MfeId name, MfeClusterConfiguration configuration)
         {
             if (configuration.ActiveConfiguration.IsEmpty())
             {
-                throw new NoActiveClusterConfigurationExistsException(tenantId, name);
+                throw new NoActiveClusterConfigurationExistsException(clusterId, name);
             }
         }
 

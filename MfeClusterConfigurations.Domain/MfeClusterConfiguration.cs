@@ -7,19 +7,19 @@ namespace MfeClusterConfigurations.Domain
     public sealed class MfeClusterConfiguration : AggregateRoot
     {
         public MfeId MfeId { get; private set; }
-        public TenantId TenantId { get; private set; }
+        public ClusterId ClusterId { get; private set; }
         public MfeConfigurationName ActiveConfiguration { get; private set; }
         public ConfigurationList Configurations { get; private set; }
 
-        public MfeClusterConfiguration(TenantId id, MfeId name, MfeConfigurationName activeConfiguration, ConfigurationList configurations)
+        public MfeClusterConfiguration(ClusterId id, MfeId name, MfeConfigurationName activeConfiguration, ConfigurationList configurations)
         {
-            this.TenantId = id;
+            this.ClusterId = id;
             this.MfeId = name;
             this.ActiveConfiguration = activeConfiguration;
             this.Configurations = configurations;
         }
 
-        public static MfeClusterConfiguration Create(MfeId name, TenantId id, ConfigurationList configurations, MfeConfigurationName activeConfiguration)
+        public static MfeClusterConfiguration Create(MfeId name, ClusterId id, ConfigurationList configurations, MfeConfigurationName activeConfiguration)
         {
             var configuration = new MfeClusterConfiguration(id, name, activeConfiguration, configurations);
             configuration.Record(new MfeClusterConfigurationCreatedDomainEvent($"{name.Value}#{id.Value}", configurations.Value, activeConfiguration.Value));

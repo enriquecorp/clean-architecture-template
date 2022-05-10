@@ -14,7 +14,7 @@ namespace MfeClusterConfigurations.Domain.Events
         }
         public override string EventName()
         {
-            return "mfe-tenant-configuration.created";
+            return "mfe-cluster-configuration.created";
         }
 
         public override DomainEvent FromPrimitives(string aggregateId, Dictionary<string, string> body, string eventId, string occurredOn)

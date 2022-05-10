@@ -33,9 +33,9 @@ namespace mfe_versions.api.V1.MfeClusterConfigurations
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Get([FromHeader(Name = ApiHeaders.TENANT_ID)] string tenantId, [FromQuery] ClusterConfigurationVersionRequest configurationRequest)
+        public async Task<IActionResult> Get([FromHeader(Name = ApiHeaders.CLUSTER_ID)] string clusterId, [FromQuery] ClusterConfigurationVersionRequest configurationRequest)
         {
-            var response = await this.configurationFinder.Execute(new TenantId(tenantId), new MfeId(configurationRequest.MfeId), configurationRequest.Configuration != null ? new MfeConfigurationName(configurationRequest.Configuration) : null);
+            var response = await this.configurationFinder.Execute(new ClusterId(clusterId), new MfeId(configurationRequest.MfeId), configurationRequest.Configuration != null ? new MfeConfigurationName(configurationRequest.Configuration) : null);
             return this.StatusCode(StatusCodes.Status200OK, response);
         }
     }
