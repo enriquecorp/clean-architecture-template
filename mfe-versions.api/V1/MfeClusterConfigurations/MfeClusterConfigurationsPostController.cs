@@ -9,10 +9,10 @@ using shared.web.infrastructure.Filters;
 
 namespace mfe_versions.api.V1.MfeConfigurations
 {
-    [Tags("MfeTenantConfigurations")]
+    [Tags("MfeClusterConfigurations")]
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/mfe-tenant-configurations")]
+    [Route("api/v{version:apiVersion}/mfe-cluster-configurations")]
     public class MfeClusterConfigurationsPostController : ApiBaseController
     {
         private readonly MfeTenantConfigurationCreator configurationCreator; //= new();

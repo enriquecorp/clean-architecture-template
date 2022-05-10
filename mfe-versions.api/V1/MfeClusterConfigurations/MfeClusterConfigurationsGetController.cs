@@ -13,7 +13,7 @@ using Versioning.Shared.Domain.ValueObjects;
 
 namespace mfe_versions.api.V1.MfeConfigurations
 {
-    [Tags("MfeTenantConfigurations")]
+    [Tags("MfeClusterConfigurations")]
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/mfe-cluster-configurations")]
