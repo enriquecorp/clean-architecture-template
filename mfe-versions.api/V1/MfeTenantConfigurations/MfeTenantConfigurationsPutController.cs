@@ -7,15 +7,15 @@ using Versioning.Shared.Domain.ValueObjects;
 
 namespace mfe_versions.api.V1.MfeConfigurations
 {
-    [Tags("MfeClusterConfigurations")]
+    [Tags("MfeTenantConfigurations")]
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/mfe-cluster-configurations")]
-    public class MfeClusterConfigurationsPutController : ApiBaseController
+    [Route("api/v{version:apiVersion}/mfe-tenant-configurations")]
+    public class MfeTenantConfigurationsPutController : ApiBaseController
     {
         private readonly MfeTenantConfigurationUpdator configurationUpdator;
 
-        public MfeClusterConfigurationsPutController(MfeTenantConfigurationUpdator configurationUpdator)
+        public MfeTenantConfigurationsPutController(MfeTenantConfigurationUpdator configurationUpdator)
         {
             this.configurationUpdator = configurationUpdator;
         }

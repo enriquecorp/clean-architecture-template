@@ -9,15 +9,15 @@ using shared.web.infrastructure.Filters;
 
 namespace mfe_versions.api.V1.MfeConfigurations
 {
-    [Tags("MfeClusterConfigurations")]
+    [Tags("MfeTenantConfigurations")]
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/mfe-cluster-configurations")]
-    public class MfeClusterConfigurationsPostController : ApiBaseController
+    [Route("api/v{version:apiVersion}/mfe-tenant-configurations")]
+    public class MfeTenantConfigurationsPostController : ApiBaseController
     {
         private readonly MfeTenantConfigurationCreator configurationCreator; //= new();
 
-        public MfeClusterConfigurationsPostController(MfeTenantConfigurationCreator configurationCreator)
+        public MfeTenantConfigurationsPostController(MfeTenantConfigurationCreator configurationCreator)
         {
             this.configurationCreator = configurationCreator;
         }

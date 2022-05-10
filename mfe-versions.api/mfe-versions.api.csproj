@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -26,12 +26,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MfeConfigurations.Application\MfeConfigurations.Application.csproj" />
-    <ProjectReference Include="..\MfeConfigurations.Domain\MfeConfigurations.Domain.csproj" />
-    <ProjectReference Include="..\MfeConfigurations.Infrastructure\MfeConfigurations.Infrastructure.csproj" />
+    <ProjectReference Include="..\MfeClusterConfigurations.Application\MfeClusterConfigurations.Application.csproj" />
+    <ProjectReference Include="..\MfeClusterConfigurations.Domain\MfeClusterConfigurations.Domain.csproj" />
     <ProjectReference Include="..\MfeGlobalConfigurations.Application\MfeGlobalConfigurations.Application.csproj" />
     <ProjectReference Include="..\MfeGlobalConfigurations.Infrastructure\MfeGlobalConfigurations.Infrastructure.csproj" />
     <ProjectReference Include="..\Mfes.Application\Mfes.Application.csproj" />
+    <ProjectReference Include="..\MfeTenantConfigurations.Application\MfeTenantConfigurations.Application.csproj" />
+    <ProjectReference Include="..\MfeTenantConfigurations.Domain\MfeTenantConfigurations.Domain.csproj" />
+    <ProjectReference Include="..\MfeTenantConfigurations.Infrastructure\MfeTenantConfigurations.Infrastructure.csproj" />
     <ProjectReference Include="..\Shared.Infrastructure.Bus\Shared.Infrastructure.Bus.csproj" />
     <ProjectReference Include="..\shared.web.infrastructure\shared.web.infrastructure.csproj" />
   </ItemGroup>
