@@ -1,4 +1,5 @@
-﻿using shared.domain.Aggregate;
+﻿using MfeTenantConfigurations.Domain.Events;
+using shared.domain.Aggregate;
 using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeTenantConfigurations.Domain
@@ -43,7 +44,7 @@ namespace MfeTenantConfigurations.Domain
         public void UpdateActiveConfiguration(MfeConfigurationName configuration)
         {
             this.ActiveConfiguration = configuration;
-            this.Record(new MfeActiveConfigurationChangedDomainEvent($"{this.MfeId.Value}#{this.TenantId.Value}", this.ActiveConfiguration.Value));
+            this.Record(new MfeActiveTenantConfigurationChangedDomainEvent($"{this.MfeId.Value}#{this.TenantId.Value}", this.ActiveConfiguration.Value));
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using shared.domain.Bus.Event;
 
-namespace MfeTenantConfigurations.Domain
+namespace MfeTenantConfigurations.Domain.Events
 {
     public sealed class VersionUrlChangedDomainEvent : DomainEvent
     {

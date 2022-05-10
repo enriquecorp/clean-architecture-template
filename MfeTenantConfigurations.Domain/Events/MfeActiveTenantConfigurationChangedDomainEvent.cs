@@ -1,13 +1,13 @@
 ﻿using shared.domain.Bus.Event;
 
-namespace MfeTenantConfigurations.Domain
+namespace MfeTenantConfigurations.Domain.Events
 {
-    public sealed class MfeActiveConfigurationChangedDomainEvent : DomainEvent
+    public sealed class MfeActiveTenantConfigurationChangedDomainEvent : DomainEvent
     {
         //public string PreviousConfiguration { get; }
         public string ActiveConfiguration { get; }
 
-        public MfeActiveConfigurationChangedDomainEvent(string id, string activeConfiguration, string? eventId = null, string? occurredOn = null) : base(id, eventId, occurredOn)
+        public MfeActiveTenantConfigurationChangedDomainEvent(string id, string activeConfiguration, string? eventId = null, string? occurredOn = null) : base(id, eventId, occurredOn)
         {
             //this.PreviousConfiguration = previousConfiguration;
             this.ActiveConfiguration = activeConfiguration;
@@ -19,7 +19,7 @@ namespace MfeTenantConfigurations.Domain
 
         public override DomainEvent FromPrimitives(string aggregateId, Dictionary<string, string> body, string eventId, string occurredOn)
         {
-            return new MfeActiveConfigurationChangedDomainEvent(aggregateId, body[nameof(this.ActiveConfiguration)], eventId, occurredOn);
+            return new MfeActiveTenantConfigurationChangedDomainEvent(aggregateId, body[nameof(this.ActiveConfiguration)], eventId, occurredOn);
         }
 
         public override Dictionary<string, string> ToPrimitives()
