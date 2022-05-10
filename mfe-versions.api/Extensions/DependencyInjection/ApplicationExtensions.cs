@@ -1,12 +1,11 @@
-﻿using MfeConfigurations.Application.Create;
-using MfeConfigurations.Application.Find;
-using MfeConfigurations.Application.Update;
-using MfeConfigurations.Application.UpdateActiveConfiguration;
-using MfeConfigurations.Domain;
-using MfeConfigurations.Infrastructure.Persistence;
-using MfeGlobalConfigurations.Application.Update;
+﻿using MfeGlobalConfigurations.Application.Update;
 using MfeGlobalConfigurations.Domain;
 using MfeGlobalConfigurations.Infrastructure;
+using MfeTenantConfigurations.Application.Create;
+using MfeTenantConfigurations.Application.Update;
+using MfeTenantConfigurations.Application.UpdateActiveConfiguration;
+using MfeTenantConfigurations.Domain;
+using MfeTenantConfigurations.Infrastructure;
 //using Microsoft.EntityFrameworkCore;
 //using Microsoft.Extensions.Configuration;
 //using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +33,7 @@ namespace mfe_versions.api.Extensions.DependencyInjection
             services.AddScoped<MfeActiveConfigurationUpdator>();
             services.AddScoped<MfeGlobalConfigurationUpdator>();
             services.AddScoped<MfeTenantConfigurationFinder>();
+            //services.AddScoped<MfeClusterConfigurationFinder>();
 
             services.AddScoped<IMfeTenantConfigurationRepository, MfeConfigurationInMemoryRepository>();
             services.AddScoped<IMfeGlobalConfigurationRepository, MfeGlobalConfigurationInMemoryRepository>();
