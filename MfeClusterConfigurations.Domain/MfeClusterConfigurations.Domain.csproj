@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Versioning.Shared.Domain\Versioning.Shared.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

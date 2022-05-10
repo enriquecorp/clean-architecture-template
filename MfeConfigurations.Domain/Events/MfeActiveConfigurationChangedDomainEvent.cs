@@ -1,6 +1,6 @@
 ﻿using shared.domain.Bus.Event;
 
-namespace MfeConfigurations.Domain
+namespace MfeConfigurations.Domain.Events
 {
     public sealed class MfeActiveConfigurationChangedDomainEvent : DomainEvent
     {

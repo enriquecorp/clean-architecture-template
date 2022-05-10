@@ -1,4 +1,5 @@
-﻿using shared.domain.Aggregate;
+﻿using MfeConfigurations.Domain.Events;
+using shared.domain.Aggregate;
 using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeConfigurations.Domain
