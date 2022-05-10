@@ -7,7 +7,7 @@ using shared.web.infrastructure.Attributes;
 using shared.web.infrastructure.Filters;
 
 
-namespace mfe_versions.api.V1.MfeConfigurations
+namespace mfe_versions.api.V1.MfeTenantConfigurations
 {
     [Tags("MfeTenantConfigurations")]
     [ApiController]

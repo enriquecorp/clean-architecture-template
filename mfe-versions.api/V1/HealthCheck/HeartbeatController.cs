@@ -2,7 +2,7 @@
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace VersioningService.V1.Controllers
+namespace mfe_versions.api.V1.HealthCheck
 {
     [ApiController]
     [ApiVersion("1.0")]
