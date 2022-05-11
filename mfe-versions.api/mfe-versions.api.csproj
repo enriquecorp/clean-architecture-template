@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MfeClusterConfigurations.Application\MfeClusterConfigurations.Application.csproj" />
     <ProjectReference Include="..\MfeClusterConfigurations.Domain\MfeClusterConfigurations.Domain.csproj" />
+    <ProjectReference Include="..\MfeClusterConfigurations.Infrastructure\MfeClusterConfigurations.Infrastructure.csproj" />
     <ProjectReference Include="..\MfeGlobalConfigurations.Application\MfeGlobalConfigurations.Application.csproj" />
     <ProjectReference Include="..\MfeGlobalConfigurations.Infrastructure\MfeGlobalConfigurations.Infrastructure.csproj" />
     <ProjectReference Include="..\Mfes.Application\Mfes.Application.csproj" />

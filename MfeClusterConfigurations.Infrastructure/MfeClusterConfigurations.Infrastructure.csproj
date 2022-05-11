@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MfeClusterConfigurations.Domain\MfeClusterConfigurations.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

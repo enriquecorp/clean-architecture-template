@@ -15,7 +15,7 @@ namespace MfeClusterConfigurations.Domain.Exceptions
             this.name = name;
             this.configurationName = configurationName;
         }
-        public override string Message => $"The microfrontend '{(this.configurationName != null ? this.configurationName.Value : "`active`")}' configuration for cluster={this.id.Value} and mfeid={this.name.Value} doesn't exists";
+        public override string Message => $"The '{(this.configurationName != null ? this.configurationName.Value : "active")}' microfrontend configuration for cluster={this.id.Value} and mfeid={this.name.Value} doesn't exists";
 
         public override string ErrorCode => "cluster_config_doesnt_exists";
 
