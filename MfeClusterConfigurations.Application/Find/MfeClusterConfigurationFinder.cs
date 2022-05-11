@@ -42,14 +42,33 @@ namespace MfeClusterConfigurations.Application.Find
 
             if (configurationName is null)
             {
-                this.EnsureActiveConfigurationIsNotEmpty(clusterId, name, configuration);
+                this.EnsureActiveConfigurationIsValid(clusterId, name, configuration);
             }
             else
             {
-                this.EnsureSupportedConfigurationName(configurationName);
+                this.EnsureConfigurationIsValid(clusterId, name, configurationName, configuration);
+
             }
             var versionUrl = configurationName is not null ? configuration.Configurations[configurationName] : configuration.Configurations[configuration.ActiveConfiguration];
             return new ClusterConfigurationVersionResponse() { VersionUrl = versionUrl.Value, ConfigurationSource = $"{source} - {(configurationName is not null ? configurationName.Value : "active")}" };
+        }
+
+        private void EnsureConfigurationIsValid(ClusterId clusterId, MfeId name, MfeConfigurationName configurationName, MfeClusterConfiguration configuration)
+        {
+            this.EnsureSupportedConfigurationName(configurationName);
+            if (string.IsNullOrEmpty(configuration.Configurations[configurationName].Value))
+            {
+                throw new MfeClusterInvalidConfigurationException(clusterId, name, configurationName);
+            }
+        }
+
+        private void EnsureActiveConfigurationIsValid(ClusterId clusterId, MfeId name, MfeClusterConfiguration configuration)
+        {
+            this.EnsureActiveConfigurationIsNotEmpty(clusterId, name, configuration);
+            if (!configuration.Configurations.ContainsKey(configuration.ActiveConfiguration) || string.IsNullOrEmpty(configuration.Configurations[configuration.ActiveConfiguration].Value))
+            {
+                throw new MfeClusterInvalidConfigurationException(clusterId, name, configuration.ActiveConfiguration);
+            }
         }
 
         private void EnsureActiveConfigurationIsNotEmpty(ClusterId clusterId, MfeId name, MfeClusterConfiguration configuration)

@@ -30,6 +30,7 @@ namespace mfe_versions.api.V1.MfeClusterConfigurations
         [DomainExceptionMapper(ExceptionTypeName = nameof(MfeClusterConfigurationDoesntExistsException), HttpStatusCode = HttpStatusCode.NotFound)]
         [DomainExceptionMapper(ExceptionTypeName = nameof(NoActiveClusterConfigurationExistsException), HttpStatusCode = HttpStatusCode.BadRequest)]
         [DomainExceptionMapper(ExceptionTypeName = nameof(ConfigurationNotSupportedException), HttpStatusCode = HttpStatusCode.BadRequest)]
+        [DomainExceptionMapper(ExceptionTypeName = nameof(MfeClusterInvalidConfigurationException), HttpStatusCode = HttpStatusCode.BadRequest)]
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
