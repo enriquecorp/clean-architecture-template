@@ -49,7 +49,7 @@ namespace MfeClusterConfigurations.Application.Find
                 this.EnsureSupportedConfigurationName(configurationName);
             }
             var versionUrl = configurationName is not null ? configuration.Configurations[configurationName] : configuration.Configurations[configuration.ActiveConfiguration];
-            return new ClusterConfigurationVersionResponse() { VersionUrl = versionUrl.Value, ConfigurationSource = $"{source} - ${(configurationName is not null ? configurationName.Value : "active")}" };
+            return new ClusterConfigurationVersionResponse() { VersionUrl = versionUrl.Value, ConfigurationSource = $"{source} - {(configurationName is not null ? configurationName.Value : "active")}" };
         }
 
         private void EnsureActiveConfigurationIsNotEmpty(ClusterId clusterId, MfeId name, MfeClusterConfiguration configuration)
