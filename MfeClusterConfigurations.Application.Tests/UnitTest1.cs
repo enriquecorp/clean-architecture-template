@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MfeConfigurations.Application.Tests
+namespace MfeClusterConfigurations.Application.Tests
 {
     [TestClass]
     public class UnitTest1
