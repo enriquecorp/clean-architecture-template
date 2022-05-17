@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MfeClusterConfigurations.Application\MfeClusterConfigurations.Application.csproj" />
+    <ProjectReference Include="..\MfeClusterConfigurations.Domain.Tests\MfeClusterConfigurations.Domain.Tests.csproj" />
+    <ProjectReference Include="..\Versioning.Shared.Tests\Versioning.Shared.Tests.csproj" />
   </ItemGroup>
 
 </Project>

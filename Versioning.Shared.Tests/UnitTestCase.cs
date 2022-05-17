@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
-using Moq;
+﻿using Moq;
 using shared.domain;
 using shared.domain.Bus.Event;
 
-namespace Versioning.Shared.Application.Tests
+namespace Versioning.Shared.Tests
 {
-    //[TestClass]
+    /// <summary>
+    /// Its intent is to provide a base class for testing Use Cases
+    /// in other words Application services
+    /// </summary>
     public class UnitTestCase // I suggest: ApplicationTestCase
     {
         //[TestMethod]
