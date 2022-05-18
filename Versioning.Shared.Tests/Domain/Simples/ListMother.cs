@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-
-namespace Versioning.Shared.Tests.Domain.Simples
+﻿namespace Versioning.Shared.Tests.Domain.Simples
 {
     public static class ListMother<T>
     {
@@ -10,7 +7,9 @@ namespace Versioning.Shared.Tests.Domain.Simples
             var list = new List<T>();
 
             for (var i = 0; i < size; i++)
+            {
                 list.Add(creator());
+            }
 
             return list;
         }

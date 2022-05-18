@@ -1,4 +1,5 @@
 ﻿using MfeClusterConfigurations.Application.Find;
+using MfeClusterConfigurations.Domain.Tests;
 using MfeGlobalConfigurations.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -22,7 +23,7 @@ namespace MfeClusterConfigurations.Application.Tests.Find
         [TestMethod]
         public void It_Should_Find_ClusterConfiguration()
         {
-            this.Repository.Setup(r => r.Search(MfeIdMother.Random(), ClusterIdMother.Random()));
+            this.Repository.Setup(r => r.Search(MfeIdMother.Random(), ClusterIdMother.Random())).ReturnsAsync(MfeClusterConfigurationMother.Random());
         }
     }
 }

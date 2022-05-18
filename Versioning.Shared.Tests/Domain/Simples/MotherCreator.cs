@@ -1,4 +1,4 @@
-using Bogus;
+﻿using Bogus;
 
 namespace Versioning.Shared.Tests.Domain.Simples
 {

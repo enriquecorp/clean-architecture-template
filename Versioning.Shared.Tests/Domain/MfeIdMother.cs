@@ -3,7 +3,7 @@ using Versioning.Shared.Tests.Domain.Simples;
 
 namespace Versioning.Shared.Tests.Domain
 {
-    public class MfeIdMother
+    public sealed class MfeIdMother
     {
         public static MfeId Create(string value)
         {
