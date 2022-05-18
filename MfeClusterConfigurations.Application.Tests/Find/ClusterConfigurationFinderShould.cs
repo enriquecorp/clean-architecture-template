@@ -1,4 +1,5 @@
-﻿using MfeClusterConfigurations.Application.Find;
+﻿using System.Threading.Tasks;
+using MfeClusterConfigurations.Application.Find;
 using MfeClusterConfigurations.Domain.Tests;
 using MfeGlobalConfigurations.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -21,9 +22,18 @@ namespace MfeClusterConfigurations.Application.Tests.Find
         }
 
         [TestMethod]
-        public void It_Should_Find_ClusterConfiguration()
+        public async Task It_Should_Find_ClusterConfiguration()
         {
-            this.Repository.Setup(r => r.Search(MfeIdMother.Random(), ClusterIdMother.Random())).ReturnsAsync(MfeClusterConfigurationMother.Random());
+            var mfeId = MfeIdMother.Random();
+            var clusterId = ClusterIdMother.Random();
+            var activeConfiguration = MfeConfigurationNameMother.Random();
+            var clusterConfigurationResult = MfeClusterConfigurationMother.Create(mfeId, clusterId, ConfigurationListMother.First(3), activeConfiguration);
+            this.Repository.Setup(r => r.Search(mfeId, clusterId)).ReturnsAsync(clusterConfigurationResult);
+
+            var response = await this.finder.Execute(clusterId, mfeId, activeConfiguration);
+
+            Assert.AreEqual<string>(response.VersionUrl, clusterConfigurationResult.Configurations[activeConfiguration].Value);
+            Assert.AreEqual(response.ConfigurationSource, $"cluster - {activeConfiguration.Value}");
         }
     }
 }

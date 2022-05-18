@@ -67,7 +67,7 @@ namespace MfeClusterConfigurations.Application.Find
             this.EnsureActiveConfigurationIsNotEmpty(clusterId, name, configuration);
             if (!configuration.Configurations.ContainsKey(configuration.ActiveConfiguration) || string.IsNullOrEmpty(configuration.Configurations[configuration.ActiveConfiguration].Value))
             {
-                throw new MfeClusterInvalidConfigurationException(clusterId, name, configuration.ActiveConfiguration);
+                throw new MfeClusterInvalidActiveConfigurationException(clusterId, name, configuration.ActiveConfiguration);
             }
         }
 

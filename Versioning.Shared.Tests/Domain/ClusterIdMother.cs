@@ -12,7 +12,7 @@ namespace Versioning.Shared.Tests.Domain
 
         public static ClusterId Random()
         {
-            return Create(UuidMother.Random());
+            return Create(WordMother.Random());
         }
     }
 }

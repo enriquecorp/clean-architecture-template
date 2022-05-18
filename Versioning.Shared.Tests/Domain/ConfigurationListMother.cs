@@ -15,9 +15,10 @@ namespace Versioning.Shared.Tests.Domain
 
         public static ConfigurationList First(int size)
         {
+            size = size < 1 ? 1 : size;
             size = size > 3 ? 3 : size;
             var configurations = new Dictionary<string, string>();
-            for (int i = 0; i < IntegerMother.Between(1, size); i++)
+            for (int i = 0; i < size; i++)
             {
                 configurations.Add(Configuration.SupportedConfigurations[i], UrlMother.Random());
             }
