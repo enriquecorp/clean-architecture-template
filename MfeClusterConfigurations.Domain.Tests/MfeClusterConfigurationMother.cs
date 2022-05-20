@@ -19,5 +19,10 @@ namespace MfeClusterConfigurations.Domain.Tests
         {
             return Create(MfeIdMother.Random(), ClusterIdMother.Random(), ConfigurationListMother.Random(), MfeConfigurationNameMother.Random());
         }
+
+        public static MfeClusterConfiguration? Empty()
+        {
+            return null;
+        }
     }
 }

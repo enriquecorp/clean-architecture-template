@@ -10,10 +10,6 @@ namespace Versioning.Shared.Tests
     /// </summary>
     public class UnitTestCase // I suggest: ApplicationTestCase
     {
-        //[TestMethod]
-        //public void TestMethod1()
-        //{
-        //}
         protected Mock<IEventBus> EventBus { get; private set; }
         protected Mock<UuidGenerator> UuidGenerator { get; private set; }
 

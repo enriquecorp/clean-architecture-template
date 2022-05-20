@@ -88,6 +88,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Versioning.Shared.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mfes.Domain.Tests", "Mfes.Domain.Tests\Mfes.Domain.Tests.csproj", "{22CAE729-4B6A-4F24-9D41-F1BCE04006CC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MfeGlobalConfigurations", "MfeGlobalConfigurations", "{164543A6-7AFE-4B68-9712-4E32CE76DF94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MfeGlobalConfigurations.Domain.Tests", "MfeGlobalConfigurations.Domain.Tests\MfeGlobalConfigurations.Domain.Tests.csproj", "{B86E677F-FEEC-42E2-8D1E-A828EBDEE535}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -194,6 +198,10 @@ Global
 		{22CAE729-4B6A-4F24-9D41-F1BCE04006CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22CAE729-4B6A-4F24-9D41-F1BCE04006CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22CAE729-4B6A-4F24-9D41-F1BCE04006CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B86E677F-FEEC-42E2-8D1E-A828EBDEE535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B86E677F-FEEC-42E2-8D1E-A828EBDEE535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B86E677F-FEEC-42E2-8D1E-A828EBDEE535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B86E677F-FEEC-42E2-8D1E-A828EBDEE535}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -235,6 +243,8 @@ Global
 		{334319EB-7115-4BB4-A85F-A29E285F26A2} = {2E8BF2E0-FAED-46C8-B6F2-0345EC537E2C}
 		{246E3B35-DAD8-4B75-A9B4-3FB98D308635} = {AA6D55BD-A981-4971-BCE8-FD60B8614EB7}
 		{22CAE729-4B6A-4F24-9D41-F1BCE04006CC} = {570E7FEF-C8EA-4B44-94CE-B30ACEC4DDFA}
+		{164543A6-7AFE-4B68-9712-4E32CE76DF94} = {6AA027AE-AB96-4BFF-8BA7-CEBA204CF113}
+		{B86E677F-FEEC-42E2-8D1E-A828EBDEE535} = {164543A6-7AFE-4B68-9712-4E32CE76DF94}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCA23B81-A1B0-48DA-B644-21F404C18230}
