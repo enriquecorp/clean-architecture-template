@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Versioning.Shared.Domain\Versioning.Shared.Domain.csproj" />
+    <ProjectReference Include="..\..\..\src\Versioning\Shared\Versioning.Shared.Domain\Versioning.Shared.Domain.csproj" />
   </ItemGroup>
 
 </Project>

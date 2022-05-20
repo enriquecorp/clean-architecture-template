@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MfeGlobalConfigurations.Domain\MfeGlobalConfigurations.Domain.csproj" />
+    <ProjectReference Include="..\..\GlobalConfiguration\MfeGlobalConfigurations.Domain\MfeGlobalConfigurations.Domain.csproj" />
     <ProjectReference Include="..\MfeTenantConfigurations.Domain\MfeTenantConfigurations.Domain.csproj" />
   </ItemGroup>
 

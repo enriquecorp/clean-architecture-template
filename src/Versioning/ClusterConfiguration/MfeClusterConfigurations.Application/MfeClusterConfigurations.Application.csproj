@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\GlobalConfiguration\MfeGlobalConfigurations.Domain\MfeGlobalConfigurations.Domain.csproj" />
     <ProjectReference Include="..\MfeClusterConfigurations.Domain\MfeClusterConfigurations.Domain.csproj" />
-    <ProjectReference Include="..\MfeGlobalConfigurations.Domain\MfeGlobalConfigurations.Domain.csproj" />
   </ItemGroup>
 
 </Project>
