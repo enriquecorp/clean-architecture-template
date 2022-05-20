@@ -1,9 +1,11 @@
 ﻿using System.Threading.Tasks;
 using MfeClusterConfigurations.Application.Find;
+using MfeClusterConfigurations.Domain.Exceptions;
 using MfeClusterConfigurations.Domain.Tests;
 using MfeGlobalConfigurations.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Versioning.Shared.Domain.Exceptions;
 using Versioning.Shared.Tests.Domain;
 
 namespace MfeClusterConfigurations.Application.Tests.Find
@@ -34,6 +36,32 @@ namespace MfeClusterConfigurations.Application.Tests.Find
 
             Assert.AreEqual<string>(response.VersionUrl, clusterConfigurationResult.Configurations[activeConfiguration].Value);
             Assert.AreEqual(response.ConfigurationSource, $"cluster - {activeConfiguration.Value}");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ConfigurationNotSupportedException))]
+        public async Task It_Should_Has_Error_with_Empty_Active_Configuration()
+        {
+            var mfeId = MfeIdMother.Random();
+            var clusterId = ClusterIdMother.Random();
+            var activeConfiguration = MfeConfigurationNameMother.Create("");
+            var clusterConfigurationResult = MfeClusterConfigurationMother.Create(mfeId, clusterId, ConfigurationListMother.Random(), activeConfiguration);
+            this.Repository.Setup(r => r.Search(mfeId, clusterId)).ReturnsAsync(clusterConfigurationResult);
+
+            var response = await this.finder.Execute(clusterId, mfeId, activeConfiguration);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(MfeClusterInvalidConfigurationException))]
+        public async Task It_Should_Has_Error_with_No_Active_Configuration_Match()
+        {
+            var mfeId = MfeIdMother.Random();
+            var clusterId = ClusterIdMother.Random();
+            var activeConfiguration = MfeConfigurationNameMother.Create("current");
+            var clusterConfigurationResult = MfeClusterConfigurationMother.Create(mfeId, clusterId, ConfigurationListMother.For(new string[] { "previous" }), activeConfiguration);
+            this.Repository.Setup(r => r.Search(mfeId, clusterId)).ReturnsAsync(clusterConfigurationResult);
+
+            var response = await this.finder.Execute(clusterId, mfeId, activeConfiguration);
         }
     }
 }

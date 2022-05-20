@@ -13,6 +13,17 @@ namespace Versioning.Shared.Tests.Domain
             return new ConfigurationList(configurations);
         }
 
+        public static ConfigurationList For(string[] congigurationNames)
+        {
+
+            var configurations = new Dictionary<string, string>();
+            for (int i = 0; i < congigurationNames.Length; i++)
+            {
+                configurations.Add(congigurationNames[i], UrlMother.Random());
+            }
+            return Create(configurations);
+        }
+
         public static ConfigurationList First(int size)
         {
             size = size < 1 ? 1 : size;
