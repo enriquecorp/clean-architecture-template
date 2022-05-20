@@ -39,8 +39,21 @@ namespace MfeClusterConfigurations.Application.Tests.Find
         }
 
         [TestMethod]
+        [ExpectedException(typeof(NoActiveClusterConfigurationExistsException))]
+        public async Task It_Should_Has_Error_with_Active_Empty_Configuration()
+        {
+            var mfeId = MfeIdMother.Random();
+            var clusterId = ClusterIdMother.Random();
+            var activeConfiguration = MfeConfigurationNameMother.Create("");
+            var clusterConfigurationResult = MfeClusterConfigurationMother.Create(mfeId, clusterId, ConfigurationListMother.Random(), activeConfiguration);
+            this.Repository.Setup(r => r.Search(mfeId, clusterId)).ReturnsAsync(clusterConfigurationResult);
+
+            var response = await this.finder.Execute(clusterId, mfeId, null);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ConfigurationNotSupportedException))]
-        public async Task It_Should_Has_Error_with_Empty_Active_Configuration()
+        public async Task It_Should_Has_Error_with_Empty_Configuration()
         {
             var mfeId = MfeIdMother.Random();
             var clusterId = ClusterIdMother.Random();
@@ -52,8 +65,21 @@ namespace MfeClusterConfigurations.Application.Tests.Find
         }
 
         [TestMethod]
-        [ExpectedException(typeof(MfeClusterInvalidConfigurationException))]
+        [ExpectedException(typeof(MfeClusterInvalidActiveConfigurationException))]
         public async Task It_Should_Has_Error_with_No_Active_Configuration_Match()
+        {
+            var mfeId = MfeIdMother.Random();
+            var clusterId = ClusterIdMother.Random();
+            var activeConfiguration = MfeConfigurationNameMother.Create("current");
+            var clusterConfigurationResult = MfeClusterConfigurationMother.Create(mfeId, clusterId, ConfigurationListMother.For(new string[] { "previous" }), activeConfiguration);
+            this.Repository.Setup(r => r.Search(mfeId, clusterId)).ReturnsAsync(clusterConfigurationResult);
+
+            var response = await this.finder.Execute(clusterId, mfeId, null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(MfeClusterInvalidConfigurationException))]
+        public async Task It_Should_Has_Error_with_No_Configuration_Match()
         {
             var mfeId = MfeIdMother.Random();
             var clusterId = ClusterIdMother.Random();
