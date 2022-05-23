@@ -6,7 +6,7 @@ namespace MfeGlobalConfigurations.Infrastructure
     /// <summary>
     /// Global Configuration Repository is not thought for being used in production.
     /// </summary>
-    public sealed class MfeGlobalConfigurationInMemoryRepository : IMfeGlobalConfigurationRepository
+    public sealed class MfeGlobalConfigurationRepositoryInMemory : IMfeGlobalConfigurationRepository
     {
         private static readonly Dictionary<string, MfeGlobalConfiguration> GlobalConfigurations = new();
 

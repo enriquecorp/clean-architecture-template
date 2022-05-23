@@ -38,9 +38,9 @@ namespace mfe_versions.api.Extensions.DependencyInjection
             services.AddScoped<MfeTenantConfigurationFinder>();
             services.AddScoped<MfeClusterConfigurationFinder>();
 
-            services.AddScoped<IMfeTenantConfigurationRepository, MfeConfigurationInMemoryRepository>();
-            services.AddScoped<IMfeClusterConfigurationRepository, MfeClusterConfigurationInMemoryRepository>();
-            services.AddScoped<IMfeGlobalConfigurationRepository, MfeGlobalConfigurationInMemoryRepository>();
+            services.AddScoped<IMfeTenantConfigurationRepository, MfeConfigurationRepositoryInMemory>();
+            services.AddScoped<IMfeClusterConfigurationRepository, MfeClusterConfigurationRepositoryInMemory>();
+            services.AddScoped<IMfeGlobalConfigurationRepository, MfeGlobalConfigurationRepositoryInMemory>();
             //services.AddScoped<IMicrofrontEndService, MicrofrontEndService>();
             //services.AddScoped<IMicrofrontEndRepository, MicrofronEndRepository>();
             services.AddScoped<MfeGlobalConfigurationFinder>();//TODO: Remove after QueryBus usage?

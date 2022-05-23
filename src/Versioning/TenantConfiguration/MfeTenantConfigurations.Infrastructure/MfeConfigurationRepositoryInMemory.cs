@@ -3,7 +3,7 @@ using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeTenantConfigurations.Infrastructure
 {
-    public sealed class MfeConfigurationInMemoryRepository : IMfeTenantConfigurationRepository
+    public sealed class MfeConfigurationRepositoryInMemory : IMfeTenantConfigurationRepository
     {
         private static readonly Dictionary<(string tenantId, string mfeId), MfeTenantConfiguration> TenantConfiguration = new();
 
