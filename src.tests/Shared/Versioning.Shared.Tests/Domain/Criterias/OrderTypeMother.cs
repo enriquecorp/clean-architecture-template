@@ -1,5 +1,4 @@
-using System;
-using shared.domain.FiltersByCriteria;
+﻿using shared.domain.FiltersByCriteria;
 
 namespace Versioning.Shared.Tests.Domain.Criterias
 {
@@ -9,7 +8,8 @@ namespace Versioning.Shared.Tests.Domain.Criterias
         {
             var values = Enum.GetValues(typeof(OrderType));
             var random = new Random();
-            return (OrderType)values.GetValue(random.Next(values.Length));
+            var selected = values.GetValue(random.Next(values.Length)) ?? OrderType.ASC;
+            return (OrderType)selected;
         }
     }
 }

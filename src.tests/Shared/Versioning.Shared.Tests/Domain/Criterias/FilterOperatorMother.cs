@@ -8,7 +8,8 @@ namespace Versioning.Shared.Tests.Domain.Criterias
         {
             var values = Enum.GetValues(typeof(FilterOperator));
             var random = new Random();
-            return (FilterOperator)values.GetValue(random.Next(values.Length));
+            var selected = values.GetValue(random.Next(values.Length)) ?? FilterOperator.EQUAL;
+            return (FilterOperator)selected;
         }
     }
 }
