@@ -1,4 +1,4 @@
-﻿namespace mfe_versions.api.Extensions.Environment
+﻿namespace mfe_versions.api.Extensions
 {
     public static class EnvironmentExtensions
     {

@@ -1,7 +1,6 @@
 ﻿using HealthChecks.UI.Client;
 using HealthChecks.UI.Configuration;
 using mfe_versions.api.Extensions.DependencyInjection;
-using mfe_versions.api.Extensions.Environment;
 using mfe_versions.api.Extensions.HealthCheck;
 using mfe_versions.api.Extensions.Middlewares;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
