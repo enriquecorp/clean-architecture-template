@@ -1,4 +1,4 @@
-using mfe_versions.api.Extensions;
+﻿using mfe_versions.api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 // builder.Configuration

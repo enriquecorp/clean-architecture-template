@@ -1,6 +1,7 @@
 ﻿using HealthChecks.UI.Client;
 using HealthChecks.UI.Configuration;
 using mfe_versions.api.Extensions.DependencyInjection;
+using mfe_versions.api.Extensions.Environment;
 using mfe_versions.api.Extensions.HealthCheck;
 using mfe_versions.api.Extensions.Middlewares;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -34,7 +35,7 @@ namespace mfe_versions.api.Extensions
         public static void UseServices(this WebApplication app)
         {
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            if (app.Environment.IsLocal())
             {
                 // Enable dev html responses for errors.
                 app.UseDeveloperExceptionPage();
@@ -43,7 +44,7 @@ namespace mfe_versions.api.Extensions
                 //app.UseSwagger();
                 //app.UseSwaggerUI();
             }
-            if (!app.Environment.IsDevelopment()) // Prod environment
+            if (!app.Environment.IsLocal()) // Cloud environment
             {
                 app.UseHttpStatusCodeMiddleware();
                 app.UseHsts();// Strict https transport header
