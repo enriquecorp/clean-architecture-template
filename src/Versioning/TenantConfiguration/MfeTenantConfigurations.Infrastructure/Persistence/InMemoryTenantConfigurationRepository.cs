@@ -1,9 +1,9 @@
 ﻿using MfeTenantConfigurations.Domain;
 using Versioning.Shared.Domain.ValueObjects;
 
-namespace MfeTenantConfigurations.Infrastructure
+namespace MfeTenantConfigurations.Infrastructure.Persistence
 {
-    public sealed class MfeConfigurationRepositoryInMemory : IMfeTenantConfigurationRepository
+    public sealed class InMemoryTenantConfigurationRepository : IMfeTenantConfigurationRepository
     {
         private static readonly Dictionary<(string tenantId, string mfeId), MfeTenantConfiguration> TenantConfiguration = new();
 

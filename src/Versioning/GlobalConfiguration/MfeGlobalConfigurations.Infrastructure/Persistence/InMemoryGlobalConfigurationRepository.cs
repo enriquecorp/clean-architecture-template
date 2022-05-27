@@ -1,12 +1,12 @@
 ﻿using MfeGlobalConfigurations.Domain;
 using Versioning.Shared.Domain.ValueObjects;
 
-namespace MfeGlobalConfigurations.Infrastructure
+namespace MfeGlobalConfigurations.Infrastructure.Persistence
 {
     /// <summary>
     /// Global Configuration Repository is not thought for being used in production.
     /// </summary>
-    public sealed class MfeGlobalConfigurationRepositoryInMemory : IMfeGlobalConfigurationRepository
+    public sealed class InMemoryGlobalConfigurationRepository : IMfeGlobalConfigurationRepository
     {
         private static readonly Dictionary<string, MfeGlobalConfiguration> GlobalConfigurations = new();
 

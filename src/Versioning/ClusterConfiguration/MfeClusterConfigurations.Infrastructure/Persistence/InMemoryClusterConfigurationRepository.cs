@@ -1,9 +1,9 @@
 ﻿using MfeClusterConfigurations.Domain;
 using Versioning.Shared.Domain.ValueObjects;
 
-namespace MfeClusterConfigurations.Infrastructure
+namespace MfeClusterConfigurations.Infrastructure.Persistence
 {
-    public sealed class MfeClusterConfigurationRepositoryInMemory : IMfeClusterConfigurationRepository
+    public sealed class InMemoryClusterConfigurationRepository : IMfeClusterConfigurationRepository
     {
         private static readonly Dictionary<(string clusterId, string mfeId), MfeClusterConfiguration> ClusterConfiguration = new();
 

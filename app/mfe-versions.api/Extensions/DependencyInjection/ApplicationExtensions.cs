@@ -1,14 +1,14 @@
 ﻿using MfeClusterConfigurations.Application.Find;
 using MfeClusterConfigurations.Domain;
-using MfeClusterConfigurations.Infrastructure;
+using MfeClusterConfigurations.Infrastructure.Persistence;
 using MfeGlobalConfigurations.Application.Update;
 using MfeGlobalConfigurations.Domain;
-using MfeGlobalConfigurations.Infrastructure;
+using MfeGlobalConfigurations.Infrastructure.Persistence;
 using MfeTenantConfigurations.Application.Create;
 using MfeTenantConfigurations.Application.Update;
 using MfeTenantConfigurations.Application.UpdateActiveConfiguration;
 using MfeTenantConfigurations.Domain;
-using MfeTenantConfigurations.Infrastructure;
+using MfeTenantConfigurations.Infrastructure.Persistence;
 //using Microsoft.EntityFrameworkCore;
 //using Microsoft.Extensions.Configuration;
 //using Microsoft.Extensions.DependencyInjection;
@@ -38,9 +38,9 @@ namespace mfe_versions.api.Extensions.DependencyInjection
             services.AddScoped<MfeTenantConfigurationFinder>();
             services.AddScoped<MfeClusterConfigurationFinder>();
 
-            services.AddScoped<IMfeTenantConfigurationRepository, MfeConfigurationRepositoryInMemory>();
-            services.AddScoped<IMfeClusterConfigurationRepository, MfeClusterConfigurationRepositoryInMemory>();
-            services.AddScoped<IMfeGlobalConfigurationRepository, MfeGlobalConfigurationRepositoryInMemory>();
+            services.AddScoped<IMfeTenantConfigurationRepository, InMemoryTenantConfigurationRepository>();
+            services.AddScoped<IMfeClusterConfigurationRepository, InMemoryClusterConfigurationRepository>();
+            services.AddScoped<IMfeGlobalConfigurationRepository, InMemoryGlobalConfigurationRepository>();
             //services.AddScoped<IMicrofrontEndService, MicrofrontEndService>();
             //services.AddScoped<IMicrofrontEndRepository, MicrofronEndRepository>();
             services.AddScoped<MfeGlobalConfigurationFinder>();//TODO: Remove after QueryBus usage?
