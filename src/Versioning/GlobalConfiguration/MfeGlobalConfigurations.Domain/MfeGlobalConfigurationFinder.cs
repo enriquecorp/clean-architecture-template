@@ -1,5 +1,4 @@
-﻿using MfeGlobalConfigurations.Domain.Exceptions;
-using Versioning.Shared.Domain.ValueObjects;
+﻿using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeGlobalConfigurations.Domain
 {
@@ -12,16 +11,17 @@ namespace MfeGlobalConfigurations.Domain
             this.repository = repository;
         }
 
-        public async Task<MfeGlobalConfiguration> Execute(MfeId name)
-        {
-            var configuration = await this.repository.Search(name);
-            if (configuration == null)
-            {
-                throw new MfeGlobalConfigurationNotFound(name);
-            }
+        // The domain services won't throw exceptions preferably!!!
+        //public async Task<MfeGlobalConfiguration> Execute(MfeId name)
+        //{
+        //    var configuration = await this.repository.Search(name);
+        //    //if (configuration == null)
+        //    //{
+        //    //    throw new MfeGlobalConfigurationNotFound(name);
+        //    //}
 
-            return configuration;
-        }
+        //    return configuration;
+        //}
 
         public async Task<MfeGlobalConfiguration?> Find(MfeId name)
         {

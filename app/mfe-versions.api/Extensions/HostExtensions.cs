@@ -2,6 +2,10 @@
 {
     public static class HostExtensions
     {
+        /// <summary>
+        /// This method allow us to load specific app settings according custom conditions
+        /// </summary>
+        /// <param name="hostBuilder"></param>
         public static void ConfigureHost(this ConfigureHostBuilder hostBuilder)
         {
             hostBuilder.ConfigureAppConfiguration((hostingContext, config) =>
