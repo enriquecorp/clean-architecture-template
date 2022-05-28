@@ -1,4 +1,11 @@
-﻿using shared.domain.Bus.Event;
+﻿using Amazon.DynamoDBv2;
+using MfeClusterConfigurations.Domain;
+using MfeClusterConfigurations.Infrastructure.Persistence;
+using MfeGlobalConfigurations.Domain;
+using MfeGlobalConfigurations.Infrastructure.Persistence;
+using MfeTenantConfigurations.Domain;
+using MfeTenantConfigurations.Infrastructure.Persistence;
+using shared.domain.Bus.Event;
 using Shared.Infrastructure.Bus.Event;
 
 namespace mfe_versions.api.Extensions.DependencyInjection
@@ -29,9 +36,35 @@ namespace mfe_versions.api.Extensions.DependencyInjection
             ////NOT for production
             //services.AddDbContext<VersioningDbContext>(opts => opts.UseInMemoryDatabase("MemInDB")); // This is just a workaround for using in-memory storage temporaly
             //// services.AddDbContext<VersioningDbContext>(optionsAction: opt => opt.UseSqlServer(connectionString), contextLifetime: ServiceLifetime.Transient, optionsLifetime: ServiceLifetime.Transient);
+
+            services.AddDynamoDb(configuration);
+            services.AddScoped<IMfeTenantConfigurationRepository, InMemoryTenantConfigurationRepository>();
+            //services.AddScoped<IMfeClusterConfigurationRepository, InMemoryClusterConfigurationRepository>();
+            services.AddScoped<IMfeClusterConfigurationRepository, DynamoDbClusterConfigurationRepository>();
+            services.AddScoped<IMfeGlobalConfigurationRepository, InMemoryGlobalConfigurationRepository>();
             services.AddScoped<IEventBus, InMemoryApplicationEventBus>();
 
+
             return services;
+        }
+
+        private static void AddDynamoDb(this IServiceCollection services, IConfiguration configuration)
+        {
+            var dynamoDbSection = configuration.GetSection("DynamoDb");
+            var localMode = dynamoDbSection.GetValue<bool>("localMode");
+            if (localMode)
+            {
+                services.AddSingleton<IAmazonDynamoDB>(serviceProvider =>
+                {
+                    var clientConfig = new AmazonDynamoDBConfig { ServiceURL = dynamoDbSection.GetValue<string>("localServiceUrl") };
+                    return new AmazonDynamoDBClient(clientConfig);
+                });
+            }
+            else
+            {
+                services.AddSingleton<IAmazonDynamoDB>(new AmazonDynamoDBClient());
+                //services.AddAWSService<IAmazonDynamoDB>()
+            }
         }
     }
 
