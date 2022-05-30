@@ -7,6 +7,7 @@ namespace MfeClusterConfigurations.Infrastructure.Persistence
 {
     public sealed class DynamoDbClusterConfigurationRepository : IMfeClusterConfigurationRepository
     {
+        private const string TableName = "cxs-version-configurations";
         public DynamoDbClusterConfigurationRepository(IAmazonDynamoDB dynamoDb)
         {
             this.DynamoDb = dynamoDb;
@@ -18,8 +19,8 @@ namespace MfeClusterConfigurations.Infrastructure.Persistence
         {
             var item = new Dictionary<string, AttributeValue>()
             {
-                {"pk", new AttributeValue{ S= this.MfeIdFormatter(mfeConfiguration.MfeId.Value) } },
-                {"sk", new AttributeValue{ S= this.ClusterIdFormatter(mfeConfiguration.ClusterId.Value) } },
+                {"pk", new AttributeValue{ S= this.ClusterIdFormatter(mfeConfiguration.ClusterId.Value) } },
+                {"sk", new AttributeValue{ S= this.MfeIdFormatter(mfeConfiguration.MfeId.Value) } },
                 {"active", new AttributeValue{ S= mfeConfiguration.ActiveConfiguration.Value } },
                 {"previous", new AttributeValue{ S= mfeConfiguration.Configurations[this.ConfigurationFormatter("previous")].Value } },
                 {"current", new AttributeValue{ S=  mfeConfiguration.Configurations[this.ConfigurationFormatter("current")].Value } },
@@ -28,7 +29,7 @@ namespace MfeClusterConfigurations.Infrastructure.Persistence
 
             var request = new PutItemRequest()
             {
-                TableName = "cxs-versioning",
+                TableName = TableName,
                 Item = item
             };
             var response = await this.DynamoDb.PutItemAsync(request);
@@ -65,12 +66,12 @@ namespace MfeClusterConfigurations.Infrastructure.Persistence
         {
             var key = new Dictionary<string, AttributeValue>()
             {
-                { "pk", new AttributeValue(){ S = this.MfeIdFormatter(name.Value)}},
-                { "sk", new AttributeValue(){ S = this.ClusterIdFormatter(id.Value)}}
+                { "pk", new AttributeValue(){ S = this.ClusterIdFormatter(id.Value)}},
+                { "sk", new AttributeValue(){ S = this.MfeIdFormatter(name.Value)}},
             };
             var request = new GetItemRequest()
             {
-                TableName = "cxs-versioning",
+                TableName = TableName,
                 Key = key
             };
             var result = await this.DynamoDb.GetItemAsync(request);

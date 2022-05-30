@@ -1,12 +1,12 @@
-﻿namespace Versioning.Shared.Domain.ValueObjects
-{
-    public class ClusterId
-    {
-        public string Value { get; }
+﻿using shared.domain.ValueObjects;
 
-        public ClusterId(string value)
+namespace Versioning.Shared.Domain.ValueObjects
+{
+    public class ClusterId : StringValueObject
+    {
+
+        public ClusterId(string value) : base(value.Trim().ToLower())
         {
-            this.Value = value;
         }
 
         public override bool Equals(object? obj)

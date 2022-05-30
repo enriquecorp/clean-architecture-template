@@ -57,6 +57,7 @@ namespace mfe_versions.api.Extensions.DependencyInjection
                 services.AddSingleton<IAmazonDynamoDB>(serviceProvider =>
                 {
                     var clientConfig = new AmazonDynamoDBConfig { ServiceURL = dynamoDbSection.GetValue<string>("localServiceUrl") };
+                    //clientConfig.RegionEndpoint = Amazon.RegionEndpoint.USWest2;
                     return new AmazonDynamoDBClient(clientConfig);
                 });
             }
