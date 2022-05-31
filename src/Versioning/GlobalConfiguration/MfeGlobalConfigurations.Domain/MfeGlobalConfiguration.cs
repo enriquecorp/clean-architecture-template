@@ -41,7 +41,7 @@ namespace MfeGlobalConfigurations.Domain
             foreach (var item in this.Configurations)
             {
                 configurations.TryGetValue(item.Key, out var incomingVersionUrl);
-                if (incomingVersionUrl != null && this.Configurations[item.Key] != incomingVersionUrl)
+                if (incomingVersionUrl != null && !string.IsNullOrEmpty(incomingVersionUrl.Value) && this.Configurations[item.Key] != incomingVersionUrl)
                 {
                     // it will update only if the incoming versionurl has a value and it is different than current value
                     this.Configurations[item.Key] = incomingVersionUrl;
