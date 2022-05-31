@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.3.42" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MfeGlobalConfigurations.Domain\MfeGlobalConfigurations.Domain.csproj" />
   </ItemGroup>
 

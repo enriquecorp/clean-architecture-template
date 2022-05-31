@@ -41,7 +41,8 @@ namespace mfe_versions.api.Extensions.DependencyInjection
             services.AddScoped<IMfeTenantConfigurationRepository, InMemoryTenantConfigurationRepository>();
             //services.AddScoped<IMfeClusterConfigurationRepository, InMemoryClusterConfigurationRepository>();
             services.AddScoped<IMfeClusterConfigurationRepository, DynamoDbClusterConfigurationRepository>();
-            services.AddScoped<IMfeGlobalConfigurationRepository, InMemoryGlobalConfigurationRepository>();
+            //services.AddScoped<IMfeGlobalConfigurationRepository, InMemoryGlobalConfigurationRepository>();
+            services.AddScoped<IMfeGlobalConfigurationRepository, DynamoDbGlobalConfigurationRepository>();
             services.AddScoped<IEventBus, InMemoryApplicationEventBus>();
 
 

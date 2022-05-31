@@ -1,30 +1,29 @@
 ﻿using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
-using MfeClusterConfigurations.Domain;
+using MfeGlobalConfigurations.Domain;
 using Versioning.Shared.Domain.ValueObjects;
 
-namespace MfeClusterConfigurations.Infrastructure.Persistence
+namespace MfeGlobalConfigurations.Infrastructure.Persistence
 {
-    public sealed class DynamoDbClusterConfigurationRepository : IMfeClusterConfigurationRepository
+    public sealed class DynamoDbGlobalConfigurationRepository : IMfeGlobalConfigurationRepository
     {
         private const string TableName = "cxs-version-configurations";
-        public DynamoDbClusterConfigurationRepository(IAmazonDynamoDB dynamoDb)
+        public DynamoDbGlobalConfigurationRepository(IAmazonDynamoDB dynamoDb)
         {
             this.DynamoDb = dynamoDb;
         }
 
         public IAmazonDynamoDB DynamoDb { get; }
-
-        public async Task Save(MfeClusterConfiguration mfeConfiguration)
+        public async Task Save(MfeGlobalConfiguration configuration)
         {
             var item = new Dictionary<string, AttributeValue>()
             {
-                {"pk", new AttributeValue{ S= this.ClusterIdFormatter(mfeConfiguration.ClusterId.Value) } },
-                {"sk", new AttributeValue{ S= this.MfeIdFormatter(mfeConfiguration.MfeId.Value) } },
-                {"active", new AttributeValue{ S= mfeConfiguration.ActiveConfiguration.Value } },
-                {"previous", new AttributeValue{ S= mfeConfiguration.Configurations[this.ConfigurationFormatter("previous")].Value } },
-                {"current", new AttributeValue{ S=  mfeConfiguration.Configurations[this.ConfigurationFormatter("current")].Value } },
-                {"preview", new AttributeValue{ S=  mfeConfiguration.Configurations[this.ConfigurationFormatter("preview")].Value } }
+                {"pk", new AttributeValue{ S= this.MfeIdFormatter(configuration.MfeId.Value) } },
+                {"sk", new AttributeValue{ S= this.MfeIdFormatter(configuration.MfeId.Value) } },
+                {"active", new AttributeValue{ S= configuration.ActiveConfiguration.Value } },
+                {"previous", new AttributeValue{ S= configuration.Configurations[this.ConfigurationFormatter("previous")].Value } },
+                {"current", new AttributeValue{ S=  configuration.Configurations[this.ConfigurationFormatter("current")].Value } },
+                {"preview", new AttributeValue{ S=  configuration.Configurations[this.ConfigurationFormatter("preview")].Value } }
             };
 
             var request = new PutItemRequest()
@@ -35,17 +34,17 @@ namespace MfeClusterConfigurations.Infrastructure.Persistence
             var response = await this.DynamoDb.PutItemAsync(request);
             if (response == null)
             {
-                throw new SystemException("No cluster configuration found");
+                throw new SystemException("No global configuration found");
             }
             if (response.HttpStatusCode != System.Net.HttpStatusCode.OK)
             {
-                throw new SystemException("There are issues to retrieve the cluster configuration");
+                throw new SystemException("There are issues to retrieve the global configuration");
             }
         }
 
-        public async Task<MfeClusterConfiguration?> Search(MfeId name, ClusterId id)
+        public async Task<MfeGlobalConfiguration?> Search(MfeId name)
         {
-            var result = await this.GetSearchResult(name, id);
+            var result = await this.GetSearchResult(name);
             if (result == null || result.Item == null || (result.HttpStatusCode == System.Net.HttpStatusCode.OK & result.Item.Count == 0))
             {
                 return null;
@@ -55,18 +54,15 @@ namespace MfeClusterConfigurations.Infrastructure.Persistence
             result.Item.TryGetValue("current", out var current);
             result.Item.TryGetValue("preview", out var preview);
             var configurationList = new ConfigurationList(new Dictionary<string, string>() { { "previous", previous?.S ?? "" }, { "current", current?.S ?? "" }, { "preview", preview?.S ?? "" } });
-            var configuration = MfeClusterConfiguration.Create(name, id, new ConfigurationList(configurationList), new MfeConfigurationName(activeConfiguration?.S ?? ""));
+            var configuration = MfeGlobalConfiguration.Create(name, new ConfigurationList(configurationList), new MfeConfigurationName(activeConfiguration?.S ?? ""));
             return configuration;
-
-            //Amazon.DynamoDBv2.AmazonDynamoDBClient
-            //throw new NotImplementedException();
         }
 
-        private async Task<GetItemResponse> GetSearchResult(MfeId name, ClusterId id)
+        private async Task<GetItemResponse> GetSearchResult(MfeId name)
         {
             var key = new Dictionary<string, AttributeValue>()
             {
-                { "pk", new AttributeValue(){ S = this.ClusterIdFormatter(id.Value)}},
+                { "pk", new AttributeValue(){ S = this.MfeIdFormatter(name.Value)}},
                 { "sk", new AttributeValue(){ S = this.MfeIdFormatter(name.Value)}},
             };
             var request = new GetItemRequest()
@@ -78,8 +74,12 @@ namespace MfeClusterConfigurations.Infrastructure.Persistence
             return result;
         }
 
+        public async Task Update(MfeGlobalConfiguration configuration)
+        {
+            await this.Save(configuration);
+        }
+
         private string MfeIdFormatter(string value) => $"a#{value}";
-        private string ClusterIdFormatter(string value) => $"c#{value}";
         private MfeConfigurationName ConfigurationFormatter(string value) => new(value);
     }
 }

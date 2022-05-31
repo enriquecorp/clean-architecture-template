@@ -97,7 +97,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{A8767D
 		.docker\docker-compose.localstack.yaml = .docker\docker-compose.localstack.yaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Versioning.Shared.Infrastructure.Pesistence.DynamoDb", "src\Versioning\Shared\Versioning.Shared.Infrastructure.Pesistence.DynamoDb\Versioning.Shared.Infrastructure.Pesistence.DynamoDb.csproj", "{719AF948-5023-415D-9DE1-8650B66488C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Versioning.Shared.Infrastructure.Pesistence.DynamoDb", "src\Versioning\Shared\Versioning.Shared.Infrastructure.Pesistence.DynamoDb\Versioning.Shared.Infrastructure.Pesistence.DynamoDb.csproj", "{719AF948-5023-415D-9DE1-8650B66488C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".init-scripts", ".init-scripts", "{2EED1853-A1CA-4545-9915-FB516D17741F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -258,6 +260,7 @@ Global
 		{7AE46D62-8DA7-466C-A35F-5E52165CD859} = {2E8BF2E0-FAED-46C8-B6F2-0345EC537E2C}
 		{A8767DBA-3C0E-489D-A3E8-D72FEE31FFC8} = {4C5594B8-6442-4E8A-A4D1-1020424F37EA}
 		{719AF948-5023-415D-9DE1-8650B66488C9} = {FA8C8966-0EFE-428D-A3F1-26E4EDDB0988}
+		{2EED1853-A1CA-4545-9915-FB516D17741F} = {A8767DBA-3C0E-489D-A3E8-D72FEE31FFC8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCA23B81-A1B0-48DA-B644-21F404C18230}
