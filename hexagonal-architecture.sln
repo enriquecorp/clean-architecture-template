@@ -99,7 +99,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{A8767D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Versioning.Shared.Infrastructure.Pesistence.DynamoDb", "src\Versioning\Shared\Versioning.Shared.Infrastructure.Pesistence.DynamoDb\Versioning.Shared.Infrastructure.Pesistence.DynamoDb.csproj", "{719AF948-5023-415D-9DE1-8650B66488C9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".init-scripts", ".init-scripts", "{2EED1853-A1CA-4545-9915-FB516D17741F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "init-scripts", "init-scripts", "{2EED1853-A1CA-4545-9915-FB516D17741F}"
+	ProjectSection(SolutionItems) = preProject
+		.docker\init-scripts\01_profile_setup.sh = .docker\init-scripts\01_profile_setup.sh
+		.docker\init-scripts\02_dynamodb_init.sh = .docker\init-scripts\02_dynamodb_init.sh
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
