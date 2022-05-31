@@ -20,4 +20,5 @@ services:
       - DYNAMODB_SHARE_DB=1
     volumes:
       - "${TMPDIR:-/tmp}/localstack:/tmp/localstack"
+      - "./init-scripts:/docker-entrypoint-initaws.d"
       - "/var/run/docker.sock:/var/run/docker.sock"
