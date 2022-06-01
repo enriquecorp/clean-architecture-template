@@ -20,6 +20,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4C5594B8-6442-4E8A-A4D1-1020424F37EA}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MfeTenantConfigurations", "MfeTenantConfigurations", "{31932D1D-74FC-433D-826E-D66D4D0C3C1C}"
@@ -105,6 +106,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "init-scripts", "init-script
 		.docker\init-scripts\02_dynamodb_init.sh = .docker\init-scripts\02_dynamodb_init.sh
 		.docker\init-scripts\dynamodb-data.json = .docker\init-scripts\dynamodb-data.json
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "registration-tool", "app\registration-tool\registration-tool.csproj", "{950238CE-EFE9-4660-93F9-A50AB86CEF52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -220,6 +223,10 @@ Global
 		{719AF948-5023-415D-9DE1-8650B66488C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{719AF948-5023-415D-9DE1-8650B66488C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{719AF948-5023-415D-9DE1-8650B66488C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{950238CE-EFE9-4660-93F9-A50AB86CEF52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{950238CE-EFE9-4660-93F9-A50AB86CEF52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{950238CE-EFE9-4660-93F9-A50AB86CEF52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{950238CE-EFE9-4660-93F9-A50AB86CEF52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -266,6 +273,7 @@ Global
 		{A8767DBA-3C0E-489D-A3E8-D72FEE31FFC8} = {4C5594B8-6442-4E8A-A4D1-1020424F37EA}
 		{719AF948-5023-415D-9DE1-8650B66488C9} = {FA8C8966-0EFE-428D-A3F1-26E4EDDB0988}
 		{2EED1853-A1CA-4545-9915-FB516D17741F} = {A8767DBA-3C0E-489D-A3E8-D72FEE31FFC8}
+		{950238CE-EFE9-4660-93F9-A50AB86CEF52} = {91B32AE9-D09D-4D45-8D91-AB0D3FB913E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCA23B81-A1B0-48DA-B644-21F404C18230}

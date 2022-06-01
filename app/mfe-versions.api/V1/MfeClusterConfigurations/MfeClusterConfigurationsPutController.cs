@@ -19,12 +19,10 @@ namespace mfe_versions.api.V1.MfeClusterConfigurations
         {
             this.configurationUpdator = configurationUpdator;
         }
-        // POST api/v{version:apiVersion}/mfe-tenant-configurations
-        //[TypeFilter(typeof(DomainExceptionFilter))]
-        //[DomainExceptionMapper(ExceptionTypeName =nameof(MfeConfigurationAlreadyExistsException), HttpStatusCode = HttpStatusCode.Conflict)]
+        // PUT api/v{version:apiVersion}/mfe-tenant-configurations
         [HttpPut()]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Post([FromBody] MfeTenantConfigurationUpdateRequest mfeConfiguration)
+        public async Task<IActionResult> Put([FromBody] MfeTenantConfigurationUpdateRequest mfeConfiguration)
         {
             await this.configurationUpdator.Execute(new MfeId(mfeConfiguration.MfeId), new MfeConfigurationName(mfeConfiguration.Configuration), mfeConfiguration.Tenants.Select(t => new TenantId(t)), new VersionUrl(mfeConfiguration.VersionUrl), mfeConfiguration.SetConfigurationAsActive);
             return this.StatusCode(StatusCodes.Status204NoContent);
