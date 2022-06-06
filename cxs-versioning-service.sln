@@ -12,6 +12,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "versioning", "versioning", "{C724F8BF-7C40-4F7B-A0CD-424E728FBFE3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app.tests", "app.tests", "{BD98CB51-89CE-40B1-BFD5-6F3A8C0829F6}"
+	ProjectSection(SolutionItems) = preProject
+		app.tests\README.md = app.tests\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "versioning", "versioning", "{6AA027AE-AB96-4BFF-8BA7-CEBA204CF113}"
 EndProject
@@ -108,6 +111,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "init-scripts", "init-script
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "registration-tool", "app\registration-tool\registration-tool.csproj", "{950238CE-EFE9-4660-93F9-A50AB86CEF52}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mfe-versions.api", "mfe-versions.api", "{E91BDA3D-FC9A-45CC-AD71-10D2CD7559FB}"
+	ProjectSection(SolutionItems) = preProject
+		app.tests\mfe-versions.api\.gitkeep = app.tests\mfe-versions.api\.gitkeep
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -274,6 +282,7 @@ Global
 		{719AF948-5023-415D-9DE1-8650B66488C9} = {FA8C8966-0EFE-428D-A3F1-26E4EDDB0988}
 		{2EED1853-A1CA-4545-9915-FB516D17741F} = {A8767DBA-3C0E-489D-A3E8-D72FEE31FFC8}
 		{950238CE-EFE9-4660-93F9-A50AB86CEF52} = {91B32AE9-D09D-4D45-8D91-AB0D3FB913E3}
+		{E91BDA3D-FC9A-45CC-AD71-10D2CD7559FB} = {BD98CB51-89CE-40B1-BFD5-6F3A8C0829F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCA23B81-A1B0-48DA-B644-21F404C18230}
