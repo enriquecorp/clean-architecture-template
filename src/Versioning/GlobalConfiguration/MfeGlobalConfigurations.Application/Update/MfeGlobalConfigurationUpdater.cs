@@ -5,12 +5,12 @@ using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeGlobalConfigurations.Application.Update
 {
-    public sealed class MfeGlobalConfigurationUpdator
+    public sealed class MfeGlobalConfigurationUpdater
     {
         private readonly IMfeGlobalConfigurationRepository repository;
         private readonly IEventBus eventBus;
 
-        public MfeGlobalConfigurationUpdator(IMfeGlobalConfigurationRepository repository, IEventBus bus)
+        public MfeGlobalConfigurationUpdater(IMfeGlobalConfigurationRepository repository, IEventBus bus)
         {
             this.repository = repository;
             this.eventBus = bus;

@@ -50,16 +50,19 @@ namespace MfeClusterConfigurations.Infrastructure.Persistence
             {
                 return null;
             }
-            result.Item.TryGetValue("active", out var activeConfiguration);
-            result.Item.TryGetValue("previous", out var previous);
-            result.Item.TryGetValue("current", out var current);
-            result.Item.TryGetValue("preview", out var preview);
+            var configuration = this.MapToConfiguration(name, id, result.Item);
+            return configuration;
+        }
+
+        private MfeClusterConfiguration MapToConfiguration(MfeId name, ClusterId id, Dictionary<string, AttributeValue> item)
+        {
+            item.TryGetValue("active", out var activeConfiguration);
+            item.TryGetValue("previous", out var previous);
+            item.TryGetValue("current", out var current);
+            item.TryGetValue("preview", out var preview);
             var configurationList = new ConfigurationList(new Dictionary<string, string>() { { "previous", previous?.S ?? "" }, { "current", current?.S ?? "" }, { "preview", preview?.S ?? "" } });
             var configuration = MfeClusterConfiguration.Create(name, id, new ConfigurationList(configurationList), new MfeConfigurationName(activeConfiguration?.S ?? ""));
             return configuration;
-
-            //Amazon.DynamoDBv2.AmazonDynamoDBClient
-            //throw new NotImplementedException();
         }
 
         private async Task<GetItemResponse> GetSearchResult(MfeId name, ClusterId id)

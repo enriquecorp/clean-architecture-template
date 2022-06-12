@@ -26,25 +26,5 @@ namespace MfeClusterConfigurations.Domain
 
             return configuration;
         }
-
-        //public void UpdateConfigurations(ConfigurationList configurations)
-        //{
-        //    // this.Versions = versions;
-        //    foreach (var item in this.Configurations)
-        //    {
-        //        configurations.TryGetValue(item.Key, out var incomingVersionUrl);
-        //        if (incomingVersionUrl != null && this.Configurations.ContainsKey(item.Key))
-        //        {
-        //            this.Configurations[item.Key] = incomingVersionUrl; // it will update only if the incoming versionUrl has a value
-        //            this.Record(new VersionUrlChangedDomainEvent($"{this.MfeId.Value}#{this.TenantId.Value}", configurationName: item.Key.Value, versionUrl: incomingVersionUrl.Value));
-        //        }
-        //    }
-        //}
-
-        //public void UpdateActiveConfiguration(MfeConfigurationName configuration)
-        //{
-        //    this.ActiveConfiguration = configuration;
-        //    this.Record(new MfeActiveConfigurationChangedDomainEvent($"{this.MfeId.Value}#{this.TenantId.Value}", this.ActiveConfiguration.Value));
-        //}
     }
 }

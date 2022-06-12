@@ -28,9 +28,9 @@ namespace mfe_versions.api.Extensions.DependencyInjection
                 throw new ArgumentNullException(nameof(services));
             }
             services.AddScoped<MfeTenantConfigurationCreator>();
-            services.AddScoped<MfeTenantConfigurationUpdator>();
-            services.AddScoped<MfeActiveConfigurationUpdator>();
-            services.AddScoped<MfeGlobalConfigurationUpdator>();
+            services.AddScoped<MfeTenantConfigurationUpdater>();
+            services.AddScoped<MfeActiveConfigurationUpdater>();
+            services.AddScoped<MfeGlobalConfigurationUpdater>();
             services.AddScoped<MfeTenantConfigurationFinder>();
             services.AddScoped<MfeClusterConfigurationFinder>();
 

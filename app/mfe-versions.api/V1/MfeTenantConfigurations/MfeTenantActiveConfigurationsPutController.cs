@@ -17,11 +17,11 @@ namespace mfe_versions.api.V1.MfeTenantConfigurations
     [Route("api/v{version:apiVersion}/mfe-active-tenant-configurations")]
     public class MfeTenantActiveConfigurationsPutController : ApiBaseController
     {
-        private readonly MfeActiveConfigurationUpdator configurationUpdator;
+        private readonly MfeActiveConfigurationUpdater configurationUpdater;
 
-        public MfeTenantActiveConfigurationsPutController(MfeActiveConfigurationUpdator configurationUpdator)
+        public MfeTenantActiveConfigurationsPutController(MfeActiveConfigurationUpdater configurationUpdater)
         {
-            this.configurationUpdator = configurationUpdator;
+            this.configurationUpdater = configurationUpdater;
         }
 
         // PUT api/v{version:apiVersion}/mfe-active-tenant-configurations
@@ -31,7 +31,7 @@ namespace mfe_versions.api.V1.MfeTenantConfigurations
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Put([FromBody] MfeActiveConfigurationRequest configuration)
         {
-            await this.configurationUpdator.Execute(new MfeId(configuration.MfeId), new MfeConfigurationName(configuration.ActiveConfiguration), configuration.Tenants.Select(t => new TenantId(t)));
+            await this.configurationUpdater.Execute(new MfeId(configuration.MfeId), new MfeConfigurationName(configuration.ActiveConfiguration), configuration.Tenants.Select(t => new TenantId(t)));
             return this.StatusCode(StatusCodes.Status204NoContent);
         }
     }

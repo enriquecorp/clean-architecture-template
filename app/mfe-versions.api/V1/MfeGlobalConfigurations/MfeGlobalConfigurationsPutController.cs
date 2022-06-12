@@ -17,11 +17,11 @@ namespace mfe_versions.api.V1.MfeGlobalConfigurations
     [Route("api/v{version:apiVersion}/mfe-global-configurations")]
     public class MfeGlobalConfigurationsPutController : ApiBaseController
     {
-        private readonly MfeGlobalConfigurationUpdator configurationUpdator; //= new();
+        private readonly MfeGlobalConfigurationUpdater configurationUpdater; //= new();
 
-        public MfeGlobalConfigurationsPutController(MfeGlobalConfigurationUpdator configurationUpdator)
+        public MfeGlobalConfigurationsPutController(MfeGlobalConfigurationUpdater configurationUpdater)
         {
-            this.configurationUpdator = configurationUpdator;
+            this.configurationUpdater = configurationUpdater;
         }
 
         [TypeFilter(typeof(DomainExceptionFilter))]
@@ -30,7 +30,7 @@ namespace mfe_versions.api.V1.MfeGlobalConfigurations
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Put([FromBody] MfeGlobalConfigurationRequest globalConfiguration)
         {
-            await this.configurationUpdator.Execute(new MfeId(globalConfiguration.MfeId), new ConfigurationList(globalConfiguration.Configurations), new MfeConfigurationName(globalConfiguration.ActiveConfiguration));
+            await this.configurationUpdater.Execute(new MfeId(globalConfiguration.MfeId), new ConfigurationList(globalConfiguration.Configurations), new MfeConfigurationName(globalConfiguration.ActiveConfiguration));
             return this.StatusCode(StatusCodes.Status204NoContent);
         }
     }

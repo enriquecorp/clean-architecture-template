@@ -38,7 +38,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{FA8C89
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MfeGlobalConfigurations", "MfeGlobalConfigurations", "{B1312033-C6E0-4A0E-89C6-1EEA9927BE05}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClusterConfigurations", "ClusterConfigurations", "{6EF9B0AD-1824-4B6D-AD4B-1E6BBB86C290}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MfeClusterConfigurations", "MfeClusterConfigurations", "{6EF9B0AD-1824-4B6D-AD4B-1E6BBB86C290}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{AA6D55BD-A981-4971-BCE8-FD60B8614EB7}"
 EndProject
@@ -110,9 +110,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "init-scripts", "init-script
 		.docker\init-scripts\dynamodb-data.json = .docker\init-scripts\dynamodb-data.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "registration-tool", "app\registration-tool\registration-tool.csproj", "{950238CE-EFE9-4660-93F9-A50AB86CEF52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "registration-tool", "app\registration-tool\registration-tool.csproj", "{950238CE-EFE9-4660-93F9-A50AB86CEF52}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mfe-versions.api", "mfe-versions.api", "{E91BDA3D-FC9A-45CC-AD71-10D2CD7559FB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mfe-versions.api", "mfe-versions.api", "{0FEE6899-DFC6-4915-A68F-E2C1DF6CAC98}"
 	ProjectSection(SolutionItems) = preProject
 		app.tests\mfe-versions.api\.gitkeep = app.tests\mfe-versions.api\.gitkeep
 	EndProjectSection
@@ -282,7 +282,7 @@ Global
 		{719AF948-5023-415D-9DE1-8650B66488C9} = {FA8C8966-0EFE-428D-A3F1-26E4EDDB0988}
 		{2EED1853-A1CA-4545-9915-FB516D17741F} = {A8767DBA-3C0E-489D-A3E8-D72FEE31FFC8}
 		{950238CE-EFE9-4660-93F9-A50AB86CEF52} = {91B32AE9-D09D-4D45-8D91-AB0D3FB913E3}
-		{E91BDA3D-FC9A-45CC-AD71-10D2CD7559FB} = {BD98CB51-89CE-40B1-BFD5-6F3A8C0829F6}
+		{0FEE6899-DFC6-4915-A68F-E2C1DF6CAC98} = {BD98CB51-89CE-40B1-BFD5-6F3A8C0829F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FCA23B81-A1B0-48DA-B644-21F404C18230}

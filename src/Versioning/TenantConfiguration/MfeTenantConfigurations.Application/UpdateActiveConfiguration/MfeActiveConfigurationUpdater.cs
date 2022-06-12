@@ -6,12 +6,12 @@ using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeTenantConfigurations.Application.UpdateActiveConfiguration
 {
-    public sealed class MfeActiveConfigurationUpdator
+    public sealed class MfeActiveConfigurationUpdater
     {
         private readonly IMfeTenantConfigurationRepository repository;
         private readonly IEventBus eventBus;
 
-        public MfeActiveConfigurationUpdator(IMfeTenantConfigurationRepository repository, IEventBus bus)
+        public MfeActiveConfigurationUpdater(IMfeTenantConfigurationRepository repository, IEventBus bus)
         {
             this.repository = repository;
             this.eventBus = bus;

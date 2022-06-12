@@ -13,11 +13,11 @@ namespace mfe_versions.api.V1.MfeTenantConfigurations
     [Route("api/v{version:apiVersion}/mfe-tenant-configurations")]
     public class MfeTenantConfigurationsPutController : ApiBaseController
     {
-        private readonly MfeTenantConfigurationUpdator configurationUpdator;
+        private readonly MfeTenantConfigurationUpdater configurationUpdater;
 
-        public MfeTenantConfigurationsPutController(MfeTenantConfigurationUpdator configurationUpdator)
+        public MfeTenantConfigurationsPutController(MfeTenantConfigurationUpdater configurationUpdater)
         {
-            this.configurationUpdator = configurationUpdator;
+            this.configurationUpdater = configurationUpdater;
         }
         // POST api/v{version:apiVersion}/mfe-tenant-configurations
         //[TypeFilter(typeof(DomainExceptionFilter))]
@@ -26,7 +26,7 @@ namespace mfe_versions.api.V1.MfeTenantConfigurations
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Post([FromBody] MfeTenantConfigurationUpdateRequest mfeConfiguration)
         {
-            await this.configurationUpdator.Execute(new MfeId(mfeConfiguration.MfeId), new MfeConfigurationName(mfeConfiguration.Configuration), mfeConfiguration.Tenants.Select(t => new TenantId(t)), new VersionUrl(mfeConfiguration.VersionUrl), mfeConfiguration.SetConfigurationAsActive);
+            await this.configurationUpdater.Execute(new MfeId(mfeConfiguration.MfeId), new MfeConfigurationName(mfeConfiguration.Configuration), mfeConfiguration.Tenants.Select(t => new TenantId(t)), new VersionUrl(mfeConfiguration.VersionUrl), mfeConfiguration.SetConfigurationAsActive);
             return this.StatusCode(StatusCodes.Status204NoContent);
         }
     }
