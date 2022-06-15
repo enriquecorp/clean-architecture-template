@@ -2,22 +2,22 @@
 
 namespace Versioning.Shared.Domain.ValueObjects
 {
-    public sealed class MfeConfigurationName : StringValueObject//, IEquatable<MfeConfigurationName>
+    public sealed class ConfigurationName : StringValueObject//, IEquatable<ConfigurationName>
     {
-        public MfeConfigurationName(string value) : base(value.Trim().ToLower())
+        public ConfigurationName(string value) : base(value.Trim().ToLower())
         {
         }
 
-        public static MfeConfigurationName CreateEmpty()
+        public static ConfigurationName CreateEmpty()
         {
-            return new MfeConfigurationName("");
+            return new ConfigurationName("");
         }
 
         public bool IsEmpty() { return string.IsNullOrEmpty(this.Value); }
 
         public override bool Equals(object? obj)
         {
-            if (obj is MfeConfigurationName config)
+            if (obj is ConfigurationName config)
             {
                 return this.Value.Equals(config.Value);
             }

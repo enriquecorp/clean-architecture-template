@@ -27,16 +27,16 @@ namespace mfe_versions.api.Extensions.DependencyInjection
             {
                 throw new ArgumentNullException(nameof(services));
             }
-            services.AddScoped<MfeTenantConfigurationCreator>();
-            services.AddScoped<MfeTenantConfigurationUpdater>();
-            services.AddScoped<MfeActiveConfigurationUpdater>();
-            services.AddScoped<MfeGlobalConfigurationUpdater>();
-            services.AddScoped<MfeTenantConfigurationFinder>();
-            services.AddScoped<MfeClusterConfigurationFinder>();
+            services.AddScoped<TenantConfigurationCreator>();
+            services.AddScoped<TenantConfigurationUpdater>();
+            services.AddScoped<ActiveConfigurationUpdater>();
+            services.AddScoped<GlobalConfigurationUpdater>();
+            services.AddScoped<TenantConfigurationFinder>();
+            services.AddScoped<ClusterConfigurationFinder>();
 
             //services.AddScoped<IMicrofrontEndService, MicrofrontEndService>();
             //services.AddScoped<IMicrofrontEndRepository, MicrofronEndRepository>();
-            services.AddScoped<MfeGlobalConfigurationFinder>();//TODO: Remove after QueryBus usage?
+            services.AddScoped<GlobalConfigurationFinder>();//TODO: Remove after QueryBus usage?
             //services.AddHttpClient();
             return services;
         }

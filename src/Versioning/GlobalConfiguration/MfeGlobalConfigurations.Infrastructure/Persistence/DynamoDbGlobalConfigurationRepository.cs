@@ -5,7 +5,7 @@ using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeGlobalConfigurations.Infrastructure.Persistence
 {
-    public sealed class DynamoDbGlobalConfigurationRepository : IMfeGlobalConfigurationRepository
+    public sealed class DynamoDbGlobalConfigurationRepository : IGlobalConfigurationRepository
     {
         private const string TableName = "cxs-version-configurations";
         public DynamoDbGlobalConfigurationRepository(IAmazonDynamoDB dynamoDb)
@@ -14,7 +14,7 @@ namespace MfeGlobalConfigurations.Infrastructure.Persistence
         }
 
         public IAmazonDynamoDB DynamoDb { get; }
-        public async Task Save(MfeGlobalConfiguration configuration)
+        public async Task Save(GlobalConfiguration configuration)
         {
             var item = new Dictionary<string, AttributeValue>()
             {
@@ -42,7 +42,7 @@ namespace MfeGlobalConfigurations.Infrastructure.Persistence
             }
         }
 
-        public async Task<MfeGlobalConfiguration?> Search(MfeId name)
+        public async Task<GlobalConfiguration?> Search(MfeId name)
         {
             var result = await this.GetSearchResult(name);
             if (result == null || result.Item == null || (result.HttpStatusCode == System.Net.HttpStatusCode.OK & result.Item.Count == 0))
@@ -54,7 +54,7 @@ namespace MfeGlobalConfigurations.Infrastructure.Persistence
             result.Item.TryGetValue("current", out var current);
             result.Item.TryGetValue("preview", out var preview);
             var configurationList = new ConfigurationList(new Dictionary<string, string>() { { "previous", previous?.S ?? "" }, { "current", current?.S ?? "" }, { "preview", preview?.S ?? "" } });
-            var configuration = MfeGlobalConfiguration.Create(name, new ConfigurationList(configurationList), new MfeConfigurationName(activeConfiguration?.S ?? ""));
+            var configuration = GlobalConfiguration.Create(name, new ConfigurationList(configurationList), new ConfigurationName(activeConfiguration?.S ?? ""));
             return configuration;
         }
 
@@ -74,12 +74,12 @@ namespace MfeGlobalConfigurations.Infrastructure.Persistence
             return result;
         }
 
-        public async Task Update(MfeGlobalConfiguration configuration)
+        public async Task Update(GlobalConfiguration configuration)
         {
             await this.Save(configuration);
         }
 
         private string MfeIdFormatter(string value) => $"a#{value}";
-        private MfeConfigurationName ConfigurationFormatter(string value) => new(value);
+        private ConfigurationName ConfigurationFormatter(string value) => new(value);
     }
 }

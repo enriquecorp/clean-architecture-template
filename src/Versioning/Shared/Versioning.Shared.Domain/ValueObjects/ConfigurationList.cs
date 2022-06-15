@@ -2,7 +2,7 @@
 
 namespace Versioning.Shared.Domain.ValueObjects
 {
-    public sealed class ConfigurationList : Dictionary<MfeConfigurationName, VersionUrl>
+    public sealed class ConfigurationList : Dictionary<ConfigurationName, VersionUrl>
     {
         public int Length => this.Count;
 
@@ -11,28 +11,28 @@ namespace Versioning.Shared.Domain.ValueObjects
             foreach (var configuration in Configuration.SupportedConfigurations)
             {
                 configurations.TryGetValue(configuration, out var versionUrl);
-                this[new MfeConfigurationName(configuration)] = versionUrl != null ? new VersionUrl(versionUrl) : VersionUrl.CreateEmpty();
+                this[new ConfigurationName(configuration)] = versionUrl != null ? new VersionUrl(versionUrl) : VersionUrl.CreateEmpty();
             }
         }
 
-        public ConfigurationList(Dictionary<MfeConfigurationName, VersionUrl> configurations)
+        public ConfigurationList(Dictionary<ConfigurationName, VersionUrl> configurations)
         {
             foreach (var configuration in Configuration.SupportedConfigurations)
             {
-                var c = new MfeConfigurationName(configuration);
+                var c = new ConfigurationName(configuration);
                 configurations.TryGetValue(c, out var versionUrl);
                 this[c] = versionUrl ?? new VersionUrl("");
             }
         }
 
-        public MfeConfigurationName GetFirstConfigurationName() => this.First().Key;
+        public ConfigurationName GetFirstConfigurationName() => this.First().Key;
 
         public string Value
         {
             get
             {
                 string dictionaryString = "{";
-                foreach (KeyValuePair<MfeConfigurationName, VersionUrl> configurations in this)
+                foreach (KeyValuePair<ConfigurationName, VersionUrl> configurations in this)
                 {
                     dictionaryString += configurations.Key.Value + " : " + configurations.Value + ", ";
                 }

@@ -38,11 +38,11 @@ namespace mfe_versions.api.Extensions.DependencyInjection
             //// services.AddDbContext<VersioningDbContext>(optionsAction: opt => opt.UseSqlServer(connectionString), contextLifetime: ServiceLifetime.Transient, optionsLifetime: ServiceLifetime.Transient);
 
             services.AddDynamoDb(configuration);
-            services.AddScoped<IMfeTenantConfigurationRepository, InMemoryTenantConfigurationRepository>();
-            //services.AddScoped<IMfeClusterConfigurationRepository, InMemoryClusterConfigurationRepository>();
-            services.AddScoped<IMfeClusterConfigurationRepository, DynamoDbClusterConfigurationRepository>();
-            //services.AddScoped<IMfeGlobalConfigurationRepository, InMemoryGlobalConfigurationRepository>();
-            services.AddScoped<IMfeGlobalConfigurationRepository, DynamoDbGlobalConfigurationRepository>();
+            services.AddScoped<ITenantConfigurationRepository, InMemoryTenantConfigurationRepository>();
+            //services.AddScoped<IClusterConfigurationRepository, InMemoryClusterConfigurationRepository>();
+            services.AddScoped<IClusterConfigurationRepository, DynamoDbClusterConfigurationRepository>();
+            //services.AddScoped<IGlobalConfigurationRepository, InMemoryGlobalConfigurationRepository>();
+            services.AddScoped<IGlobalConfigurationRepository, DynamoDbGlobalConfigurationRepository>();
             services.AddScoped<IEventBus, InMemoryApplicationEventBus>();
 
 

@@ -5,9 +5,9 @@ namespace Versioning.Shared.Domain.Exceptions
 {
     public class ConfigurationNotSupportedException : DomainException
     {
-        private readonly MfeConfigurationName name;
+        private readonly ConfigurationName name;
 
-        public ConfigurationNotSupportedException(MfeConfigurationName name) : base()
+        public ConfigurationNotSupportedException(ConfigurationName name) : base()
         {
             this.name = name;
         }

@@ -13,7 +13,7 @@ namespace MfeGlobalConfigurations.Domain.Exceptions
         }
         public override string Message => $"The configurations assigned to mfeid={this.name.Value} must not be empty";
 
-        public override string ErrorCode => "versions_are_empty";
+        public override string ErrorCode => "configurations_are_empty";
 
     }
 }

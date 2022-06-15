@@ -5,7 +5,7 @@ using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeClusterConfigurations.Infrastructure.Persistence
 {
-    public sealed class DynamoDbClusterConfigurationRepository : IMfeClusterConfigurationRepository
+    public sealed class DynamoDbClusterConfigurationRepository : IClusterConfigurationRepository
     {
         private const string TableName = "cxs-version-configurations";
         public DynamoDbClusterConfigurationRepository(IAmazonDynamoDB dynamoDb)
@@ -15,16 +15,16 @@ namespace MfeClusterConfigurations.Infrastructure.Persistence
 
         public IAmazonDynamoDB DynamoDb { get; }
 
-        public async Task Save(MfeClusterConfiguration mfeConfiguration)
+        public async Task Save(ClusterConfiguration configuration)
         {
             var item = new Dictionary<string, AttributeValue>()
             {
-                {"pk", new AttributeValue{ S= this.ClusterIdFormatter(mfeConfiguration.ClusterId.Value) } },
-                {"sk", new AttributeValue{ S= this.MfeIdFormatter(mfeConfiguration.MfeId.Value) } },
-                {"active", new AttributeValue{ S= mfeConfiguration.ActiveConfiguration.Value } },
-                {"previous", new AttributeValue{ S= mfeConfiguration.Configurations[this.ConfigurationFormatter("previous")].Value } },
-                {"current", new AttributeValue{ S=  mfeConfiguration.Configurations[this.ConfigurationFormatter("current")].Value } },
-                {"preview", new AttributeValue{ S=  mfeConfiguration.Configurations[this.ConfigurationFormatter("preview")].Value } }
+                {"pk", new AttributeValue{ S= this.ClusterIdFormatter(configuration.ClusterId.Value) } },
+                {"sk", new AttributeValue{ S= this.MfeIdFormatter(configuration.MfeId.Value) } },
+                {"active", new AttributeValue{ S= configuration.ActiveConfiguration.Value } },
+                {"previous", new AttributeValue{ S= configuration.Configurations[this.ConfigurationFormatter("previous")].Value } },
+                {"current", new AttributeValue{ S=  configuration.Configurations[this.ConfigurationFormatter("current")].Value } },
+                {"preview", new AttributeValue{ S=  configuration.Configurations[this.ConfigurationFormatter("preview")].Value } }
             };
 
             var request = new PutItemRequest()
@@ -43,7 +43,7 @@ namespace MfeClusterConfigurations.Infrastructure.Persistence
             }
         }
 
-        public async Task<MfeClusterConfiguration?> Search(MfeId name, ClusterId id)
+        public async Task<ClusterConfiguration?> Search(MfeId name, ClusterId id)
         {
             var result = await this.GetSearchResult(name, id);
             if (result == null || result.Item == null || (result.HttpStatusCode == System.Net.HttpStatusCode.OK & result.Item.Count == 0))
@@ -54,14 +54,14 @@ namespace MfeClusterConfigurations.Infrastructure.Persistence
             return configuration;
         }
 
-        private MfeClusterConfiguration MapToConfiguration(MfeId name, ClusterId id, Dictionary<string, AttributeValue> item)
+        private ClusterConfiguration MapToConfiguration(MfeId name, ClusterId id, Dictionary<string, AttributeValue> item)
         {
             item.TryGetValue("active", out var activeConfiguration);
             item.TryGetValue("previous", out var previous);
             item.TryGetValue("current", out var current);
             item.TryGetValue("preview", out var preview);
             var configurationList = new ConfigurationList(new Dictionary<string, string>() { { "previous", previous?.S ?? "" }, { "current", current?.S ?? "" }, { "preview", preview?.S ?? "" } });
-            var configuration = MfeClusterConfiguration.Create(name, id, new ConfigurationList(configurationList), new MfeConfigurationName(activeConfiguration?.S ?? ""));
+            var configuration = ClusterConfiguration.Create(name, id, new ConfigurationList(configurationList), new ConfigurationName(activeConfiguration?.S ?? ""));
             return configuration;
         }
 
@@ -83,6 +83,6 @@ namespace MfeClusterConfigurations.Infrastructure.Persistence
 
         private string MfeIdFormatter(string value) => $"a#{value}";
         private string ClusterIdFormatter(string value) => $"c#{value}";
-        private MfeConfigurationName ConfigurationFormatter(string value) => new(value);
+        private ConfigurationName ConfigurationFormatter(string value) => new(value);
     }
 }

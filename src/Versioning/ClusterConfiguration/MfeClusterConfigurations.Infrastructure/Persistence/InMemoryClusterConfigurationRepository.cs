@@ -3,32 +3,32 @@ using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeClusterConfigurations.Infrastructure.Persistence
 {
-    public sealed class InMemoryClusterConfigurationRepository : IMfeClusterConfigurationRepository
+    public sealed class InMemoryClusterConfigurationRepository : IClusterConfigurationRepository
     {
-        private static readonly Dictionary<(string clusterId, string mfeId), MfeClusterConfiguration> ClusterConfiguration = new();
+        private static readonly Dictionary<(string clusterId, string mfeId), ClusterConfiguration> ClusterConfiguration = new();
 
-        public async Task Save(MfeClusterConfiguration mfeConfiguration)
+        public async Task Save(ClusterConfiguration configuration)
         {
-            await Task.Run(() => ClusterConfiguration[(mfeConfiguration.ClusterId.Value, mfeConfiguration.MfeId.Value)] = mfeConfiguration);
+            await Task.Run(() => ClusterConfiguration[(configuration.ClusterId.Value, configuration.MfeId.Value)] = configuration);
         }
 
-        public Task SaveBatch(List<MfeClusterConfiguration> mfeConfiguration)
+        public Task SaveBatch(List<ClusterConfiguration> configurations)
         {
             throw new NotImplementedException();
         }
 
-        public Task<MfeClusterConfiguration?> Search(MfeId name, ClusterId id)
+        public Task<ClusterConfiguration?> Search(MfeId name, ClusterId id)
         {
-            var exists = ClusterConfiguration.TryGetValue((id.Value, name.Value), out var mfeConfiguration);
-            return Task.Run(() => exists && mfeConfiguration != null ? mfeConfiguration : null);
+            var exists = ClusterConfiguration.TryGetValue((id.Value, name.Value), out var configuration);
+            return Task.Run(() => exists && configuration != null ? configuration : null);
         }
 
-        public Task<List<MfeClusterConfiguration>> SearchBatch(MfeId name, List<ClusterId> clusters)
+        public Task<List<ClusterConfiguration>> SearchBatch(MfeId name, List<ClusterId> clusters)
         {
             return Task.Run(() => ClusterConfiguration.Select(t => t.Value).Where(c => c.MfeId.Value == name.Value && clusters.Contains(c.ClusterId)).ToList());
         }
 
-        public Task UpdateBatch(List<MfeClusterConfiguration> configurations)
+        public Task UpdateBatch(List<ClusterConfiguration> configurations)
         {
             return Task.Run(() =>
             {

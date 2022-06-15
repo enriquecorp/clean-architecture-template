@@ -14,14 +14,14 @@ namespace MfeClusterConfigurations.Application.Tests.Find
     [TestClass]
     public class ClusterConfigurationFinderShould : ClusterConfigurationModuleUnitTestCase
     {
-        private readonly MfeClusterConfigurationFinder finder;
-        private readonly MfeGlobalConfigurationFinder globalConfigurationFinder;
-        private readonly Mock<IMfeGlobalConfigurationRepository> globalConfigurationRepository;
+        private readonly ClusterConfigurationFinder finder;
+        private readonly GlobalConfigurationFinder globalConfigurationFinder;
+        private readonly Mock<IGlobalConfigurationRepository> globalConfigurationRepository;
         public ClusterConfigurationFinderShould()
         {
-            this.globalConfigurationRepository = new Mock<IMfeGlobalConfigurationRepository>();
-            this.globalConfigurationFinder = new MfeGlobalConfigurationFinder(this.globalConfigurationRepository.Object);
-            this.finder = new MfeClusterConfigurationFinder(this.Repository.Object, this.globalConfigurationFinder);
+            this.globalConfigurationRepository = new Mock<IGlobalConfigurationRepository>();
+            this.globalConfigurationFinder = new GlobalConfigurationFinder(this.globalConfigurationRepository.Object);
+            this.finder = new ClusterConfigurationFinder(this.Repository.Object, this.globalConfigurationFinder);
         }
 
         [TestMethod]
@@ -29,8 +29,8 @@ namespace MfeClusterConfigurations.Application.Tests.Find
         {
             var mfeId = MfeIdMother.Random();
             var clusterId = ClusterIdMother.Random();
-            var activeConfiguration = MfeConfigurationNameMother.Random();
-            var clusterConfigurationResult = MfeClusterConfigurationMother.Create(mfeId, clusterId, ConfigurationListMother.First(3), activeConfiguration);
+            var activeConfiguration = ConfigurationNameMother.Random();
+            var clusterConfigurationResult = ClusterConfigurationMother.Create(mfeId, clusterId, ConfigurationListMother.First(3), activeConfiguration);
             this.Repository.Setup(r => r.Search(mfeId, clusterId)).ReturnsAsync(clusterConfigurationResult);
 
             var response = await this.finder.Execute(clusterId, mfeId, activeConfiguration);
@@ -45,8 +45,8 @@ namespace MfeClusterConfigurations.Application.Tests.Find
         {
             var mfeId = MfeIdMother.Random();
             var clusterId = ClusterIdMother.Random();
-            var activeConfiguration = MfeConfigurationNameMother.Create("");
-            var clusterConfigurationResult = MfeClusterConfigurationMother.Create(mfeId, clusterId, ConfigurationListMother.Random(), activeConfiguration);
+            var activeConfiguration = ConfigurationNameMother.Create("");
+            var clusterConfigurationResult = ClusterConfigurationMother.Create(mfeId, clusterId, ConfigurationListMother.Random(), activeConfiguration);
             this.Repository.Setup(r => r.Search(mfeId, clusterId)).ReturnsAsync(clusterConfigurationResult);
 
             var response = await this.finder.Execute(clusterId, mfeId, null);
@@ -58,34 +58,34 @@ namespace MfeClusterConfigurations.Application.Tests.Find
         {
             var mfeId = MfeIdMother.Random();
             var clusterId = ClusterIdMother.Random();
-            var activeConfiguration = MfeConfigurationNameMother.Create("");
-            var clusterConfigurationResult = MfeClusterConfigurationMother.Create(mfeId, clusterId, ConfigurationListMother.Random(), activeConfiguration);
+            var activeConfiguration = ConfigurationNameMother.Create("");
+            var clusterConfigurationResult = ClusterConfigurationMother.Create(mfeId, clusterId, ConfigurationListMother.Random(), activeConfiguration);
             this.Repository.Setup(r => r.Search(mfeId, clusterId)).ReturnsAsync(clusterConfigurationResult);
 
             var response = await this.finder.Execute(clusterId, mfeId, activeConfiguration);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(MfeClusterInvalidActiveConfigurationException))]
+        [ExpectedException(typeof(ClusterInvalidActiveConfigurationException))]
         public async Task It_Should_Has_Error_with_No_Active_Configuration_Match()
         {
             var mfeId = MfeIdMother.Random();
             var clusterId = ClusterIdMother.Random();
-            var activeConfiguration = MfeConfigurationNameMother.Create("current");
-            var clusterConfigurationResult = MfeClusterConfigurationMother.Create(mfeId, clusterId, ConfigurationListMother.For(new string[] { "previous" }), activeConfiguration);
+            var activeConfiguration = ConfigurationNameMother.Create("current");
+            var clusterConfigurationResult = ClusterConfigurationMother.Create(mfeId, clusterId, ConfigurationListMother.For(new string[] { "previous" }), activeConfiguration);
             this.Repository.Setup(r => r.Search(mfeId, clusterId)).ReturnsAsync(clusterConfigurationResult);
 
             var response = await this.finder.Execute(clusterId, mfeId, null);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(MfeClusterInvalidConfigurationException))]
+        [ExpectedException(typeof(ClusterInvalidConfigurationException))]
         public async Task It_Should_Has_Error_with_No_Configuration_Match()
         {
             var mfeId = MfeIdMother.Random();
             var clusterId = ClusterIdMother.Random();
-            var activeConfiguration = MfeConfigurationNameMother.Create("current");
-            var clusterConfigurationResult = MfeClusterConfigurationMother.Create(mfeId, clusterId, ConfigurationListMother.For(new string[] { "previous" }), activeConfiguration);
+            var activeConfiguration = ConfigurationNameMother.Create("current");
+            var clusterConfigurationResult = ClusterConfigurationMother.Create(mfeId, clusterId, ConfigurationListMother.For(new string[] { "previous" }), activeConfiguration);
             this.Repository.Setup(r => r.Search(mfeId, clusterId)).ReturnsAsync(clusterConfigurationResult);
 
             var response = await this.finder.Execute(clusterId, mfeId, activeConfiguration);
@@ -96,9 +96,9 @@ namespace MfeClusterConfigurations.Application.Tests.Find
         {
             var mfeId = MfeIdMother.Random();
             var clusterId = ClusterIdMother.Random();
-            var activeConfiguration = MfeConfigurationNameMother.Random();
-            var clusterConfigurationResult = MfeClusterConfigurationMother.Empty();//No Cluster configuration
-            var globalConfigurationResult = MfeGlobalConfigurationMother.Random();
+            var activeConfiguration = ConfigurationNameMother.Random();
+            var clusterConfigurationResult = ClusterConfigurationMother.Empty();//No Cluster configuration
+            var globalConfigurationResult = GlobalConfigurationMother.Random();
             this.Repository.Setup(r => r.Search(mfeId, clusterId)).ReturnsAsync(clusterConfigurationResult);
             this.globalConfigurationRepository.Setup(g => g.Search(mfeId)).ReturnsAsync(globalConfigurationResult);
 
@@ -110,14 +110,14 @@ namespace MfeClusterConfigurations.Application.Tests.Find
         }
 
         [TestMethod]
-        [ExpectedException(typeof(MfeClusterConfigurationDoesntExistsException))]
+        [ExpectedException(typeof(ClusterConfigurationDoesntExistsException))]
         public async Task It_Should_Has_Error_No_Configuration_at_All()
         {
             var mfeId = MfeIdMother.Random();
             var clusterId = ClusterIdMother.Random();
-            var activeConfiguration = MfeConfigurationNameMother.Random();
-            var clusterConfigurationResult = MfeClusterConfigurationMother.Empty();//No Cluster configuration
-            var globalConfigurationResult = MfeGlobalConfigurationMother.Empty();
+            var activeConfiguration = ConfigurationNameMother.Random();
+            var clusterConfigurationResult = ClusterConfigurationMother.Empty();//No Cluster configuration
+            var globalConfigurationResult = GlobalConfigurationMother.Empty();
             this.Repository.Setup(r => r.Search(mfeId, clusterId)).ReturnsAsync(clusterConfigurationResult);
             this.globalConfigurationRepository.Setup(g => g.Search(mfeId)).ReturnsAsync(globalConfigurationResult);
 

@@ -3,32 +3,32 @@ using Versioning.Shared.Domain.ValueObjects;
 
 namespace MfeTenantConfigurations.Infrastructure.Persistence
 {
-    public sealed class InMemoryTenantConfigurationRepository : IMfeTenantConfigurationRepository
+    public sealed class InMemoryTenantConfigurationRepository : ITenantConfigurationRepository
     {
-        private static readonly Dictionary<(string tenantId, string mfeId), MfeTenantConfiguration> TenantConfiguration = new();
+        private static readonly Dictionary<(string tenantId, string mfeId), TenantConfiguration> TenantConfiguration = new();
 
-        public async Task Save(MfeTenantConfiguration mfeConfiguration)
+        public async Task Save(TenantConfiguration configuration)
         {
-            await Task.Run(() => TenantConfiguration[(mfeConfiguration.TenantId.Value, mfeConfiguration.MfeId.Value)] = mfeConfiguration);
+            await Task.Run(() => TenantConfiguration[(configuration.TenantId.Value, configuration.MfeId.Value)] = configuration);
         }
 
-        public Task SaveBatch(List<MfeTenantConfiguration> mfeConfiguration)
+        public Task SaveBatch(List<TenantConfiguration> configuration)
         {
             throw new NotImplementedException();
         }
 
-        public Task<MfeTenantConfiguration?> Search(MfeId name, TenantId id)
+        public Task<TenantConfiguration?> Search(MfeId name, TenantId id)
         {
-            var exists = TenantConfiguration.TryGetValue((id.Value, name.Value), out var mfeConfiguration);
-            return Task.Run(() => exists && mfeConfiguration != null ? mfeConfiguration : null);
+            var exists = TenantConfiguration.TryGetValue((id.Value, name.Value), out var configuration);
+            return Task.Run(() => exists && configuration != null ? configuration : null);
         }
 
-        public Task<List<MfeTenantConfiguration>> SearchBatch(MfeId name, List<TenantId> tenants)
+        public Task<List<TenantConfiguration>> SearchBatch(MfeId name, List<TenantId> tenants)
         {
             return Task.Run(() => TenantConfiguration.Select(t => t.Value).Where(t => t.MfeId.Value == name.Value && tenants.Contains(t.TenantId)).ToList());
         }
 
-        public Task UpdateBatch(List<MfeTenantConfiguration> configurations)
+        public Task UpdateBatch(List<TenantConfiguration> configurations)
         {
             return Task.Run(() =>
             {

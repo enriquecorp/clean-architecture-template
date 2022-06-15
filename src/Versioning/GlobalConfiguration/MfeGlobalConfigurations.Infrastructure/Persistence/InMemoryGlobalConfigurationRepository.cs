@@ -6,16 +6,16 @@ namespace MfeGlobalConfigurations.Infrastructure.Persistence
     /// <summary>
     /// Global Configuration Repository is not thought for being used in production.
     /// </summary>
-    public sealed class InMemoryGlobalConfigurationRepository : IMfeGlobalConfigurationRepository
+    public sealed class InMemoryGlobalConfigurationRepository : IGlobalConfigurationRepository
     {
-        private static readonly Dictionary<string, MfeGlobalConfiguration> GlobalConfigurations = new();
+        private static readonly Dictionary<string, GlobalConfiguration> GlobalConfigurations = new();
 
-        public async Task Save(MfeGlobalConfiguration configuration)
+        public async Task Save(GlobalConfiguration configuration)
         {
             await Task.Run(() => GlobalConfigurations[configuration.MfeId.Value] = configuration);
         }
 
-        public async Task<MfeGlobalConfiguration?> Search(MfeId name)
+        public async Task<GlobalConfiguration?> Search(MfeId name)
         {
             return await Task.Run(() =>
             {
@@ -24,7 +24,7 @@ namespace MfeGlobalConfigurations.Infrastructure.Persistence
             });
         }
 
-        public async Task Update(MfeGlobalConfiguration configuration)
+        public async Task Update(GlobalConfiguration configuration)
         {
             await Task.Run(() => GlobalConfigurations[configuration.MfeId.Value] = configuration);
         }
