@@ -1,4 +1,4 @@
-namespace shared.domain
+namespace Shared.Domain
 {
     public interface UuidGenerator
     {

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.3.52" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Versioning.Domain\Versioning.Domain.csproj" />
+    <ProjectReference Include="..\Shared\Shared.Infrastructure.Bus\Shared.Infrastructure.Bus.csproj" />
+    <ProjectReference Include="..\Shared\Shared.Infrastructure\Shared.Infrastructure.csproj" />
+    <ProjectReference Include="..\Shared\Shared.Infrastructure.Web\Shared.Infrastructure.Web.csproj" />
+  </ItemGroup>
+
+</Project>

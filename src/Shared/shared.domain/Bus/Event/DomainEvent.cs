@@ -1,12 +1,12 @@
-﻿using shared.domain.ValueObjects;
+﻿using Shared.Domain.ValueObjects;
 
-namespace shared.domain.Bus.Event
+namespace Shared.Domain.Bus.Event
 {
     public abstract class DomainEvent
     {
-        public string AggregateId { get; }
-        public string EventId { get; }
-        public string OccurredOn { get; }
+        public string AggregateId { get; } = null!;
+        public string EventId { get; } = null!;
+        public string OccurredOn { get; } = null!;
 
         protected DomainEvent(string aggregateId, string? eventId, string? occurredOn)
         {

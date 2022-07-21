@@ -1,6 +1,4 @@
-using System.Linq;
-
-namespace shared.domain.FiltersByCriteria
+﻿namespace Shared.Domain.FiltersByCriteria
 {
     public class Criteria
     {

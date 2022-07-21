@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace shared.domain
+namespace Shared.Domain
 {
     public static class DateUtils
     {

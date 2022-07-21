@@ -1,4 +1,4 @@
-﻿namespace shared.domain.Bus.Query
+﻿namespace Shared.Domain.Bus.Query
 {
     public class UnHandledQueryException : Exception
     {

@@ -1,6 +1,6 @@
-﻿using shared.domain.Bus.Event;
+﻿using Shared.Domain.Bus.Event;
 
-namespace shared.domain.Aggregate
+namespace Shared.Domain.Aggregate
 {
     public abstract class AggregateRoot
     {

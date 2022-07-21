@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace shared.domain.ValueObjects
+namespace Shared.Domain.ValueObjects
 {
     public class IntValueObject : ValueObject
     {

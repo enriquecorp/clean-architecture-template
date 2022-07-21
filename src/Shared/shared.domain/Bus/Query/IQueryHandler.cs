@@ -1,4 +1,4 @@
-﻿namespace shared.domain.Bus.Query
+﻿namespace Shared.Domain.Bus.Query
 {
     internal interface IQueryHandler<TQuery, TResponse> where TQuery : IQuery
     {

@@ -1,4 +1,4 @@
-﻿namespace shared.domain.Bus.Event
+﻿namespace Shared.Domain.Bus.Event
 {
     public interface IEventBus
     {

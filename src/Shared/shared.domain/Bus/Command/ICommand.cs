@@ -1,4 +1,4 @@
-﻿namespace shared.domain.Bus.Command
+﻿namespace Shared.Domain.Bus.Command
 {
     public interface ICommand
     {

@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace shared.domain.FiltersByCriteria
+﻿namespace Shared.Domain.FiltersByCriteria
 {
     public class Filter
     {

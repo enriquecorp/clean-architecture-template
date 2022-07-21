@@ -1,7 +1,6 @@
-﻿
-using shared.domain.ValueObjects;
+﻿using Shared.Domain.ValueObjects;
 
-namespace shared.domain.FiltersByCriteria
+namespace Shared.Domain.FiltersByCriteria
 {
     public class OrderBy : StringValueObject
     {

@@ -1,4 +1,4 @@
-namespace shared.domain.FiltersByCriteria
+namespace Shared.Domain.FiltersByCriteria
 {
     public enum FilterOperator
     {

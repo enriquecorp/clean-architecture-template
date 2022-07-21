@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using shared.domain.Bus.Event;
+using Shared.Domain.Bus.Event;
 
-namespace Shared.Infrastructure.Bus.Event
+namespace Shared.Infrastructure.Bus
 {
     public class InMemoryApplicationEventBus : IEventBus
     {

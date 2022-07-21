@@ -66,7 +66,7 @@ insert_final_newline = true
 # dotnet_code_quality.CA2007.severity = warning
 # Suggest to use ConfigureAwait(false) but not mandatory in asp.net core
 # https://stackoverflow.com/questions/42053135/configureawaitfalse-relevant-in-asp-net-core
-dotnet_diagnostic.CA2007.severity = suggestion 
+dotnet_diagnostic.CA2007.severity = suggestion
 
 ###############################
 # .NET Coding Conventions     #
