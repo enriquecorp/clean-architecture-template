@@ -1,6 +1,6 @@
 ﻿using Shared.Domain.Aggregate;
+using Versioning.Domain.Shared.ValueObjects;
 using Versioning.Domain.TenantConfigurations.Events;
-using Versioning.Domain.ValueObjects;
 
 namespace Versioning.Domain.TenantConfigurations
 {

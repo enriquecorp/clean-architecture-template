@@ -1,6 +1,6 @@
-﻿using Versioning.Domain.ClusterConfigurations;
-using Shared.Domain.Bus.Event;
-using Versioning.Domain.ValueObjects;
+﻿using Shared.Domain.Bus.Event;
+using Versioning.Domain.ClusterConfigurations;
+using Versioning.Domain.Shared.ValueObjects;
 
 namespace Versioning.Service.ClusterConfigurations.Update
 {

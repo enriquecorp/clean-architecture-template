@@ -1,7 +1,7 @@
-﻿using Versioning.Domain.TenantConfigurations;
+﻿using Shared.Domain.Bus.Event;
+using Versioning.Domain.Shared.ValueObjects;
+using Versioning.Domain.TenantConfigurations;
 using Versioning.Domain.TenantConfigurations.Exceptions;
-using Shared.Domain.Bus.Event;
-using Versioning.Domain.ValueObjects;
 
 namespace Versioning.Service.TenantConfigurations.Create
 {

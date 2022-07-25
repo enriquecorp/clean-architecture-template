@@ -1,4 +1,4 @@
-﻿using Versioning.Domain.ValueObjects;
+﻿using Versioning.Domain.Shared.ValueObjects;
 using Versioning.Shared.Tests.Domain.Simples;
 
 namespace Versioning.Shared.Tests.Domain.ValueObjects

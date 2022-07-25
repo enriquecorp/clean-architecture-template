@@ -4,8 +4,8 @@ using Moq;
 using Shared.Domain.Bus.Event;
 using Versioning.Domain.ClusterConfigurations;
 using Versioning.Domain.Tests.ClusterConfigurations;
-using Versioning.Domain.ValueObjects;
 using Versioning.Shared.Tests.Domain.ValueObjects;
+using Versioning.Domain.Shared.ValueObjects;
 
 namespace Versioning.Service.Tests.ClusterConfigurations.Update
 {

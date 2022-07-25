@@ -1,9 +1,9 @@
 ﻿using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
 using Versioning.Domain.ClusterConfigurations;
-using Versioning.Domain.ValueObjects;
+using Versioning.Domain.Shared.ValueObjects;
 
-namespace Versioning.Infrastructure.Persistence.ClusterConfigurations
+namespace Versioning.Infrastructure.ClusterConfigurations.Persistence
 {
     public sealed class DynamoDbClusterConfigurationRepository : IClusterConfigurationRepository
     {
@@ -46,7 +46,7 @@ namespace Versioning.Infrastructure.Persistence.ClusterConfigurations
         public async Task<ClusterConfiguration?> Search(MfeId name, ClusterId id)
         {
             var result = await this.GetSearchResult(name, id);
-            if (result == null || result.Item == null || (result.HttpStatusCode == System.Net.HttpStatusCode.OK & result.Item.Count == 0))
+            if (result == null || result.Item == null || result.HttpStatusCode == System.Net.HttpStatusCode.OK & result.Item.Count == 0)
             {
                 return null;
             }
@@ -110,7 +110,7 @@ namespace Versioning.Infrastructure.Persistence.ClusterConfigurations
                 [TableName] = versioningItems
             };
             // Construct request
-            BatchGetItemRequest request = new BatchGetItemRequest
+            var request = new BatchGetItemRequest
             {
                 RequestItems = requestItems
             };
@@ -123,14 +123,14 @@ namespace Versioning.Infrastructure.Persistence.ClusterConfigurations
                 result = await this.DynamoDb.BatchGetItemAsync(request);
 
                 // Iterate through responses
-                Dictionary<string, List<Dictionary<string, AttributeValue>>> responses = result.Responses;
-                foreach (string tableName in responses.Keys)
+                var responses = result.Responses;
+                foreach (var tableName in responses.Keys)
                 {
                     // Get items for each table
-                    List<Dictionary<string, AttributeValue>> tableItems = responses[tableName];
+                    var tableItems = responses[tableName];
 
                     // View items
-                    foreach (Dictionary<string, AttributeValue> item in tableItems)
+                    foreach (var item in tableItems)
                     {
 
                         configurations.Add(this.MapToConfiguration(name, item));

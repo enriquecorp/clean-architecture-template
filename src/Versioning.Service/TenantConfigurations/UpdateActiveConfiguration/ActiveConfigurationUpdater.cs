@@ -1,8 +1,8 @@
-﻿using Versioning.Domain.TenantConfigurations;
-using Shared.Domain.Bus.Event;
-using Versioning.Domain.Constants;
-using Versioning.Domain.Exceptions;
-using Versioning.Domain.ValueObjects;
+﻿using Shared.Domain.Bus.Event;
+using Versioning.Domain.Shared.Constants;
+using Versioning.Domain.Shared.Exceptions;
+using Versioning.Domain.Shared.ValueObjects;
+using Versioning.Domain.TenantConfigurations;
 
 namespace Versioning.Service.TenantConfigurations.UpdateActiveConfiguration
 {

@@ -1,11 +1,11 @@
 ﻿using System.Net;
-using Versioning.Service.TenantConfigurations.UpdateActiveConfiguration;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Infrastructure.Web;
 using Shared.Infrastructure.Web.Attributes;
 using Shared.Infrastructure.Web.Filters;
-using Versioning.Domain.Exceptions;
-using Versioning.Domain.ValueObjects;
+using Versioning.Domain.Shared.Exceptions;
+using Versioning.Domain.Shared.ValueObjects;
+using Versioning.Service.TenantConfigurations.UpdateActiveConfiguration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

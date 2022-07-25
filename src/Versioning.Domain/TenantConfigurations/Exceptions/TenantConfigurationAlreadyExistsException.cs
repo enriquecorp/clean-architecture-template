@@ -1,5 +1,5 @@
 ﻿using Shared.Domain.Exceptions;
-using Versioning.Domain.ValueObjects;
+using Versioning.Domain.Shared.ValueObjects;
 
 namespace Versioning.Domain.TenantConfigurations.Exceptions
 {

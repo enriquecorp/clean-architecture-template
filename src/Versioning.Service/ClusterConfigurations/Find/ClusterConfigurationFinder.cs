@@ -1,9 +1,9 @@
 ﻿using Versioning.Domain.ClusterConfigurations;
 using Versioning.Domain.ClusterConfigurations.Exceptions;
-using Versioning.Domain.Constants;
 using Versioning.Domain.GlobalConfigurations;
-using Versioning.Domain.Exceptions;
-using Versioning.Domain.ValueObjects;
+using Versioning.Domain.Shared.Constants;
+using Versioning.Domain.Shared.Exceptions;
+using Versioning.Domain.Shared.ValueObjects;
 
 namespace Versioning.Service.ClusterConfigurations.Find
 {

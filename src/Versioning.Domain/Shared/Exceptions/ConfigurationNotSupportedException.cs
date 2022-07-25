@@ -1,7 +1,7 @@
 ﻿using Shared.Domain.Exceptions;
-using Versioning.Domain.ValueObjects;
+using Versioning.Domain.Shared.ValueObjects;
 
-namespace Versioning.Domain.Exceptions
+namespace Versioning.Domain.Shared.Exceptions
 {
     public class ConfigurationNotSupportedException : DomainException
     {

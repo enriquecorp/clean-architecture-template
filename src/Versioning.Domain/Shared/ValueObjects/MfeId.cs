@@ -1,6 +1,6 @@
 ﻿using Shared.Domain.ValueObjects;
 
-namespace Versioning.Domain.ValueObjects
+namespace Versioning.Domain.Shared.ValueObjects
 {
     public class MfeId : StringValueObject//, IEquatable<MfeId>
     {

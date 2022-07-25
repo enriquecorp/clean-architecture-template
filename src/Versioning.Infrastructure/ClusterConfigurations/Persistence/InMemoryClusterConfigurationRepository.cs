@@ -1,7 +1,7 @@
 ﻿using Versioning.Domain.ClusterConfigurations;
-using Versioning.Domain.ValueObjects;
+using Versioning.Domain.Shared.ValueObjects;
 
-namespace Versioning.Infrastructure.Persistence.ClusterConfigurations
+namespace Versioning.Infrastructure.ClusterConfigurations.Persistence
 {
     public sealed class InMemoryClusterConfigurationRepository : IClusterConfigurationRepository
     {

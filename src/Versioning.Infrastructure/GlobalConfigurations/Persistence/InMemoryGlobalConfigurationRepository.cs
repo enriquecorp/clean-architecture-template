@@ -1,7 +1,7 @@
 ﻿using Versioning.Domain.GlobalConfigurations;
-using Versioning.Domain.ValueObjects;
+using Versioning.Domain.Shared.ValueObjects;
 
-namespace Versioning.Infrastructure.Persistence.GlobalConfigurations
+namespace Versioning.Infrastructure.GlobalConfigurations.Persistence
 {
     /// <summary>
     /// Global Configuration Repository is not thought for being used in production.

@@ -1,7 +1,7 @@
-﻿using Versioning.Domain.ValueObjects;
-using Versioning.Domain.ClusterConfigurations;
-using Versioning.Domain.Constants;
+﻿using Versioning.Domain.ClusterConfigurations;
 using Versioning.Shared.Tests.Domain.ValueObjects;
+using Versioning.Domain.Shared.ValueObjects;
+using Versioning.Domain.Shared.Constants;
 
 namespace Versioning.Domain.Tests.ClusterConfigurations
 {

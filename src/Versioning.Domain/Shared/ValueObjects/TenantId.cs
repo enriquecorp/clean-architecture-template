@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Versioning.Domain.ValueObjects
+namespace Versioning.Domain.Shared.ValueObjects
 {
     public class TenantId
     {

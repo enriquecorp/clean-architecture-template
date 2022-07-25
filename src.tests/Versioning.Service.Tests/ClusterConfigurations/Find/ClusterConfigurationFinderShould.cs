@@ -2,10 +2,10 @@
 using Versioning.Domain.ClusterConfigurations.Exceptions;
 using Versioning.Domain.GlobalConfigurations;
 using Moq;
-using Versioning.Domain.Exceptions;
 using Versioning.Domain.Tests.ClusterConfigurations;
 using Versioning.Domain.Tests.GlobalConfigurations;
 using Versioning.Shared.Tests.Domain.ValueObjects;
+using Versioning.Domain.Shared.Exceptions;
 
 namespace Versioning.Service.Tests.ClusterConfigurations.Find
 {

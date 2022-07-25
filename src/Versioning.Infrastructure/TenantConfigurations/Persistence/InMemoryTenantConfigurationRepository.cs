@@ -1,7 +1,7 @@
-﻿using Versioning.Domain.TenantConfigurations;
-using Versioning.Domain.ValueObjects;
+﻿using Versioning.Domain.Shared.ValueObjects;
+using Versioning.Domain.TenantConfigurations;
 
-namespace Versioning.Infrastructure.Persistence.TenantConfigurations
+namespace Versioning.Infrastructure.TenantConfigurations.Persistence
 {
     public sealed class InMemoryTenantConfigurationRepository : ITenantConfigurationRepository
     {

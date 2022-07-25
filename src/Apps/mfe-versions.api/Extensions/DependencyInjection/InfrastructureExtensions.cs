@@ -4,9 +4,9 @@ using Shared.Infrastructure.Bus;
 using Versioning.Domain.ClusterConfigurations;
 using Versioning.Domain.GlobalConfigurations;
 using Versioning.Domain.TenantConfigurations;
-using Versioning.Infrastructure.Persistence.ClusterConfigurations;
-using Versioning.Infrastructure.Persistence.GlobalConfigurations;
-using Versioning.Infrastructure.Persistence.TenantConfigurations;
+using Versioning.Infrastructure.ClusterConfigurations.Persistence;
+using Versioning.Infrastructure.GlobalConfigurations.Persistence;
+using Versioning.Infrastructure.TenantConfigurations.Persistence;
 
 namespace mfe_versions.api.Extensions.DependencyInjection
 {

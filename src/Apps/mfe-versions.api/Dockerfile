@@ -6,7 +6,7 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
+WORKDIR /app
 COPY ["src/Apps/mfe-versions.api/mfe-versions.api.csproj", "src/Apps/mfe-versions.api/"]
 COPY ["src/Versioning.Infrastructure/Versioning.Infrastructure.csproj", "src/Versioning.Infrastructure/"]
 COPY ["src/Shared/Shared.Infrastructure/Shared.Infrastructure.csproj", "src/Shared/Shared.Infrastructure/"]
@@ -17,7 +17,7 @@ COPY ["src/Versioning.Domain/Versioning.Domain.csproj", "src/Versioning.Domain/"
 COPY ["src/Versioning.Service/Versioning.Service.csproj", "src/Versioning.Service/"]
 RUN dotnet restore "src/Apps/mfe-versions.api/mfe-versions.api.csproj"
 COPY . .
-WORKDIR "/src/src/Apps/mfe-versions.api"
+WORKDIR "/app/src/Apps/mfe-versions.api"
 RUN dotnet build "mfe-versions.api.csproj" -c Release -o /app/build
 
 FROM build AS publish

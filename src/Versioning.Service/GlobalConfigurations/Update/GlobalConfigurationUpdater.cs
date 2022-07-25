@@ -1,7 +1,7 @@
 ﻿using Versioning.Domain.GlobalConfigurations;
 using Versioning.Domain.GlobalConfigurations.Exceptions;
 using Shared.Domain.Bus.Event;
-using Versioning.Domain.ValueObjects;
+using Versioning.Domain.Shared.ValueObjects;
 
 namespace Versioning.Service.GlobalConfigurations.Update
 {

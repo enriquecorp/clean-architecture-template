@@ -1,9 +1,9 @@
 ﻿using Versioning.Domain.GlobalConfigurations;
+using Versioning.Domain.Shared.Constants;
+using Versioning.Domain.Shared.Exceptions;
+using Versioning.Domain.Shared.ValueObjects;
 using Versioning.Domain.TenantConfigurations;
 using Versioning.Domain.TenantConfigurations.Exceptions;
-using Versioning.Domain.Constants;
-using Versioning.Domain.Exceptions;
-using Versioning.Domain.ValueObjects;
 
 namespace Versioning.Service.TenantConfigurations.Find
 {

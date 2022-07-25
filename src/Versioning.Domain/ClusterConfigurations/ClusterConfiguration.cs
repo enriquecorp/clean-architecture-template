@@ -1,6 +1,6 @@
 ﻿using Versioning.Domain.ClusterConfigurations.Events;
 using Shared.Domain.Aggregate;
-using Versioning.Domain.ValueObjects;
+using Versioning.Domain.Shared.ValueObjects;
 
 namespace Versioning.Domain.ClusterConfigurations
 {

@@ -1,6 +1,6 @@
-﻿using Versioning.Domain.Constants;
-using Versioning.Domain.GlobalConfigurations;
-using Versioning.Domain.ValueObjects;
+﻿using Versioning.Domain.GlobalConfigurations;
+using Versioning.Domain.Shared.Constants;
+using Versioning.Domain.Shared.ValueObjects;
 using Versioning.Shared.Tests.Domain.ValueObjects;
 
 namespace Versioning.Domain.Tests.GlobalConfigurations

@@ -1,5 +1,5 @@
 ﻿using Versioning.Shared.Tests.Domain.Simples;
-using Versioning.Domain.ValueObjects;
+using Versioning.Domain.Shared.ValueObjects;
 
 namespace Versioning.Shared.Tests.Domain.ValueObjects
 {

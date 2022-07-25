@@ -1,7 +1,7 @@
-﻿using Versioning.Service.TenantConfigurations.Update;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Shared.Infrastructure.Web;
-using Versioning.Domain.ValueObjects;
+using Versioning.Domain.Shared.ValueObjects;
+using Versioning.Service.TenantConfigurations.Update;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

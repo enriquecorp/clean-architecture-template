@@ -1,13 +1,13 @@
 ﻿using System.Net;
 using mfe_versions.api.Constants;
-using Versioning.Service.TenantConfigurations.Find;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Infrastructure.Web;
 using Shared.Infrastructure.Web.Attributes;
 using Shared.Infrastructure.Web.Filters;
-using Versioning.Domain.Exceptions;
+using Versioning.Domain.Shared.Exceptions;
+using Versioning.Domain.Shared.ValueObjects;
 using Versioning.Domain.TenantConfigurations.Exceptions;
-using Versioning.Domain.ValueObjects;
+using Versioning.Service.TenantConfigurations.Find;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

@@ -1,9 +1,9 @@
 ﻿using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
 using Versioning.Domain.GlobalConfigurations;
-using Versioning.Domain.ValueObjects;
+using Versioning.Domain.Shared.ValueObjects;
 
-namespace Versioning.Infrastructure.Persistence.GlobalConfigurations
+namespace Versioning.Infrastructure.GlobalConfigurations.Persistence
 {
     public sealed class DynamoDbGlobalConfigurationRepository : IGlobalConfigurationRepository
     {
@@ -45,7 +45,7 @@ namespace Versioning.Infrastructure.Persistence.GlobalConfigurations
         public async Task<GlobalConfiguration?> Search(MfeId name)
         {
             var result = await this.GetSearchResult(name);
-            if (result == null || result.Item == null || (result.HttpStatusCode == System.Net.HttpStatusCode.OK & result.Item.Count == 0))
+            if (result == null || result.Item == null || result.HttpStatusCode == System.Net.HttpStatusCode.OK & result.Item.Count == 0)
             {
                 return null;
             }

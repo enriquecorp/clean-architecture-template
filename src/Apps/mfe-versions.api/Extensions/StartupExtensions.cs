@@ -63,20 +63,15 @@ namespace mfe_versions.api.Extensions
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                // endpoints.MapHealthChecks("/health");
-                endpoints.MapHealthChecks("/health", new HealthCheckOptions()
-                {
-                    Predicate = _ => true,
-                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-                });
                 app.UseHealthChecksUI(delegate (Options options)
                 {
                     options.UIPath = "/healthcheck-ui";
-                    options.AddCustomStylesheet($"{AppContext.BaseDirectory}/extensions/HealthCheck/custom.css");
+                    options.AddCustomStylesheet($"{AppContext.BaseDirectory}Extensions/HealthCheck/custom.css");
                 });
                 // Health Checks recommended here: https://tlvconfluence01.nice.com/display/IN/GEN+ADR4:+Health+Check+Endpoints
                 // endpoints.MapHealthChecks("/health", new HealthCheckOptions() { Predicate = (_) => false });
                 // TODO: The bodies returned for these don't seem to match what is stated in GEN ADR4
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions() { Predicate = (_) => true, ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse });
                 endpoints.MapHealthChecks("/healthcheck", new HealthCheckOptions() { Predicate = (_) => false });
                 endpoints.MapHealthChecks("/probe/healthcheck", new HealthCheckOptions() { Predicate = (_) => false });
                 endpoints.MapHealthChecks("/probe/host", new HealthCheckOptions() { Predicate = (check) => check.Tags.Contains("host"), ResponseWriter = ResponseWriters.HostProbeWriter });

@@ -1,6 +1,6 @@
-﻿using Versioning.Domain.Constants;
+﻿using Versioning.Domain.Shared.Constants;
 
-namespace Versioning.Domain.ValueObjects
+namespace Versioning.Domain.Shared.ValueObjects
 {
     public sealed class ConfigurationList : Dictionary<ConfigurationName, VersionUrl>
     {
@@ -31,8 +31,8 @@ namespace Versioning.Domain.ValueObjects
         {
             get
             {
-                string dictionaryString = "{";
-                foreach (KeyValuePair<ConfigurationName, VersionUrl> configurations in this)
+                var dictionaryString = "{";
+                foreach (var configurations in this)
                 {
                     dictionaryString += configurations.Key.Value + " : " + configurations.Value + ", ";
                 }
